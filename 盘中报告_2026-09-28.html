@@ -1,0 +1,353 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<title>A股智能研究·盘中作战报告 2026-09-28</title><style>
+:root{--bg:#eef1f6;--card:#fff;--ink:#1e293b;--sub:#667085;--line:#e6eaf0;
+--blue:#1d4ed8;--teal:#0f766e;--green:#059669;--red:#e11d48;--amber:#d97706;--purple:#6366f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:14px 12px 44px}
+.hero{background:linear-gradient(135deg,#1d4ed8,#0f766e);color:#fff;border-radius:18px;
+padding:16px 16px 15px;box-shadow:0 4px 14px rgba(15,23,42,.16)}
+.hero h1{font-size:20px;font-weight:800;letter-spacing:.3px}
+.hero .sub{font-size:12px;opacity:.92;margin-top:3px}
+/* 生成时间戳：显眼可辨，用于区分「新版已发布」与「缓存/旧版」 */
+.hero .genstamp{margin-top:7px;display:inline-block;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.34);border-radius:9px;padding:3px 10px;font-size:12px}
+.hero .genstamp b{font-weight:800;letter-spacing:.2px}
+.hero .stat{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.hero .stat span{background:rgba(255,255,255,.17);border-radius:9px;padding:4px 9px;font-size:11.5px}
+.hero .stat b{font-weight:800}
+.up{color:#e11d48}.dn{color:#059669}   /* 涨红跌绿（A 股惯例） */
+.hero .up{color:#fecaca}.hero .dn{color:#bbf7d0}
+h2{font-size:14.5px;margin:16px 2px 8px;font-weight:800;color:#0f172a}
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:5px solid #cbd5e1;margin-bottom:9px}
+.card.buy{border-left-color:#059669}.card.watch{border-left-color:#d97706}
+.card.avoid{border-left-color:#e11d48}.card.s1{border-left-color:#f59e0b}
+.card.s2{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .ico{font-size:17px;margin-right:5px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:11px;border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;
+display:inline-block}
+.b-buy{background:#dcfce7;color:#15803d}.b-watch{background:#fef3c7;color:#b45309}
+.b-avoid{background:#fee2e2;color:#b91c1c}.b-time{background:#eff6ff;color:#1d4ed8}
+.b-gray{background:#f1f5f9;color:#64748b}.b-pur{background:#eef2ff;color:#4f46e5}
+.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi .b{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:10px 13px;min-width:96px}
+.kpi .b .v{font-size:18px;font-weight:800}
+.kpi .b .l{font-size:11.5px;color:var(--sub);margin-top:2px}
+.sec{background:#fff;border-radius:15px;padding:11px 13px;margin-top:9px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--sub);font-weight:600;background:#fafbfd}
+td:first-child,th:first-child{text-align:left}
+tbody tr:hover{background:#f7f9fd}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.v-buy{color:#067a4a;background:#e3f9f1;border:1px solid #b6ecd9;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-watch{color:#1f5fd0;background:#e8f0fe;border:1px solid #c2d8fb;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-avoid{color:#c0392b;background:#fdecec;border:1px solid #f5c2c2;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.flex{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.foot{font-size:11px;color:#94a3b8;margin-top:16px;line-height:1.8}
+.warn{font-size:11.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;
+border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
+.bul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#334155}
+.bul li{margin:3px 0}
+.secl{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:4px 0}
+.segl{width:118px;flex:none;color:var(--ink)}
+.segtrack{flex:1;position:relative;height:12px;min-width:60px}
+.segzero{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#dbe2ea}
+.segb{position:absolute;height:12px;border-radius:3px}
+.segb.right{left:50%}
+.segb.left{right:50%}
+.segv{width:64px;text-align:right;color:var(--sub);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:11px;background:#f1f5f9;color:#475569;border-radius:999px;padding:2px 9px}
+.disclaimer{color:#9aa5b1;font-size:11.5px;margin-top:12px;line-height:1.8}
+.tblwrap{overflow-x:auto}
+/* —— 报告入口导航卡（旧版首页四态入口，1:1 对齐 .card）—— */
+.navgrid{display:flex;flex-direction:column;gap:9px;margin-top:8px}
+.navcard{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;border-left:5px solid #cbd5e1;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .12s ease,box-shadow .12s ease}
+.navcard:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.navcard.off{opacity:.62;border-left-color:#94a3b8}
+.navcard .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.navcard .ttl{font-size:15.5px;font-weight:800}
+.navcard .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* 旧版态色：pre 琥珀 / intra 绿 / post 靛 / research 天蓝 */
+.navcard.pre{border-left-color:#f59e0b}
+.navcard.intra{border-left-color:#10b981}
+.navcard.eod{border-left-color:#6366f1}
+.navcard.post{border-left-color:#6366f1}
+.navcard.research{border-left-color:#0ea5e9}
+/* —— 通用卡片（导航卡 / 详情页区块复用）—— */
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border-left:5px solid #cbd5e1;transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.card.s1card{border-left-color:#f59e0b}
+.card.s2card{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .code{color:#94a3b8;font-weight:500;font-size:11px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;
+  flex-wrap:wrap;gap:8px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* —— 研究详情（新闻/技术拆解）—— */
+.subh{font-size:13px;font-weight:700;color:var(--ink);margin:2px 0 6px}
+.newsline{font-size:12.5px;line-height:1.9;padding:3px 0;border-bottom:1px dashed #eef1f6}
+.newsline a{color:#1d4ed8;text-decoration:none}
+.newsline a:hover{text-decoration:underline}
+.tag-red,.tag-green,.tag-amber,.tag-gray{font-size:10.5px;border-radius:5px;
+  padding:1px 6px;margin-right:6px;font-weight:700}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-gray{background:#f1f5f9;color:#475569}
+/* —— 就绪徽章（旧版 b-ready/b-off）—— */
+.b-ready{background:#dcfce7;color:#15803d;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+.b-off{background:#f1f5f9;color:#94a3b8;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+/* —— 旧版三态卡色（盘前/盘中/盘后）—— */
+.card.pre{border-left-color:#f59e0b}
+.card.intra{border-left-color:#10b981}
+.card.post{border-left-color:#6366f1}
+/* —— 旧版卡片容器 / 明细行 / 键值 —— */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.odet{font-size:12px;color:var(--sub);line-height:1.8}
+.arow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;
+  padding:3px 0;border-bottom:1px dashed #eef1f6}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.wrap{padding:10px 8px 36px}
+  .navgrid{grid-template-columns:1fr}}
+
+.card.intra{border-left-color:#10b981}
+.badge.intra{background:#d1fae5;color:#047857}
+/* —— 盘前报告（模板主线，琥珀左色条）—— */
+.badge.pre{background:#fef3c7;color:#b45309}
+/* —— 指数条（模板 .idxbar 复刻：白卡一行平铺，非 KPI 格）—— */
+.idxbar{background:#fff;border-radius:12px;padding:9px 12px;margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);justify-content:space-between}
+.idxbar span{white-space:nowrap}
+/* —— C1 研发分布扁平条（消息 / 研判计数，紧凑可读）—— */
+.dstat{background:#fff;border-radius:12px;padding:8px 12px;margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.dstat b{font-weight:800;font-size:13px}
+.dstat i{font-style:normal;color:#94a3b8;font-size:11px;margin-left:2px}
+/* —— 收盘报告（旧版 .card.post 紫蓝左色条，与盘中页明确区分）—— */
+.card.post{border-left-color:#6366f1}
+.badge.post{background:#e0e7ff;color:#4338ca}
+/* —— 自选股徽章（全市场推荐中命中观察名单打标）—— */
+.badge-wl{display:inline-block;background:#fff7ed;color:#c2410c;
+  border:1px solid #fed7aa;border-radius:6px;padding:0 6px;
+  font-size:11px;font-weight:600;vertical-align:middle;margin-left:2px}
+/* —— 实时分时图 —— */
+.spark{width:100%;height:70px;display:block}
+.spark .axis{stroke:#e2e8f0;stroke-width:1}
+.spark .line{fill:none;stroke-width:1.6;stroke-linejoin:round}
+.spark .pre{stroke:#cbd5e1;stroke-dasharray:3 3;stroke-width:1}
+.mbar{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.mbar span{background:#f1f5f9;border-radius:8px;padding:2px 8px;font-size:11px;color:#475569}
+/* —— 榜单单票卡（2026-09-24 改：替代 9 列宽表，窄屏不再挤压）—— */
+.rvbox{display:flex;flex-direction:column;gap:7px;margin:6px 0}
+.rv{background:#fff;border:1px solid #e8edf3;border-left:3px solid #cbd5e1;
+  border-radius:10px;padding:8px 10px;font-size:11.5px;line-height:1.65}
+.rv1{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rv1 .rvs{font-size:13.5px;font-weight:800;color:#1d4ed8}
+.rv1 .rvs a{text-decoration:none;color:#1d4ed8}
+.rv1 .rvr{font-size:13px;font-weight:800;white-space:nowrap}
+.rv2{font-size:10.5px;color:#94a3b8;margin-top:1px}
+.rv3{margin-top:3px;color:#334155;word-break:break-word;overflow-wrap:anywhere}
+.rv3 .rvk{color:#94a3b8;font-size:10.5px;margin-right:2px}
+.rv4{margin-top:4px}
+.rv5{font-size:10.5px;color:#64748b;margin-top:2px;word-break:break-word;overflow-wrap:anywhere}
+@media(max-width:360px){.rv1 .rvs{font-size:12.5px} .rv3{font-size:11px}}
+/* —— 板块强度矩阵（2026-09-24 改：用户参考图样式，TOP5）——
+   栅格：板块名（可换行） + 条形&涨幅（自适应）；条形统一左对齐、按 TOP1 归一。 */
+.ssr{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:2px 10px;
+  align-items:center;padding:6px 8px;border-bottom:1px dashed #f1f5f9}
+.ssr:last-child{border-bottom:none}
+.ssr .ssn{font-weight:800;color:#334155;font-size:12.5px;line-height:1.35;
+  word-break:break-word;overflow-wrap:anywhere}
+.ssr .ssn small{font-weight:600;color:#94a3b8;font-size:10.5px}
+.ssr .ssm{display:flex;align-items:center;gap:8px;min-width:0}
+.ssr .ssbar{flex:1;height:13px;background:#f1f5f9;border-radius:4px;overflow:hidden;min-width:40px}
+.ssr .ssbar i{display:block;height:100%;border-radius:4px}
+.ssr .ssm b{font-size:12.5px;font-weight:700;white-space:nowrap;min-width:52px;text-align:right}
+/* —— 报告顶部「首页」入口按钮 —— */
+.homebtn{text-decoration:none;background:#fff;border:1px solid #e2e8f0;border-radius:10px;
+  padding:4px 11px;font-size:12px;font-weight:700;color:#1d4ed8;white-space:nowrap;
+  box-shadow:0 1px 2px rgba(0,0,0,.04)}
+
+/* === 内联详情页样式（自包含发布用） === */
+:root{--bg:#eef1f6;--card:#fff;--ink:#1e293b;--sub:#667085;--line:#e6eaf0;
+--blue:#1d4ed8;--teal:#0f766e;--green:#059669;--red:#e11d48;--amber:#d97706;--purple:#6366f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:14px 12px 44px}
+.hero{background:linear-gradient(135deg,#1d4ed8,#0f766e);color:#fff;border-radius:18px;
+padding:16px 16px 15px;box-shadow:0 4px 14px rgba(15,23,42,.16)}
+.hero h1{font-size:20px;font-weight:800;letter-spacing:.3px}
+.hero .sub{font-size:12px;opacity:.92;margin-top:3px}
+/* 生成时间戳：显眼可辨，用于区分「新版已发布」与「缓存/旧版」 */
+.hero .genstamp{margin-top:7px;display:inline-block;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.34);border-radius:9px;padding:3px 10px;font-size:12px}
+.hero .genstamp b{font-weight:800;letter-spacing:.2px}
+.hero .stat{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.hero .stat span{background:rgba(255,255,255,.17);border-radius:9px;padding:4px 9px;font-size:11.5px}
+.hero .stat b{font-weight:800}
+.up{color:#e11d48}.dn{color:#059669}   /* 涨红跌绿（A 股惯例） */
+.hero .up{color:#fecaca}.hero .dn{color:#bbf7d0}
+h2{font-size:14.5px;margin:16px 2px 8px;font-weight:800;color:#0f172a}
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:5px solid #cbd5e1;margin-bottom:9px}
+.card.buy{border-left-color:#059669}.card.watch{border-left-color:#d97706}
+.card.avoid{border-left-color:#e11d48}.card.s1{border-left-color:#f59e0b}
+.card.s2{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .ico{font-size:17px;margin-right:5px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:11px;border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;
+display:inline-block}
+.b-buy{background:#dcfce7;color:#15803d}.b-watch{background:#fef3c7;color:#b45309}
+.b-avoid{background:#fee2e2;color:#b91c1c}.b-time{background:#eff6ff;color:#1d4ed8}
+.b-gray{background:#f1f5f9;color:#64748b}.b-pur{background:#eef2ff;color:#4f46e5}
+.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi .b{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:10px 13px;min-width:96px}
+.kpi .b .v{font-size:18px;font-weight:800}
+.kpi .b .l{font-size:11.5px;color:var(--sub);margin-top:2px}
+.sec{background:#fff;border-radius:15px;padding:11px 13px;margin-top:9px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--sub);font-weight:600;background:#fafbfd}
+td:first-child,th:first-child{text-align:left}
+tbody tr:hover{background:#f7f9fd}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.v-buy{color:#067a4a;background:#e3f9f1;border:1px solid #b6ecd9;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-watch{color:#1f5fd0;background:#e8f0fe;border:1px solid #c2d8fb;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-avoid{color:#c0392b;background:#fdecec;border:1px solid #f5c2c2;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.flex{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.foot{font-size:11px;color:#94a3b8;margin-top:16px;line-height:1.8}
+.warn{font-size:11.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;
+border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
+.bul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#334155}
+.bul li{margin:3px 0}
+.secl{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:4px 0}
+.segl{width:118px;flex:none;color:var(--ink)}
+.segtrack{flex:1;position:relative;height:12px;min-width:60px}
+.segzero{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#dbe2ea}
+.segb{position:absolute;height:12px;border-radius:3px}
+.segb.right{left:50%}
+.segb.left{right:50%}
+.segv{width:64px;text-align:right;color:var(--sub);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:11px;background:#f1f5f9;color:#475569;border-radius:999px;padding:2px 9px}
+.disclaimer{color:#9aa5b1;font-size:11.5px;margin-top:12px;line-height:1.8}
+.tblwrap{overflow-x:auto}
+/* —— 报告入口导航卡（旧版首页四态入口，1:1 对齐 .card）—— */
+.navgrid{display:flex;flex-direction:column;gap:9px;margin-top:8px}
+.navcard{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;border-left:5px solid #cbd5e1;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .12s ease,box-shadow .12s ease}
+.navcard:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.navcard.off{opacity:.62;border-left-color:#94a3b8}
+.navcard .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.navcard .ttl{font-size:15.5px;font-weight:800}
+.navcard .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* 旧版态色：pre 琥珀 / intra 绿 / post 靛 / research 天蓝 */
+.navcard.pre{border-left-color:#f59e0b}
+.navcard.intra{border-left-color:#10b981}
+.navcard.eod{border-left-color:#6366f1}
+.navcard.post{border-left-color:#6366f1}
+.navcard.research{border-left-color:#0ea5e9}
+/* —— 通用卡片（导航卡 / 详情页区块复用）—— */
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border-left:5px solid #cbd5e1;transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.card.s1card{border-left-color:#f59e0b}
+.card.s2card{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .code{color:#94a3b8;font-weight:500;font-size:11px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;
+  flex-wrap:wrap;gap:8px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* —— 研究详情（新闻/技术拆解）—— */
+.subh{font-size:13px;font-weight:700;color:var(--ink);margin:2px 0 6px}
+.newsline{font-size:12.5px;line-height:1.9;padding:3px 0;border-bottom:1px dashed #eef1f6}
+.newsline a{color:#1d4ed8;text-decoration:none}
+.newsline a:hover{text-decoration:underline}
+.tag-red,.tag-green,.tag-amber,.tag-gray{font-size:10.5px;border-radius:5px;
+  padding:1px 6px;margin-right:6px;font-weight:700}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-gray{background:#f1f5f9;color:#475569}
+/* —— 就绪徽章（旧版 b-ready/b-off）—— */
+.b-ready{background:#dcfce7;color:#15803d;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+.b-off{background:#f1f5f9;color:#94a3b8;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+/* —— 旧版三态卡色（盘前/盘中/盘后）—— */
+.card.pre{border-left-color:#f59e0b}
+.card.intra{border-left-color:#10b981}
+.card.post{border-left-color:#6366f1}
+/* —— 旧版卡片容器 / 明细行 / 键值 —— */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.odet{font-size:12px;color:var(--sub);line-height:1.8}
+.arow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;
+  padding:3px 0;border-bottom:1px dashed #eef1f6}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.wrap{padding:10px 8px 36px}
+  .navgrid{grid-template-columns:1fr}}
+
+.inline-detail{margin-top:10px;border-top:1px dashed #e2e8f0;padding-top:8px}
+.inline-detail .h1{font-size:15px}
+summary::-webkit-details-marker{display:none}
+</style></head>
+<body id="top"><div class="wrap">
+<div class="hero"><h1>📡 A股智能研究·盘中作战报告</h1><div class="sub"><span class="badge intra">盘中</span> 报告生成 2026-09-29 23:11 ｜ 数据基准 2026-09-28 收盘 ｜ 分时 2026-09-28 ｜ 数据源 qt.gtimg.cn</div><div class="stat"><span>短期榜 <b>2</b></span><span>中期榜 <b>10</b></span><span>板块 <b>146</b></span><span>实时分时 <b>0</b></span></div></div>
+<div class="mbar"><span><a href="盘前报告_2026-09-28.html">🌤️ 盘前报告</a></span><span><b>⏱️ 盘中报告（当前）</b></span><span><a href="收盘报告_2026-09-28.html">🔔 收盘报告</a></span><span><a href="新闻报告_2026-09-28.html">📰 新闻报告</a></span><span><a href="技术拆解_2026-09-28.html">🔧 技术拆解</a></span><span><a href="archive.html">📚 历史归档</a></span></div>
+
+<div class="sec" style="border:1.5px solid #fbbf24;background:#fffbeb">
+<h3>📌 盘中速览（五件事）</h3>
+<div class="odet">📉 <b>大盘</b>：上证指数 <b class="dn">3823.62</b> <b class="dn">-1.67%</b> · 深证成指 <b class="dn">12858.75</b> <b class="dn">-3.44%</b> · 创业板指 <b class="dn">3139.82</b> <b class="dn">-4.53%</b></div>
+<div class="odet">🎯 <b>短期情绪榜</b>：2 只（上限 5）· 见 C2 区（挂单参数）</div>
+<div class="odet">🧭 <b>中期前瞻榜</b>：10 只（上限 10）· 见 C3 区</div>
+<div class="odet">🔥 <b>板块方向</b>：电新/光伏设备+9.99% · 汽车/电子+3.08% · 轻工/日用消费+2.01%</div>
+<div class="odet">⏱️ <b>实时状态</b>：含实时分时 <b>0</b> 只 · 分时基准 2026-09-28</div>
+</div>
+
+<details class="sec2" open><summary>C1 📉 大盘上下文（指数 / 量能 / 研判分布）</summary>
+<div class="sec"><div class="kpi"><div class="b"><div class="v"><span class="dn">3823.62</span> <small class="dn">-1.67%</small></div><div class="l">上证指数</div></div><div class="b"><div class="v"><span class="dn">12858.75</span> <small class="dn">-3.44%</small></div><div class="l">深证成指</div></div><div class="b"><div class="v"><span class="dn">3139.82</span> <small class="dn">-4.53%</small></div><div class="l">创业板指</div></div><div class="b"><div class="v"><span class="dn">1555.98</span> <small class="dn">-4.06%</small></div><div class="l">科创50</div></div></div><div class="b"><div class="v up">1157</div><div class="l">利好</div></div><div class="b"><div class="v dn">659</div><div class="l">利空</div></div><div class="b"><div class="v">5471</div><div class="l">中性</div></div><div class="b"><div class="v">0</div><div class="l">含实时分时</div></div></div></details>
+
+<details class="sec2" open><summary>C2 🎯 短期情绪榜 S1 · 2 只（上限 5）<span class="badge b-time">行情 + 消息</span></summary>
+<div class="sec" style="border-left:5px solid #f59e0b">
+<div class="odet">说明：「强势 / 偏强 / 关注」是对<b>当日盘面状态</b>的客观刻度，<b>不是操作指令</b>——
+不代表建议追涨；执行价位以买区/目标/止损为准。<b>破位即撤</b>。</div>
+<div class="rv"><div class="rv1"><span class="rvs">1. <a href="d/603773.html">沃格光电</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">603773 · 现价 99.99 <small class="up">+2.34%</small> · 盘中 <b class="up">已越目标</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">62.12 ~ 64.01</b> <span class="rvk">目标</span><b class="up">93.18</b> <span class="rvk">止损</span><b class="dn">59.64</b></div><div class="rv5">建议仓位 15%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">2. <a href="d/600206.html">有研新材</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">600206 · 现价 51.63 <small class="up">+3.65%</small> · 盘中 <b class="up">已越目标</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">29.93 ~ 30.84</b> <span class="rvk">目标</span><b class="up">44.89</b> <span class="rvk">止损</span><b class="dn">28.73</b></div><div class="rv5">建议仓位 15%（总仓≤30%）</div></div></div></details>
+
+<details class="sec2" open><summary>C3 🔥 板块强度矩阵 · TOP5</summary>
+<div class="sec"><div class="ssr"><span class="ssn">电新/光伏设备 <small>(1)</small></span><span class="ssm"><span class="ssbar"><i style="width:100.0%;background:#e11d48"></i></span><b style="color:#e11d48">+9.99%</b></span></div><div class="ssr"><span class="ssn">汽车/电子 <small>(3)</small></span><span class="ssm"><span class="ssbar"><i style="width:30.9%;background:#e11d48"></i></span><b style="color:#e11d48">+3.08%</b></span></div><div class="ssr"><span class="ssn">轻工/日用消费 <small>(2)</small></span><span class="ssm"><span class="ssbar"><i style="width:20.1%;background:#e11d48"></i></span><b style="color:#e11d48">+2.01%</b></span></div><div class="ssr"><span class="ssn">汽车/整车 <small>(10)</small></span><span class="ssm"><span class="ssbar"><i style="width:19.0%;background:#e11d48"></i></span><b style="color:#e11d48">+1.90%</b></span></div><div class="ssr"><span class="ssn">食饮/啤酒黄酒 <small>(5)</small></span><span class="ssm"><span class="ssbar"><i style="width:17.1%;background:#e11d48"></i></span><b style="color:#e11d48">+1.71%</b></span></div></div></details>
+
+<details class="sec2" open><summary>C4 🧭 中期前瞻榜 S2 · 10 只（上限 10）<span class="badge b-pur">成长 + 财务 + 弹性</span></summary>
+<div class="sec" style="border-left:5px solid #3b82f6"><div class="rv"><div class="rv1"><span class="rvs">1. <a href="d/600595.html">中孚实业</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">600595 · 现价 5.74 <small class="dn">-1.71%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">5.48 ~ 5.64</b> <span class="rvk">目标</span><b class="up">9.18</b> <span class="rvk">止损</span><b class="dn">5.1</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">2. <a href="d/000612.html">焦作万方</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">000612 · 现价 10.19 <small class="dn">-4.86%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">9.69 ~ 9.98</b> <span class="rvk">目标</span><b class="up">16.3</b> <span class="rvk">止损</span><b class="dn">9.01</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">3. <a href="d/000567.html">海德股份</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">000567 · 现价 5.82 <small class="dn">-1.36%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">5.55 ~ 5.72</b> <span class="rvk">目标</span><b class="up">9.31</b> <span class="rvk">止损</span><b class="dn">5.16</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">4. <a href="d/001232.html">嘉立创</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">001232 · 现价 191.20 <small class="dn">-3.91%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">174.44 ~ 176.19</b> <span class="rvk">目标</span><b class="up">292.83</b> <span class="rvk">止损</span><b class="dn">162.23</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">5. <a href="d/000623.html">吉林敖东</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">000623 · 现价 17.20 <small class="dn">-1.60%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">16.54 ~ 17.04</b> <span class="rvk">目标</span><b class="up">26.76</b> <span class="rvk">止损</span><b class="dn">15.38</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">6. <a href="d/600739.html">辽宁成大</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">600739 · 现价 10.08 <small class="dn">-1.85%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">9.7 ~ 9.99</b> <span class="rvk">目标</span><b class="up">15.47</b> <span class="rvk">止损</span><b class="dn">9.02</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">7. <a href="d/002432.html">九安医疗</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">002432 · 现价 59.18 <small class="dn">-4.05%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">55.92 ~ 56.48</b> <span class="rvk">目标</span><b class="up">87.99</b> <span class="rvk">止损</span><b class="dn">52.01</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">8. <a href="d/002841.html">视源股份</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">002841 · 现价 44.10 <small class="dn">-1.87%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">39.12 ~ 39.52</b> <span class="rvk">目标</span><b class="up">60.68</b> <span class="rvk">止损</span><b class="dn">36.38</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">9. <a href="d/002236.html">大华股份</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">002236 · 现价 15.22 <small class="dn">-2.06%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">14.67 ~ 15.11</b> <span class="rvk">目标</span><b class="up">22.24</b> <span class="rvk">止损</span><b class="dn">13.64</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">10. <a href="d/603014.html">威高血净</a></span><span class="rvr"><span class="v-buy">强烈关注</span></span></div><div class="rv2">603014 · 现价 31.05 <small class="dn">-0.32%</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">29.93 ~ 30.83</b> <span class="rvk">目标</span><b class="up">45.71</b> <span class="rvk">止损</span><b class="dn">27.83</b></div><div class="rv5">建议仓位 3%（总仓≤30%）</div></div></div></details>
+
+
+<p class="disclaimer">免责声明：本报告由确定性研究程序生成，仅供学习与研究参考，不构成投资建议。
+股市有风险，投资需谨慎。所有结论基于历史数据与技术模型，不保证未来表现。</p>
+</div></body></html>

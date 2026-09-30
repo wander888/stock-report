@@ -1,0 +1,119 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前策略两日复盘（2026-09-28 / 09-29）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+body{background:#f4f6fb;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#1e293b;font-size:14px;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:18px 14px 40px}
+h1{font-size:21px;margin:2px 0 4px}
+h2{font-size:16.5px;margin:22px 0 8px;padding-left:9px;border-left:4px solid #b45309}
+h3{font-size:14px;margin:12px 0 4px;color:#334155}
+.meta{font-size:11.5px;color:#94a3b8}
+.sec{background:#fff;border-radius:14px;padding:13px 15px;margin-top:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.up{color:#dc2626;font-weight:800}.dn{color:#16a34a;font-weight:800}
+.card{border:1px solid #e8edf3;border-left:3px solid #cbd5e1;border-radius:10px;padding:9px 12px;margin:8px 0;background:#fff}
+.card.bad{border-left-color:#dc2626}.card.warn{border-left-color:#b45309}.card.ok{border-left-color:#15803d}
+.tag{display:inline-block;border-radius:6px;padding:1px 7px;font-size:11px;font-weight:700;margin-right:4px}
+.tag-r{background:#fef2f2;color:#b91c1c}.tag-a{background:#f0fdf4;color:#15803d}.tag-w{background:#fffbeb;color:#b45309}
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:12.5px}
+th,td{border:1px solid #e8edf3;padding:6px 8px;text-align:center}
+th{background:#f8fafc;color:#475569;font-weight:700}
+td.l,th.l{text-align:left}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f1f5f9;border-radius:5px;padding:1px 5px;font-size:12px;color:#0f172a}
+.disc{font-size:11.5px;color:#94a3b8;margin-top:14px;line-height:1.7}
+.kpis{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.kpi{flex:1;min-width:120px;background:#fff;border-radius:10px;padding:9px 11px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.kpi b{font-size:18px;display:block}
+.kpi span{font-size:11px;color:#64748b}
+ul{padding-left:18px;margin:4px 0}
+li{margin:3px 0}
+
+.inline-detail{margin-top:10px;border-top:1px dashed #e2e8f0;padding-top:8px}
+.inline-detail .h1{font-size:15px}
+summary::-webkit-details-marker{display:none}
+</style></head>
+<body id="top"><div class="wrap">
+<h1>📉 盘前策略两日复盘（2026-09-28 / 09-29）</h1>
+<div class="meta">复盘对象：<span class="code">code/reports/盘前报告_2026-09-28.html</span> · <span class="code">盘前报告_2026-09-29.html</span> 及其对应收盘报告｜策略引擎：<span class="code">app/j/judgeMarket.py</span> · <span class="code">app/s/shortTermBoard.py</span> · <span class="code">params.json</span></div>
+
+<div class="sec" style="border:1.5px solid #fbbf24;background:#fffbeb">
+<h3>⚠️ 核心结论</h3>
+<p>两日盘前策略的<b>「重大失败」不在逐只选股，而在「大盘研判与个股推送彻底解耦」</b>：系统一边在 C0 判定 <b>退潮·偏空 / 仓位上限 30%</b>，一边照常推送 <b>15 只确定性+弹性买（S1×5 + 弹性×3 + S2×10，逐只 20%~30% = 名义 300%+）</b>；且 C3 已把<b>光模块/光纤/通信</b>明确判为「偏空」，S1 却选出同链条的半导体股（华懋科技/新洁能/晶方科技）。09-28 确实崩（判定自洽但推送矛盾），09-29 反弹（<b>偏空研判被收报标记为 ❌ 未命中</b>，错过行情）。两日合计 36 只预案中 <b>21 只（58%）全天从未触及买区、0 只触及目标</b>——挂单预案本身也几乎不可执行。</p>
+</div>
+
+<h2>一、两日战况速览（数据取自系统自身收盘报告）</h2>
+<div class="kpis">
+  <div class="kpi"><b class="dn">−1.83%</b><span>09-28 全市场中位（861/4245 涨，17%）</span></div>
+  <div class="kpi"><b class="up">+0.49%</b><span>09-29 全市场中位（3258/1809 涨，63%）</span></div>
+  <div class="kpi"><b>58%</b><span>两日预案从未触达买区（21/36）</span></div>
+  <div class="kpi"><b>0%</b><span>两日预案触及目标价（0/36）</span></div>
+</div>
+<table>
+<thead><tr><th class="l">项目</th><th>09-28（周一）</th><th>09-29（周二）</th></tr></thead>
+<tbody>
+<tr><td class="l">大盘</td><td>上证−1.67% / 深成−3.44% / 创业−4.53%</td><td>上证+0.18% / 深成+0.34% / 创业+0.09%</td></tr>
+<tr><td class="l">市场宽度</td><td><span class="dn">17%</span> 上涨（普跌）</td><td><span class="up">63%</span> 上涨（分化反弹）</td></tr>
+<tr><td class="l">量能</td><td>1.70 万亿（持平）</td><td>1.40 万亿（<span class="dn">−17.6%</span> 缩量）</td></tr>
+<tr><td class="l">盘前宏观研判</td><td>退潮·偏空（仓位上限30%）</td><td>退潮·偏空（仓位上限30%）</td></tr>
+<tr><td class="l">研判命中？</td><td>✅ 自洽（当日真崩）</td><td><span class="tag tag-r">❌ 未命中</span> 实际中位+0.49%</td></tr>
+<tr><td class="l">板块轮动命中</td><td>—</td><td>4 / 8</td></tr>
+<tr><td class="l">预案复盘（18只）</td><td>入区后脱离 6 / 未到区 12 / 破止损 0 / 触目标 0</td><td>破止损收回 1 / 入区后脱离 8 / 未到区 9 / 触目标 0</td></tr>
+</tbody></table>
+<p class="meta" style="margin-top:6px">注：09-28、09-29 两份盘前报告信号基准均为「2026-09-28 收盘」，即 09-29 盘前并未刷新到 09-29 盘中状态，沿用了同一份偏空读数。</p>
+
+<h2>二、六大失败根因</h2>
+
+<div class="card bad"><h3>① 连跌惯性未触发均值回归上修（最严重的方向错误）</h3>
+<p><span class="code">judge_market</span> 已算出 <code>streak=连跌4日</code>，但仅写进文案，<b>不参与方向判定</b>。代码自身注释写明「涨停&lt;20（冰点）次日上涨概率 61.9%」——超跌后本该上修。结果 09-29 仍判「退潮·偏空」，收报标记为 ❌ 未命中。这是被实证打脸的那一次。</p></div>
+
+<div class="card bad"><h3>② 大盘研判与个股榜完全解耦</h3>
+<p><span class="code">run_s1</span> 只读 <code>judgment_short</code>（个股裁决），<b>从不读 <code>judgment_market</code></b>。于是「退潮·偏空 / 上限30%」只是一句文案，S1 照发 5 只、弹性 3 只、S2 10 只。宏观说「不」，微观说「买 15 只」——自相矛盾。</p></div>
+
+<div class="card bad"><h3>③ 仓位上限从未作为「总仓」约束</h3>
+<p><code>_STAGE_CAP</code> 是单只/阶段上限的装饰值，<b>从未对逐只 20%~30% 建议求和</b>。退潮日推 15 只 × 20~30% = 名义 300%+，远超「上限30%」。纪律形同虚设。</p></div>
+
+<div class="card bad"><h3>④ S1 选中了 C3 已判「偏空」的板块</h3>
+<p>C3 把 <b>通信/光模块（−8.03%）、光纤/光纤光缆（−9.99%~−10%）、CPO（−8.94%）</b> 列为最弱；S1 却推华懋科技（半导体材料/光刻胶）、新洁能（功率半导体）、晶方科技（封测）——同属被杀的科技链。「强势」标签实际=前一日大跌−4%~−8% 的「高波动股」，是<b>动量反转陷阱</b>。</p></div>
+
+<div class="card warn"><h3>⑤ 固定回撤式买区两头落空</h3>
+<p>买区=现价下方固定百分比。崩盘日：股价滑落但止步于买区上方（你设太低，接不住）；反弹日：股价不回踩（你设太高，踏空）。两日 58% 未触达、0% 触目标，预案<b>几乎不可执行</b>。若严格按纪律「只触区才成交」，你基本什么都没做；若盘中追高，则违反纪律且买在弱势股。</p></div>
+
+<div class="card warn"><h3>⑥ 止损按盘中价，被尾盘反转扫损</h3>
+<p>09-29 弹性榜 华媒控股盘中击穿止损 3.77 后收回、收盘 +10.13%——若按盘中止损，恰好在底部被洗。弱势/高波动标的止损应改「<b>收盘确认</b>」。</p></div>
+
+<h2>三、已落地的代码调整（本轮已改，编译通过）</h2>
+
+<div class="card ok"><h3>✅ A. 连跌后均值回归上修 — <span class="code">app/j/judgeMarket.py</span></h3>
+<p>新增：<code>streak ≤ −min_down_streak(默认3)</code> 且 <code>verdict==偏空</code> 时，上修为 <code>中性</code>、仓位上限抬至 <code>cap_after_revert(默认0.40)</code>。直接修正 09-29「连跌4日仍判偏空」的错误。阈值全部外置 <span class="code">params.json → regime_mean_revert</span>。</p></div>
+
+<div class="card ok"><h3>✅ B. 大盘状态耦合进 S1 — <span class="code">app/s/shortTermBoard.py</span> + <span class="code">params.json</span></h3>
+<ul>
+<li><b>容量收敛</b>：回读 <code>judgment_market</code> 情绪阶段，按 <code>s1.max_board_by_stage</code> 收敛上榜数——<b>冰点0 / 退潮2 / 中性5 / 升温5 / 高潮3</b>。退潮日不再推满 5 只。</li>
+<li><b>弱势板块过滤</b>：确定性主榜剔除「C3 偏空板块」个股（<code>exclude_weak_sector=true</code>）；弹性博弈榜 s1x <b>豁免</b>（其定位本就是弱板块博反弹，符合你「当日大跌≠次日继续跌」的口径）。新增统计 <code>gate_sector_excluded / eff_max_board / market_stage</code> 便于回归核对。</li>
+</ul>
+<p>效果：退潮日 S1 最多 2 只且不含光模块/光纤；中性日恢复 5 只。宏观与微观首次对齐。</p></div>
+
+<h2>四、建议待落地的调整（需你确认后实施）</h2>
+
+<div class="card warn"><h3>C. 止损改「收盘确认」（高波动/弹性标的）</h3>
+<p>位置：<span class="code">app/j/judgeShort.py</span> 的止损逻辑 / 报告层执行纪律。把「盘中破止损即走」改为「收盘破止损才走」，避免 09-29 华媒控股式尾盘反转扫损。需先读 judgeShort 确认止损计算入口。</p></div>
+
+<div class="card warn"><h3>D. 把 _STAGE_CAP 真正当成「总仓上限」</h3>
+<p>位置：<span class="code">render.py</span> / <span class="code">build_pack</span>。逐只「建议仓位」求和后不得超过阶段上限（退潮30% → S1+弹性+S2 合计 ≤30%，而非每只都 20~30%）。目前只是展示，需强制约束。</p></div>
+
+<div class="card warn"><h3>E. 买区改为动态（回踩 MA5 / VWAP，而非固定回撤）</h3>
+<p>位置：<span class="code">app/j/judgeShort.py</span> 的 <code>price_plan</code>。强趋势股用「回踩5日线附近」动态买区；弱势股须先判支撑有效（放量企稳）再挂单。两日 58% 未触达的根因在此，优先级最高但改动最大，建议单独回归。</p></div>
+
+<div class="card"><h3>F. 信号基准按交易日刷新</h3>
+<p>09-29 盘前报告信号基准仍是 09-28 收盘。编排层应保证「D 日盘前 = D−1 收盘 + D−1 盘中方向」独立重算，杜绝跨日沿用同一份偏空读数（本次 A 已部分缓解，但刷新机制要在编排层固化）。</p></div>
+
+<h2>五、调整后「下一日」验证清单</h2>
+<ul>
+<li>✅ <span class="code">python -m app selfcheck --db-dir D:/code/交易策略/database</span> 通过，无回归。</li>
+<li>🧪 取一历史「连跌≥3日」交易日重跑 <span class="code">judge_market</span>：verdict 应由偏空→中性、cap 抬升。</li>
+<li>🧪 取一「退潮」交易日重跑 <span class="code">run_s1</span>：S1 榜 ≤2 只且不含 C3 偏空板块；输出含 <code>gate_sector_excluded&gt;0</code>、<code>eff_max_board=2</code>。</li>
+<li>📊 连续 5 日登记「买区命中率 / 扫损率 / 宏观研判命中率」趋势（收报 C1 已有预测回看），参数调整以趋势而非单日为准。</li>
+</ul>
+
+<p class="disc">免责声明：本复盘基于系统生成的盘前/收盘报告与策略引擎源码，仅供学习与研究参考，不构成投资建议。股市有风险，投资需谨慎。所有结论基于历史数据与技术模型，不保证未来表现。</p>
+</div><div style="max-width:760px;margin:12px auto;padding:8px 14px;color:#64748b;font-size:12px;text-align:center">本页为自包含发布版 · 个股详情已在卡片内折叠展开</div></body></html>
