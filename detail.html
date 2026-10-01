@@ -736,7 +736,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="intraday.html?v=202610010748">‹</a>
+    <a class="nav-back" href="intraday.html?v=202610011117">‹</a>
     <div class="nav-tt">
       <b id="navName">—</b>
       <span id="navCode">—</span>
@@ -1774,6 +1774,13 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     el.addEventListener('touchstart', function (ev) {
       if (ev.touches.length === 1) {
         pts = [getPos(ev.touches[0])]; moved = false; crossMode = false;
+        /* 2026-10-01 修（用户反馈：左右拖动过 K 线后就再也拖不到最右侧那段）：
+           单指平移的锚点 i00 必须在**每次手势开始时**刷新。旧版只在双指缩放分支
+           里赋值 i00，单指一直沿用上一次手势（或初始 0）的旧锚点；而平移是被算成
+           绝对量 i0 = clamp(i00 + shift)，于是位移不累积、每次都被拉回旧位置。
+           单次手势横向位移上限 ≈ 一屏，换算成 bar 数远小于 [0, len-n] 全程，
+           因此一旦离开 i0 = len-n（最新一段）就再也回不去。 */
+        i00 = self.i0;
         lpTimer = setTimeout(function () {
           if (!moved) { crossMode = true; self.cross = pts[0].x; self.draw(); }
         }, 300);
@@ -1811,7 +1818,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     el.addEventListener('touchend', function (ev) {
       clearTimeout(lpTimer);
       if (ev.touches.length === 0) { self.cross = null; self.draw(); }
-      if (ev.touches.length === 1) { pts = [getPos(ev.touches[0])]; }
+      if (ev.touches.length === 1) { pts = [getPos(ev.touches[0])]; i00 = self.i0; }
     }, { passive: true });
 
     if (window.matchMedia && window.matchMedia('(hover:hover)').matches) {
@@ -1975,7 +1982,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
   } else {
     planEl.innerHTML = '<div class="empty"><div class="e-ic">◇</div>'
       + '该股未进入今日榜单，暂无买区 / 止损 / 目标计划<br>'
-      + '<a href="intraday.html?v=202610010748" style="color:var(--brand);font-weight:600">去看已评级标的 →</a></div>';
+      + '<a href="intraday.html?v=202610011117" style="color:var(--brand);font-weight:600">去看已评级标的 →</a></div>';
     document.getElementById('planHint').textContent = '';
   }
 
@@ -2050,7 +2057,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
      画像照常显示可得字段，仅追加一条提示与旧版详情页入口 */
   if (!prof.biz) {
     ph += '<div class="empty" style="margin-top:8px">该公司尚未完成知识层精编，画像字段不全'
-      + '<div style="margin-top:8px"><a class="lnk" href="d/' + code + '.html?v=202610010748">查看旧版详情页 ›</a></div></div>';
+      + '<div style="margin-top:8px"><a class="lnk" href="d/' + code + '.html?v=202610011117">查看旧版详情页 ›</a></div></div>';
   }
   document.getElementById('prof').innerHTML = ph;
   document.getElementById('profHint').textContent = prof.seg ? '' : '未精编';
