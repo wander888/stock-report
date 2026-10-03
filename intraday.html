@@ -286,6 +286,14 @@ button { font-family: inherit; }
    单票卡 v2
    ========================================================================== */
 .card-list { display: flex; flex-direction: column; gap: var(--s2); }
+
+/* ==========================================================================
+   虚拟滚动列表（T-17，2026-10-04）：盘中 78 只清单只渲染视口内行
+   ========================================================================== */
+.vlist { position: relative; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.vlist-ph { width: 1px; opacity: 0; pointer-events: none; }
+.vlist-layer { position: absolute; left: 0; right: 0; top: 0; }
+.vrow { padding-bottom: var(--s2); }
 .sc {
   background: var(--surface); border: 1px solid var(--bd);
   border-radius: var(--r-md); padding: 12px 14px 11px;
@@ -634,6 +642,13 @@ button { font-family: inherit; }
 .jm .verdict-b.up { background: var(--up-bg); color: var(--up); border-color: transparent; }
 .jm .verdict-b.dn { background: var(--dn-bg); color: var(--dn); border-color: transparent; }
 .jm .cap-b { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--brand); }
+/* cap=0（今日空仓）：与「≤ N%」视觉上同等重量的结论，不能只靠文字说明。
+   复用 --warn 色相族（棕 26°），不引入第五色相（红涨绿跌不破例）。 */
+.jm .cap-b .cap0 {
+  font-weight: 800; color: var(--warn);
+  border: 1px solid currentColor; border-radius: 4px;
+  padding: 0 4px; letter-spacing: .02em;
+}
 .jm-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
   margin-top: 12px;
@@ -783,7 +798,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261004004728">‹</a>
+    <a class="nav-back" href="index.html?v=20261004070253">‹</a>
     <div class="nav-tt">
       <b>盘中作战报告</b>
       <span id="navSub">—</span>
@@ -827,11 +842,8 @@ a.nm-lk:active { color: var(--brand); }
 
   <section class="sec">
     <div class="sec-t"><h2>分时盯盘（构建时刻快照）</h2><span class="hint" id="minHint"></span></div>
-    <div class="card-list" id="minlist"></div>
-    <details class="fold" id="minMoreFold" style="display:none">
-      <summary>展开全部 <span class="tag" id="minMoreN"></span></summary>
-      <div class="fold-body"><div class="card-list" id="minAll"></div></div>
-    </details>
+    <!-- T-17（2026-10-04）：改真虚拟滚动，只渲染视口内行；容器高度由 JS 设定 -->
+    <div id="minlist"></div>
   </section>
 
   <details class="fold">
@@ -875,7 +887,22 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
   /* ---------- 格式化 ---------- */
   var F = {
     px: function (v, d) { return v == null ? '-' : Number(v).toFixed(d == null ? 2 : d); },
-    pct: function (v) { return v == null ? '-' : (v >= 0 ? '+' : '') + Number(v).toFixed(2) + '%'; },
+    /* pct(v) —— 有向变化量（涨跌幅、距离基线）。正号有语义，故保留。
+       ⚠️ 2026-10-03 修：`0` 不再显示 `+0.00%`。原写法 `v >= 0 ? '+' : ''`
+       把「零」也算作「正」，读者会误以为「相对基线有（微小）涨幅」。
+       实测该 0 会出现在「距买区上沿 0.00%」「距今日低点 0.00%」等处，
+       属「持平」而非「上涨」，故 0 显示 `0.00%`（无号），非零才带符号。 */
+    pct: function (v) {
+      if (v == null) return '-';
+      var n = Number(v);
+      return (n > 0 ? '+' : '') + n.toFixed(2) + '%';
+    },
+    /* ratio(v) —— 无向倍率/占比（如「量能环比 1.15」）。**永不**带 +/- 号：
+       倍率没有方向语义，加正号会被读成「增长了 +115%」。 */
+    ratio: function (v, digits) {
+      if (v == null) return '-';
+      return Number(v).toFixed(digits == null ? 2 : digits);
+    },
     chg: function (c, pc) { return pc ? (c / pc - 1) * 100 : 0; },
     cls: function (v) { return v > 0 ? 'up' : (v < 0 ? 'dn' : 'flat'); },
     yi: function (v) {
@@ -1236,7 +1263,10 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     return strong.map(function (x) {
       var inList = [];
       Object.keys(segOfCode).forEach(function (c) { if (segOfCode[c] === x.seg) inList.push(c); });
-      var reason = '动量 ' + F.pct(x.mom * 100) + ' · 量能环比 ' + F.pct(x.vol * 100)
+      // 量能环比是**倍率**（1.15 = 当前量能为基准的 1.15 倍），无方向语义，
+      // 用 F.pct 会显示成「+115.00%」被读成「增长了 115%」→ 改 F.ratio。
+      // 动量是真·比率（0.0549 = 5.49%），×100 后用 F.pct 正确。
+      var reason = '动量 ' + F.pct(x.mom * 100) + ' · 量能环比 ' + F.ratio(x.vol) + 'x'
         + (x.lu ? ' · 涨停 ' + x.lu + ' 家' : '') + (x.news ? ' · 舆情 ' + x.news : '');
       return '<div class="nx"><span class="nx-k up">第' + x.rank + '</span>'
         + '<b>' + F.esc(x.seg) + '</b><span class="v">' + F.esc(reason)
@@ -1348,7 +1378,11 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     pre: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>',
     intra: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-8 4 16 3-8h6"/></svg>',
     eod: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>',
-    empty: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10h8M8 14h5"/></svg>'
+    empty: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10h8M8 14h5"/></svg>',
+    /* 2026-10-04 T-7：补齐 3 个此前以字符充当的图标（严禁字符图标，DESIGN.md §4/§9） */
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>',
+    down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg>',
+    warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.3 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>'
   };
   window.icon = function (k) { return ICONS[k] || ''; };
 
@@ -1377,16 +1411,124 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       ['连涨/跌', st.streak != null ? (st.streak > 0 ? '+' + st.streak : st.streak) + ' 日' : '—'],
       ['同stage胜率' + (hist.n ? '·' + hist.n + '次' : ''), hist.up_prob != null ? Math.round(hist.up_prob * 100) + '%' : '—']
     ];
+    // 仓位显示：**cap=0 是「今日空仓」这个有意义的结论，不能吞成 40%**。
+    // 原写法 `(jm.cap || 0.4)` 会把 `0` 当假值 → 空仓日显示「仓位 ≤ 40%」=
+    // 反向错误建议（复盘时照着它下单会超配）。故：
+    //   cap == null  → 后端未给值，显示「—」（不猜）
+    //   cap === 0    → 显示「空仓」（诚实表达 0）
+    //   其余         → 显示百分比
+    var capTxt;
+    if (jm.cap == null) {
+      capTxt = '—';
+    } else if (Number(jm.cap) === 0) {
+      capTxt = '<b class="cap0">空仓</b>';
+    } else {
+      capTxt = '≤ ' + Math.round(Number(jm.cap) * 100) + '%';
+    }
     return '<div class="jm">'
       + '<div class="jm-top"><span class="stage-b">' + F.esc(jm.stage || '—') + '</span>'
       + '<span class="verdict-b ' + (jm.verdict === '偏多' ? 'up' : jm.verdict === '偏空' ? 'dn' : '') + '">'
       + F.esc(jm.verdict || '—') + '</span>'
-      + '<span class="cap-b">仓位 ≤ ' + Math.round((jm.cap || 0.4) * 100) + '%</span></div>'
+      + '<span class="cap-b">仓位 ' + capTxt + '</span></div>'
       + '<div class="jm-grid">' + cells.map(function (c) {
           return '<div><i>' + c[0] + '</i><b class="num">' + c[1] + '</b></div>';
         }).join('') + '</div>'
       + (jm.reason ? '<details class="jm-r"><summary>判定依据</summary><p>' + F.esc(jm.reason) + '</p></details>' : '')
       + '</div>';
+  };
+
+  /* ---------- 虚拟滚动列表（T-17）：只渲染视口内行 + DOM 回收 + 实测高度 ----------
+     2026-10-04 新增。DESIGN.md/README §6：盘中 78 只清单需「真虚拟滚动」
+     （原型只定了 .qrow 视觉形态，实现层补）。设计：
+       ① 固定可视高的滚动容器；占位层撑出总高，行绝对定位到累计偏移；
+       ② 只挂载 [首屏行−buffer, 末屏行+buffer]，滚出即回收（DOM 复用）；
+       ③ 变高行首帧实测 offsetHeight 后回填 offsets，卡片不因高度估算而错位；
+       ④ 滚动走 rAF 节流，被动监听（passive）不阻塞手势。
+     用法：window.vlist(hostEl, items, function(item,i){return '<div class="vrow">…</div>';},{height:640}) */
+  window.vlist = function (host, items, rowFn, opt) {
+    opt = opt || {};
+    var viewH = opt.height || 640;
+    var buffer = opt.buffer || 4;
+    var est = opt.est || 168;
+
+    host.innerHTML = '';
+    host.classList.add('vlist');
+    host.style.position = 'relative';
+    host.style.height = viewH + 'px';
+    host.style.overflowY = 'auto';
+    host.style.webkitOverflowScrolling = 'touch';
+
+    var ph = document.createElement('div');
+    ph.className = 'vlist-ph';
+    host.appendChild(ph);
+    var layer = document.createElement('div');
+    layer.className = 'vlist-layer';
+    host.appendChild(layer);
+
+    var heights = items.map(function () { return est; });
+    var offs = [];
+    function recompute() {
+      var acc = 0;
+      for (var i = 0; i < items.length; i++) { offs[i] = acc; acc += heights[i]; }
+      ph.style.height = acc + 'px';
+    }
+    recompute();
+
+    function idxAt(y) {
+      var lo = 0, hi = items.length - 1, ans = 0;
+      while (lo <= hi) {
+        var m = (lo + hi) >> 1;
+        if (offs[m] <= y) { ans = m; lo = m + 1; } else { hi = m - 1; }
+      }
+      return ans;
+    }
+
+    var live = {};                       // idx -> 已挂载节点
+    function render() {
+      if (!items.length) { return; }
+      var st = host.scrollTop, en = st + viewH;
+      var a = Math.max(0, idxAt(st) - buffer);
+      var b = Math.min(items.length - 1, idxAt(en) + buffer);
+      Object.keys(live).forEach(function (k) {
+        var i = +k;
+        if (i < a || i > b) { if (live[i].parentNode) { layer.removeChild(live[i]); } delete live[i]; }
+      });
+      var changed = false;
+      for (var i = a; i <= b; i++) {
+        var node = live[i];
+        if (!node) {
+          var t = document.createElement('div');
+          t.innerHTML = String(rowFn(items[i], i)).trim();
+          node = t.firstElementChild;
+          if (!node) { continue; }
+          node.style.position = 'absolute';
+          node.style.left = '0';
+          node.style.right = '0';
+          layer.appendChild(node);
+          live[i] = node;
+        }
+        node.style.top = offs[i] + 'px';
+        var h = node.offsetHeight;
+        if (h && Math.abs(h - heights[i]) > 1) { heights[i] = h; changed = true; }
+      }
+      if (changed) {
+        recompute();
+        Object.keys(live).forEach(function (k) { live[k].style.top = offs[+k] + 'px'; });
+      }
+    }
+
+    var queued = false;
+    function onScroll() {
+      if (queued) { return; }
+      queued = true;
+      (window.requestAnimationFrame || function (f) { return setTimeout(f, 16); })(function () {
+        queued = false; render();
+      });
+    }
+    host.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    render();
+    return { host: host, render: render };
   };
 
   /* ---------- 免责 + 数据口径（全局统一基准标注） ---------- */
@@ -1442,9 +1584,8 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
   // 前 8 只，其余折叠在「展开全部」里（2026-10-01 修：旧版取到的是代码最小的 6 只）
   var morder = (D.minute_order || []).filter(function (c) { return (D.minute || {})[c]; });
   if (!morder.length) morder = Object.keys(D.minute || {});
-  var M_SHOW = 8;
   document.getElementById('minHint').textContent = morder.length
-    ? (morder.length + ' 只 · 分时 ' + F.date(D.minute_date) + ' · 构建时刻快照') : '';
+    ? (morder.length + ' 只 · 分时 ' + F.date(D.minute_date) + ' · 构建时刻快照 · 虚拟滚动') : '';
   function minuteCard(code) {
     var m = D.minute[code], last = m[m.length - 1], base = (D.mpc || {})[code];
     var c = base ? (last[1] / base - 1) * 100 : 0, k = F.cls(c);
@@ -1468,13 +1609,16 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       + '<a class="lnk" href="detail.html?code=' + F.code6(code) + '">K线 ›</a></div>'
       + '</div>';
   }
-  document.getElementById('minlist').innerHTML =
-    morder.slice(0, M_SHOW).map(minuteCard).join('')
-    || '<div class="empty"><div class="e-ic">' + window.icon('empty') + '</div>当日无分时数据</div>';
-  if (morder.length > M_SHOW) {
-    document.getElementById('minMoreN').textContent = (morder.length - M_SHOW) + ' 只';
-    document.getElementById('minAll').innerHTML = morder.slice(M_SHOW).map(minuteCard).join('');
-    document.getElementById('minMoreFold').style.display = '';
+  var minHost = document.getElementById('minlist');
+  if (morder.length) {
+    /* T-17（2026-10-04）：78 只清单改真虚拟滚动——只渲染视口内行、滚出即回收，
+       替代旧「首 8 只 + 折叠一次性渲染全部 78 节点」写法。 */
+    window.vlist(minHost, morder, function (code) {
+      return '<div class="vrow">' + minuteCard(code) + '</div>';
+    }, { height: 640 });
+  } else {
+    minHost.innerHTML = '<div class="empty"><div class="e-ic">' + window.icon('empty')
+      + '</div>当日无分时数据</div>';
   }
 
   // 板块：来自 sector_predict（预判基准日显式标注），缺失时才从榜单真实板块聚合
