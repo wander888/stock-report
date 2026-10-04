@@ -512,6 +512,13 @@ button { font-family: inherit; }
   box-shadow: var(--sh-2); margin-top: -1px;
 }
 .fold > summary .tag { margin-left: auto; margin-right: var(--s2); }
+/* 2026-10-04：折叠面板内的口径说明行。用于「板块预判基准日 / 大盘情绪 T-1 基准日」
+   这类**时间口径**标注 —— 缺了会被读成当日实时，是三张图反馈里最集中的问题。 */
+.fold-body .fold-hint {
+  font-size: var(--fs-xs); color: var(--tx-3); line-height: 1.6;
+  padding: 0 2px 8px;
+}
+.fold-body .fold-hint b { color: var(--tx-2); font-weight: 700; }
 
 /* ==========================================================================
    键值列表（替代块中块；label 左 value 右）
@@ -649,6 +656,14 @@ button { font-family: inherit; }
 
 .jm { padding: 2px 0; }
 .jm-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+/* 2026-10-04：徽章加「维度标签」（情绪阶段 / 操作倾向）。
+   原写法两个同形徽章并排（stage 与 verdict 常同为「中性」）无从分辨，
+   现用 10px 弱化前缀明示各自维度；verdict 与 stage 同值时前端只渲染一枚。 */
+.jm .jb { display: inline-flex; align-items: center; gap: 5px; }
+.jm .jb > i {
+  font-style: normal; font-size: 10.5px; font-weight: 600;
+  color: var(--tx-3); letter-spacing: .02em;
+}
 .jm .stage-b {
   font-size: 15px; font-weight: 800; color: #fff;
   background: var(--tx-2); padding: 3px 12px; border-radius: 999px;
@@ -660,6 +675,12 @@ button { font-family: inherit; }
 .jm .verdict-b.up { background: var(--up-bg); color: var(--up); border-color: transparent; }
 .jm .verdict-b.dn { background: var(--dn-bg); color: var(--dn); border-color: transparent; }
 .jm .cap-b { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--brand); }
+/* 2026-10-04：大盘情绪全部指标取 T-1 收盘（judgeMarket 用 prev 日），
+   与报告基准日 data_date 不同 → 基准日提到卡片顶部常驻，不再只藏在「判定依据」里。 */
+.jm .jm-base {
+  margin-top: 8px; font-size: 11px; color: var(--tx-3); line-height: 1.6;
+}
+.jm .jm-base b { color: var(--tx-2); font-weight: 700; }
 /* cap=0（今日空仓）：与「≤ N%」视觉上同等重量的结论，不能只靠文字说明。
    复用 --warn 色相族（棕 26°），不引入第五色相（红涨绿跌不破例）。 */
 .jm .cap-b .cap0 {
@@ -849,7 +870,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261004195226">‹</a>
+    <a class="nav-back" href="index.html?v=20261004202250">‹</a>
     <div class="nav-tt">
       <b>盘前挂单预案</b>
       <span id="navSub">—</span>
@@ -889,6 +910,20 @@ a.nm-lk:active { color: var(--brand); }
     <div class="fold-body" id="jmBody"></div>
   </details>
 
+  <!-- 2026-10-04 用户反馈「今日预期板块看不出适用哪个交易日、应放在大盘情绪下方并默认展开」：
+       ① 移到「大盘情绪」正下方（大盘定调 → 板块方向 → 具体标的，阅读顺序自上而下）；
+       ② 加 open 默认展开（板块方向是每日决策第一入口，折叠等于藏起来）；
+       ③ 标题与 tag 明示口径：sector_predict.data_date 是**预判基准日（T 收盘）**，
+          预测目标是**其后的下一个交易日**。库内无交易日历表，故不给具体日期，
+          只给「基准 T-1 日 + 下一交易日」的相对表述（不编造日期）。 -->
+  <details class="fold" open>
+    <summary>今日预期板块 <span class="tag" id="secN"></span></summary>
+    <div class="fold-body">
+      <div class="fold-hint" id="secHint"></div>
+      <div id="sectorBody"></div>
+    </div>
+  </details>
+
   <details class="fold">
     <summary>短期榜 S1 · 挂单预案 <span class="tag" id="s1N"></span></summary>
     <div class="fold-body"><div class="card-list" id="s1list"></div></div>
@@ -897,11 +932,6 @@ a.nm-lk:active { color: var(--brand); }
   <details class="fold">
     <summary>弹性榜 S1X <span class="tag" id="s1xN"></span></summary>
     <div class="fold-body"><div class="card-list" id="s1xlist"></div></div>
-  </details>
-
-  <details class="fold">
-    <summary>今日预期板块 <span class="tag" id="secN"></span></summary>
-    <div class="fold-body" id="sectorBody"></div>
   </details>
 
   <details class="fold">
@@ -1458,7 +1488,34 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     }).join('') + '</div></nav>';
   };
 
+  /* ---------- 大盘一句话结论（首页/盘前/收盘三页共用） ----------
+     2026-10-04 用户反馈「两个挨着的中性意图不明」的**另一处同源问题**：
+     pre/eod 的 hero 曾写 `'大盘「' + stage + '·' + verdict + '」'`，
+     而 verdict 是 stage 的确定性映射（judgeMarket.py:156），
+     stage='中性' 时必然渲染成「中性·中性」——同形双拼，读者无法分辨。
+     且原式 `(jm.cap || 0.4)` 把 cap=0（空仓日）当假值 → 显示「≤40%」= 反向错误建议
+     （与 jmCard 的 capTxt 同一缺陷，此处一并修）。
+     现统一：stage 与 verdict 同值时只输出 stage；仓位显式处理 null/0。 */
+  window.jmHeadline = function () {
+    var jm = D.jm || {};
+    if (!jm.stage) return '';
+    var same = jm.verdict === jm.stage;
+    var mood = same ? jm.stage : jm.stage + '→' + jm.verdict;
+    var capTxt;
+    if (jm.cap == null) capTxt = '—';
+    else if (Number(jm.cap) === 0) capTxt = '空仓';
+    else capTxt = '≤ ' + Math.round(Number(jm.cap) * 100) + '%';
+    return { mood: mood, cap: capTxt, capRaw: jm.cap };
+  };
+
   /* ---------- 大盘情绪卡（盘前/收盘共用） ---------- */
+  /* 2026-10-04 用户反馈「两个挨着的中性意图不明」——根因不是样式而是**数据耦合**：
+     后端 judgeMarket.py:156 的 verdict 由 stage **确定性映射**而来
+     （{"冰点":"中性","退潮":"偏空","高潮":"偏空","升温":"偏多","中性":"中性"}），
+     故 stage='中性' 时 verdict 必然也是「中性」，两个同形徽章并排 = 纯冗余，
+     读者无从分辨哪个是「情绪阶段」、哪个是「操作倾向」。
+     处置：给两徽章加**维度标签**（情绪阶段 / 操作倾向）；
+           stage='中性' 的同值情形**只渲染一个**徽章（不制造伪信息层级）。 */
   window.jmCard = function () {
     var jm = D.jm || {}, st = jm.stats || {}, hist = st.hist_same_stage || {};
     var cells = [
@@ -1483,11 +1540,19 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     } else {
       capTxt = '≤ ' + Math.round(Number(jm.cap) * 100) + '%';
     }
+    var same = jm.stage === '中性' && jm.verdict === '中性';
+    var vTone2 = jm.verdict === '偏多' ? 'up' : (jm.verdict === '偏空' ? 'dn' : '');
     return '<div class="jm">'
-      + '<div class="jm-top"><span class="stage-b">' + F.esc(jm.stage || '—') + '</span>'
-      + '<span class="verdict-b ' + (jm.verdict === '偏多' ? 'up' : jm.verdict === '偏空' ? 'dn' : '') + '">'
-      + F.esc(jm.verdict || '—') + '</span>'
+      + '<div class="jm-top">'
+      + '<span class="jb"><i>情绪阶段</i><b class="stage-b">' + F.esc(jm.stage || '—') + '</b></span>'
+      + (same ? '' : '<span class="jb"><i>操作倾向</i><b class="verdict-b ' + vTone2 + '">'
+               + F.esc(jm.verdict || '—') + '</b></span>')
       + '<span class="cap-b">仓位 ' + capTxt + '</span></div>'
+      /* 2026-10-04 用户反馈「不清楚大盘情绪是哪个交易的」：涨停/炸板/量能等
+         天然取 T-1 收盘（judgeMarket 用 prev 日），而报告基准日是 data_date，
+         两者不同 → 不标基准日就会被读成当日实时。基准日提到卡片顶部常驻。 */
+      + '<div class="jm-base">统计口径：T-1 <b>' + F.esc(D.prev_date || '—') + '</b> 收盘'
+      + ' · 情绪指标滞后一交易日</div>'
       + '<div class="jm-grid">' + cells.map(function (c) {
           return '<div><i>' + c[0] + '</i><b class="num">' + c[1] + '</b></div>';
         }).join('') + '</div>'
@@ -1627,7 +1692,10 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
   document.getElementById('kHit').textContent = cnt.hit;
   document.getElementById('kBad').textContent = cnt.bad;
   document.getElementById('heroLead').textContent =
-    (jm.stage ? '大盘「' + jm.stage + '·' + jm.verdict + '」，建议总仓位 ≤ ' + Math.round((jm.cap || 0.4) * 100) + '%。' : '')
+    (function () {
+      var h = window.jmHeadline();
+      return h ? ('大盘「' + h.mood + '」，建议总仓位 ' + h.cap + '。') : '';
+    })()
     + 'S1 共 ' + s1.length + ' 只：' + cnt.ok + ' 只可按买区挂单、' + cnt.wait + ' 只等回落、'
     + cnt.hit + ' 只已越目标不追、' + cnt.bad + ' 只破止损剔除。';
 
@@ -1647,9 +1715,11 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
   });
   var sec = window.sectorPredictList();
   var st = jm.stats || {};
+  var hl2 = window.jmHeadline();
   document.getElementById('briefTag').textContent = (jm.stage || '') + '期';
   document.getElementById('briefBody').innerHTML = [
-    ['jiaoyi', '大盘', jm.stage ? (F.esc(jm.stage) + ' · ' + F.esc(jm.verdict) + ' · 仓位上限 ' + Math.round((jm.cap || 0.4) * 100) + '%') : '暂无研判'],
+    ['jiaoyi', '大盘', hl2 ? (F.esc(hl2.mood) + ' · 仓位上限 ' + F.esc(hl2.cap)
+                             + '（T-1 ' + F.esc(D.prev_date || '-') + ' 收盘）') : '暂无研判'],
     ['huoli', '短期榜 S1', s1.length ? (s1.length + ' 只 · 首位 <a class="nm-lk" href="detail.html?code=' + F.code6(s1[0].code) + '">' + F.esc(D.names[s1[0].code] || s1[0].code) + '</a>（' + F.esc(s1[0].verdict || '—') + '）') : '今日无推荐'],
     ['shan', '弹性榜 S1X', (D.s1x || []).length ? ((D.s1x).length + ' 只高弹性博弈') : '今日无'],
     ['zhangfu', '中期榜 S2', (D.s2 || []).length ? ((D.s2).length + ' 只风险调整后排序') : '今日无'],
@@ -1673,7 +1743,11 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
           }, 0)) + '（' + (D.mkt_scope || '沪市+深市') + '）';
 
   /* ---------- 大盘情绪卡（共用组件） ---------- */
-  document.getElementById('jmTag').textContent = (jm.stage || '—') + ' · ' + (jm.verdict || '—');
+  /* tag 走 jmHeadline：stage 与 verdict 同值时不再拼出「中性 · 中性」
+     （用户第二张截图：两个挨着的中性意图不明），并显式带上 T-1 基准日。 */
+  document.getElementById('jmTag').textContent =
+    (function () { var h = window.jmHeadline();
+      return h ? (h.mood + ' · T-1 ' + F.date(D.prev_date)) : '—'; })();
   document.getElementById('jmBody').innerHTML = window.jmCard();
 
   /* ---------- S1 / S1X / S2 ---------- */
@@ -1692,8 +1766,13 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     return window.stockCard(it, { spark: false, reason: false });
   }).join('') || '<div class="sc-sub">暂无数据</div>';
 
-  document.getElementById('secN').textContent = sec.length + ' 个'
-    + (D.sector_date ? ' · 预判基准 ' + D.sector_date : '');
+  document.getElementById('secN').textContent = sec.length + ' 个';
+  /* 明示适用交易日：sector_date = 预判基准日（T 收盘），目标是**其后的下一个交易日**。
+     库内无交易日历表 → 不编造具体日期，只给相对表述。 */
+  document.getElementById('secHint').innerHTML = D.sector_date
+    ? '适用 <b>' + F.esc(D.sector_date) + '</b> 之后的下一个交易日（按该日收盘预判）；'
+      + '下方为动量/量能排序，不是个股买入信号。'
+    : '板块预判数据缺失。';
   document.getElementById('sectorBody').innerHTML = window.sectorRows(sec.sort(function (a, b) {
     return (b.mom || 0) - (a.mom || 0);
   }));
