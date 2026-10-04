@@ -845,13 +845,12 @@ a.nm-lk:active { color: var(--brand); }
 
 </style>
 <style>
-.h-tiers{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
-/* 胶囊位于深色 hero 上：半透明白底+浅色字（旧版误用浅色页令牌 --bg-2/--tx-1，
-   其中 --bg-2 未定义→透明底，黑数字压深蓝底看不清，2026-10-02 用户实测反馈）*/
-.h-tiers .tier{font-size:12px;color:rgba(255,255,255,.9);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 12px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+/* 三档胶囊等宽平分整行 —— 与上方 .h-kpi 三列对齐成网格，右侧不留白
+   （旧版 flex-wrap 靠左排列 + 末尾「合计」胶囊，390px 竖屏下换行、右侧大片空白，
+   2026-10-04 用户实测反馈；「合计」与 KPI「推荐标的」重复，已一并删除）*/
+.h-tiers{display:flex;gap:8px;margin:10px 0 2px}
+.h-tiers .tier{flex:1 1 0;min-width:0;text-align:center;font-size:12px;color:rgba(255,255,255,.9);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:6px 8px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .h-tiers .tier b{color:#fff;margin-left:5px;font-weight:800;font-size:13px}
-.h-tiers .tier.tot{background:rgba(255,255,255,.92);border-color:#fff;color:#e0393e}
-.h-tiers .tier.tot b{color:#e0393e}
 </style>
 </head>
 <body>
@@ -891,7 +890,7 @@ a.nm-lk:active { color: var(--brand); }
   </section>
 
   <section class="sec">
-    <div class="sec-t"><h2>短期榜 TOP3</h2><a class="hint" href="intraday.html?v=20261004192024">查看全部 <svg style="width:13px;height:13px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
+    <div class="sec-t"><h2>短期榜 TOP3</h2><a class="hint" href="intraday.html?v=20261004195226">查看全部 <svg style="width:13px;height:13px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
     <div class="card-list" id="top3"></div>
     <div id="caliberIdx"></div>
   </section>
@@ -1625,8 +1624,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
   document.getElementById('tiers').innerHTML =
     '<span class="tier">S1 强势 <b>' + s1.length + '</b></span>'
     + '<span class="tier">S1X 弹性 <b>' + s1x.length + '</b></span>'
-    + '<span class="tier">S2 中期 <b>' + s2.length + '</b></span>'
-    + '<span class="tier tot">合计 <b>' + total + '</b></span>';
+    + '<span class="tier">S2 中期 <b>' + s2.length + '</b></span>';
 
   // 报告入口：按构建期判定（D.site）渲染 —— 当天未生成的报告置灰不可点击
   var site = D.site || { date: D.data_date, items: [] };
