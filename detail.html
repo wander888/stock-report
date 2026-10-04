@@ -907,7 +907,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="intraday.html?v=20261004153848">‹</a>
+    <a class="nav-back" href="intraday.html?v=20261004171634">‹</a>
     <div class="nav-tt">
       <b id="navName">—</b>
       <span id="navCode">—</span>
@@ -1717,6 +1717,16 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     return v + '股';
   }
   function px(v, d) { return v == null ? '-' : Number(v).toFixed(d == null ? 2 : d); }
+  /* 涨跌着色（2026-10-04 用户要求）：tooltip 内**所有价格**一律以「上一交易日
+     收盘价」为基准 —— 高于基准用红(up)、低于基准用绿(dn)、持平不着色。基准缺失
+     或 ≤0（脏数据）返回空串，**不猜、不用错误基准着色**（如昨收 -1 会算出负振幅
+     那类坑）。 */
+  function dcls(v, base) {
+    if (v == null || base == null) return '';
+    v = Number(v); base = Number(base);
+    if (!isFinite(v) || !isFinite(base) || !(base > 0)) return '';
+    return v > base ? 'up' : (v < base ? 'dn' : '');
+  }
   function ma(vals, n) {
     var out = new Array(vals.length), sum = 0;
     for (var i = 0; i < vals.length; i++) {
@@ -2226,23 +2236,27 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     // tooltip
     var html;
     if (g.isMin) {
-      var prev = idx > 0 ? g.vis[idx - 1][1] : this.mpc;
-      var chg = this.mpc ? (r[1] / this.mpc - 1) * 100 : 0;
+      /* 分时：基准同为「上一交易日收盘价」(this.mpc)，不用上一分钟，与日 K 口径一致。 */
+      var chg = (this.mpc > 0) ? (r[1] / this.mpc - 1) * 100 : null;
+      var chgTxt = chg == null ? '—' : ((chg >= 0 ? '+' : '') + chg.toFixed(2) + '%');
       html = '<div class="d">' + fmtTime(r[0]) + '</div>'
-        + '<div class="r"><span>价格</span><b class="' + (r[1] >= prev ? 'up' : 'dn') + '">' + px(r[1]) + '</b></div>'
-        + '<div class="r"><span>涨跌</span><b class="' + (chg >= 0 ? 'up' : 'dn') + '">' + (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%</b></div>'
+        + '<div class="r"><span>价格</span><b class="' + dcls(r[1], this.mpc) + '">' + px(r[1]) + '</b></div>'
+        + '<div class="r"><span>涨跌</span><b class="' + dcls(r[1], this.mpc) + '">' + chgTxt + '</b></div>'
         + '<div class="r"><span>成交</span><b>' + fmtVol(r[2]) + '</b></div>';
     } else {
-      var chg2 = r[6] ? (r[4] / r[6] - 1) * 100 : 0;
+      /* 一致口径：pc=昨收(r[6]) 是开/高/低/收/涨跌**共同**的着色基准。 */
+      var pc = r[6];
+      var chg2 = (pc > 0) ? (r[4] / pc - 1) * 100 : null;
+      var chg2Txt = chg2 == null ? '—' : ((chg2 >= 0 ? '+' : '') + chg2.toFixed(2) + '%');
       /* 振幅 = (最高-最低)/昨收，由数据层给出（r[7]），前端**不重复计算**，
          保证与导出层同一口径；缺失显「—」而非 0。 */
       var ampTxt = (r[7] != null) ? Number(r[7]).toFixed(2) + '%' : '—';
       html = '<div class="d">' + fmtDate(r[0]) + '</div>'
-        + '<div class="r"><span>开</span><b>' + px(r[1]) + '</b></div>'
-        + '<div class="r"><span>高</span><b>' + px(r[2]) + '</b></div>'
-        + '<div class="r"><span>低</span><b>' + px(r[3]) + '</b></div>'
-        + '<div class="r"><span>收</span><b class="' + (r[4] >= r[1] ? 'up' : 'dn') + '">' + px(r[4]) + '</b></div>'
-        + '<div class="r"><span>涨跌</span><b class="' + (chg2 >= 0 ? 'up' : 'dn') + '">' + (chg2 >= 0 ? '+' : '') + chg2.toFixed(2) + '%</b></div>'
+        + '<div class="r"><span>开</span><b class="' + dcls(r[1], pc) + '">' + px(r[1]) + '</b></div>'
+        + '<div class="r"><span>高</span><b class="' + dcls(r[2], pc) + '">' + px(r[2]) + '</b></div>'
+        + '<div class="r"><span>低</span><b class="' + dcls(r[3], pc) + '">' + px(r[3]) + '</b></div>'
+        + '<div class="r"><span>收</span><b class="' + dcls(r[4], pc) + '">' + px(r[4]) + '</b></div>'
+        + '<div class="r"><span>涨跌</span><b class="' + dcls(r[4], pc) + '">' + chg2Txt + '</b></div>'
         + '<div class="r"><span>振幅</span><b>' + ampTxt + '</b></div>'
         + '<div class="r"><span>量</span><b>' + fmtVol(r[5]) + '</b></div>';
     }
@@ -2582,12 +2596,12 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       + '，但该股未进入今日榜单。<br>'
       + '按铁律 9，观察池标的不展示买区 / 目标 / 止损价位与挂单指令；'
       + '研判依据见下方信号拆解。<br>'
-      + '<a href="intraday.html?v=20261004153848" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004171634" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = 'J层研判 · 未入今日榜单';
   } else {
     planEl.innerHTML = '<div class="empty"><div class="e-ic">' + window.icon('empty') + '</div>'
       + '该股未进入今日榜单，暂无买区 / 止损 / 目标计划<br>'
-      + '<a href="intraday.html?v=20261004153848" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004171634" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = '';
   }
 
@@ -2785,7 +2799,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       /* R-01：code 来自 URL 参数时已过 6 位数字校验；数据回退来源同样是 6 位代码，
          双保险——非 6 位纯数字时不拼 href（避免属性注入与 d/.html 空链）。 */
       + ((code && /^\d{6}$/.test(code))
-        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004153848">查看旧版详情页 ›</a></div>'
+        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004171634">查看旧版详情页 ›</a></div>'
         : '')
       + '</div>';
   }
