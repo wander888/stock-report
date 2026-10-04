@@ -427,17 +427,22 @@ button { font-family: inherit; }
    `background: var(--bg-page)`(当时未定义→transparent) + 深色字，
    对比度仅 2.41:1（WCAG AA 需 4.5:1）。现限定作用域，两套各归其位。 */
 .chart-panel .chips {
-  display: flex; gap: 6px; padding: 0 14px 10px;
+  display: flex; gap: 5px; padding: 0 12px 10px;
   /* 2026-10-04 用户反馈：竖屏（窄屏）时 chips 一行放不下，MA10/MA20/筹码/全屏
      等选项被裁在屏幕右侧看不见。改为换行（flex-wrap: wrap），全部选项直接可见；
      原横向滚动（nowrap + overflow-x）在手机上无滚动提示，易被误判为「选项缺失」。
-     全屏面板 `#cpFs #cpChips` 仍保持 nowrap（横屏宽度充裕，优先给画布留高）。 */
+     全屏面板 `#cpFs #cpChips` 仍保持 nowrap（横屏宽度充裕，优先给画布留高）。
+     同轮再修：选项按语义分组（`.grp` 组内 nowrap），换行只发生在组间 →
+     「筹码 / 全屏」恒在同一组、同一行，窄屏下不再各占一行（省一行高度）。
+     同时把 chip 横向内边距 11→10px、组间距 6→5px，为窄屏再挤出余量。 */
   flex-wrap: wrap;
 }
+/* 语义分组容器（周期组 / MA 组 / 工具组）：组内 nowrap，换行只发生在组之间 */
+.chart-panel .chips .grp { display: inline-flex; align-items: center; gap: 5px; flex: none; }
 .chart-panel .chips::-webkit-scrollbar { display: none; }
 .chart-panel .chips .gap { flex: none; width: 1px; background: var(--cp-grid); margin: 2px 4px; }
 .chart-panel .chip {
-  flex: none; min-height: 26px; padding: 0 11px; border-radius: 999px;
+  flex: none; min-height: 26px; padding: 0 10px; border-radius: 999px;
   display: inline-flex; align-items: center;
   font-size: 11.5px; font-weight: 600;
   background: var(--cp-bg-2); color: var(--cp-tx-2); border: 1px solid transparent;
@@ -907,7 +912,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="intraday.html?v=20261004171634">‹</a>
+    <a class="nav-back" href="intraday.html?v=20261004192024">‹</a>
     <div class="nav-tt">
       <b id="navName">—</b>
       <span id="navCode">—</span>
@@ -1821,10 +1826,23 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       var avail = this.wrap.clientHeight;
       var land = w > avail;
       hV = land ? Math.max(54, Math.min(82, Math.round(avail * 0.20)))
-               : Math.max(48, Math.min(66, Math.round(avail * 0.17)));
+               : Math.max(56, Math.min(80, Math.round(avail * 0.18)));
       gap = 14; padT = 14; padB = 24;
       hK = Math.max(200, avail - hV - gap - padT - padB);
-      H = avail;
+      /* 防裁剪（2026-10-04 用户反馈「全屏时底部缺量能图」）：
+         hK 有 200 / hV 有 54(56) 的保底，二者之和可能**超过**可用高度（全屏视口偏矮，
+         如横屏手机或带浏览器工具栏的竖屏）。旧写法 `H = avail` 会把超出部分直接切掉，
+         而被切掉的正是排在最后的**量能副图 + 日期轴** → 看起来「没有量能图」。
+         现改为：先压量能（下限 34），仍不够再压 K 区（下限 90），保证
+         padT+hK+gap+hV+padB ≤ avail，H 取实际所需高度，画布内布局永不越界。 */
+      var need = padT + hK + gap + hV + padB;
+      if (need > avail) {
+        var over = need - avail;
+        var cutV = Math.min(over, hV - 34);
+        hV -= cutV; over -= cutV;
+        if (over > 0) hK = Math.max(90, hK - over);
+      }
+      H = Math.min(avail, padT + hK + gap + hV + padB);
     } else {
       hK = w >= 430 ? 216 : 172;
       hV = 44; gap = 12; padT = 12; padB = 20;
@@ -2239,7 +2257,10 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       /* 分时：基准同为「上一交易日收盘价」(this.mpc)，不用上一分钟，与日 K 口径一致。 */
       var chg = (this.mpc > 0) ? (r[1] / this.mpc - 1) * 100 : null;
       var chgTxt = chg == null ? '—' : ((chg >= 0 ? '+' : '') + chg.toFixed(2) + '%');
+      /* 文案（2026-10-04 用户要求）：明示基准——首行「昨收」，其余为「今*」。
+         昨收是基准价，本身不给涨跌色（中性）。 */
       html = '<div class="d">' + fmtTime(r[0]) + '</div>'
+        + '<div class="r"><span>昨收</span><b>' + px(this.mpc) + '</b></div>'
         + '<div class="r"><span>价格</span><b class="' + dcls(r[1], this.mpc) + '">' + px(r[1]) + '</b></div>'
         + '<div class="r"><span>涨跌</span><b class="' + dcls(r[1], this.mpc) + '">' + chgTxt + '</b></div>'
         + '<div class="r"><span>成交</span><b>' + fmtVol(r[2]) + '</b></div>';
@@ -2251,11 +2272,14 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       /* 振幅 = (最高-最低)/昨收，由数据层给出（r[7]），前端**不重复计算**，
          保证与导出层同一口径；缺失显「—」而非 0。 */
       var ampTxt = (r[7] != null) ? Number(r[7]).toFixed(2) + '%' : '—';
+      /* 文案（2026-10-04 用户要求）：昨收 今开 今高 今低 今收 —— 首行明示基准「昨收」，
+         其余加「今」前缀以区别于昨收。昨收是基准本身，不给涨跌色（中性）。 */
       html = '<div class="d">' + fmtDate(r[0]) + '</div>'
-        + '<div class="r"><span>开</span><b class="' + dcls(r[1], pc) + '">' + px(r[1]) + '</b></div>'
-        + '<div class="r"><span>高</span><b class="' + dcls(r[2], pc) + '">' + px(r[2]) + '</b></div>'
-        + '<div class="r"><span>低</span><b class="' + dcls(r[3], pc) + '">' + px(r[3]) + '</b></div>'
-        + '<div class="r"><span>收</span><b class="' + dcls(r[4], pc) + '">' + px(r[4]) + '</b></div>'
+        + '<div class="r"><span>昨收</span><b>' + px(pc) + '</b></div>'
+        + '<div class="r"><span>今开</span><b class="' + dcls(r[1], pc) + '">' + px(r[1]) + '</b></div>'
+        + '<div class="r"><span>今高</span><b class="' + dcls(r[2], pc) + '">' + px(r[2]) + '</b></div>'
+        + '<div class="r"><span>今低</span><b class="' + dcls(r[3], pc) + '">' + px(r[3]) + '</b></div>'
+        + '<div class="r"><span>今收</span><b class="' + dcls(r[4], pc) + '">' + px(r[4]) + '</b></div>'
         + '<div class="r"><span>涨跌</span><b class="' + dcls(r[4], pc) + '">' + chg2Txt + '</b></div>'
         + '<div class="r"><span>振幅</span><b>' + ampTxt + '</b></div>'
         + '<div class="r"><span>量</span><b>' + fmtVol(r[5]) + '</b></div>';
@@ -2430,19 +2454,29 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
     h += '<button class="chip ' + (mode === 'min' ? 'on' : '') + '" data-act="mode" data-v="min"'
       + (minute.length ? '' : ' disabled style="opacity:.35"') + '>分时</button>';
     if (mode === 'k') {
+      /* 2026-10-04 用户要求：竖屏时「全屏」应紧挨「筹码」，省掉一整行。
+         做法＝按语义分组、每组 nowrap，换行只发生在**组之间**——
+         组内（含 reset/筹码/全屏 这组）永不被拆开，于是窄屏下也保证
+         「筹码」「全屏」同排，不会各占一行。 */
       h += '<span class="gap"></span>';
+      h += '<span class="grp">';
       periods.forEach(function (x) {
         h += '<button class="chip ' + (period === x.k ? 'on' : '') + '" data-act="period" data-v="' + x.k + '">' + x.t + '</button>';
       });
+      h += '</span>';
       h += '<span class="gap"></span>';
+      h += '<span class="grp">';
       mas.forEach(function (x) {
         h += '<button class="chip ' + x.k + ' ' + (chart.maOn[x.k] ? 'on' : '') + '" data-act="ma" data-v="' + x.k + '">' + x.t + '</button>';
       });
+      h += '</span>';
       h += '<span class="gap"></span>';
+      h += '<span class="grp">';
       h += '<button class="chip" data-act="reset">' + window.icon('reset') + '</button>';
       /* 筹码分布开关（2026-10-01 新增，近似估算口径） */
       h += '<button class="chip ' + (chart.chipsOn ? 'on' : '') + '" data-act="chips">筹码</button>';
       h += '<button class="chip fs" data-act="fs">' + window.icon('shan') + ' 全屏</button>';
+      h += '</span>';
     }
     document.getElementById('cpChips').innerHTML = h;
 
@@ -2539,8 +2573,14 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       tryUnlock();
     }
     syncFsHint();
+    /* 进出全屏时布局未稳定（刚搬迁 DOM），rAF 里读到的高度可能是旧值 →
+       画布高度算错（表现为全屏里图表不满高、或底部量能副图被面板裁掉）。
+       故在 rAF 之后再补两次延迟复算；_resize 幂等，重复调用无副作用。 */
+    var refit = function () { if (chart._resize()) chart.draw(); };
     requestAnimationFrame(function () {
-      if (chart._resize()) chart.draw();
+      refit();
+      setTimeout(refit, 120);
+      setTimeout(refit, 420);
     });
   }
   fsClose && fsClose.addEventListener('click', function () { toggleFs(false); });
@@ -2596,12 +2636,12 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       + '，但该股未进入今日榜单。<br>'
       + '按铁律 9，观察池标的不展示买区 / 目标 / 止损价位与挂单指令；'
       + '研判依据见下方信号拆解。<br>'
-      + '<a href="intraday.html?v=20261004171634" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004192024" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = 'J层研判 · 未入今日榜单';
   } else {
     planEl.innerHTML = '<div class="empty"><div class="e-ic">' + window.icon('empty') + '</div>'
       + '该股未进入今日榜单，暂无买区 / 止损 / 目标计划<br>'
-      + '<a href="intraday.html?v=20261004171634" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004192024" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = '';
   }
 
@@ -2799,7 +2839,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       /* R-01：code 来自 URL 参数时已过 6 位数字校验；数据回退来源同样是 6 位代码，
          双保险——非 6 位纯数字时不拼 href（避免属性注入与 d/.html 空链）。 */
       + ((code && /^\d{6}$/.test(code))
-        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004171634">查看旧版详情页 ›</a></div>'
+        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004192024">查看旧版详情页 ›</a></div>'
         : '')
       + '</div>';
   }

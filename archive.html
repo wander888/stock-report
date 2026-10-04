@@ -427,17 +427,22 @@ button { font-family: inherit; }
    `background: var(--bg-page)`(当时未定义→transparent) + 深色字，
    对比度仅 2.41:1（WCAG AA 需 4.5:1）。现限定作用域，两套各归其位。 */
 .chart-panel .chips {
-  display: flex; gap: 6px; padding: 0 14px 10px;
+  display: flex; gap: 5px; padding: 0 12px 10px;
   /* 2026-10-04 用户反馈：竖屏（窄屏）时 chips 一行放不下，MA10/MA20/筹码/全屏
      等选项被裁在屏幕右侧看不见。改为换行（flex-wrap: wrap），全部选项直接可见；
      原横向滚动（nowrap + overflow-x）在手机上无滚动提示，易被误判为「选项缺失」。
-     全屏面板 `#cpFs #cpChips` 仍保持 nowrap（横屏宽度充裕，优先给画布留高）。 */
+     全屏面板 `#cpFs #cpChips` 仍保持 nowrap（横屏宽度充裕，优先给画布留高）。
+     同轮再修：选项按语义分组（`.grp` 组内 nowrap），换行只发生在组间 →
+     「筹码 / 全屏」恒在同一组、同一行，窄屏下不再各占一行（省一行高度）。
+     同时把 chip 横向内边距 11→10px、组间距 6→5px，为窄屏再挤出余量。 */
   flex-wrap: wrap;
 }
+/* 语义分组容器（周期组 / MA 组 / 工具组）：组内 nowrap，换行只发生在组之间 */
+.chart-panel .chips .grp { display: inline-flex; align-items: center; gap: 5px; flex: none; }
 .chart-panel .chips::-webkit-scrollbar { display: none; }
 .chart-panel .chips .gap { flex: none; width: 1px; background: var(--cp-grid); margin: 2px 4px; }
 .chart-panel .chip {
-  flex: none; min-height: 26px; padding: 0 11px; border-radius: 999px;
+  flex: none; min-height: 26px; padding: 0 10px; border-radius: 999px;
   display: inline-flex; align-items: center;
   font-size: 11.5px; font-weight: 600;
   background: var(--cp-bg-2); color: var(--cp-tx-2); border: 1px solid transparent;
@@ -844,7 +849,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261004171634">‹</a>
+    <a class="nav-back" href="index.html?v=20261004192024">‹</a>
     <div class="nav-tt">
       <b>历史归档</b>
       <span id="navSub">—</span>
