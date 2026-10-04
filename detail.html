@@ -417,6 +417,9 @@ button { font-family: inherit; }
            gap: var(--s2); padding: 0 14px var(--s2); }
 .cp-head .tt { font-size: 13px; font-weight: 700; color: var(--cp-tx-2); }
 .cp-head .px { font-size: 14px; font-weight: 700; }
+/* 2026-10-04 用户反馈：全屏退出按钮原独占顶部整行 → 并入标题行右端。
+   右端分组（现价 + 退出按钮）整体靠右，标题行左侧由 日K·N日 铺满。 */
+.cp-head .hd-r { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
 
 /* 2026-10-03 修：K 线面板的 chips/chip 原为全局选择器，被下方知识层同名定义
    （`.chips`/`.chip` 各定义两次，同级特异度后者胜）整体覆盖 —— 实测 detail 页
@@ -860,23 +863,29 @@ a.nm-lk:active { color: var(--brand); }
 .val-warn b{display:block;font-size:10px;font-weight:700;letter-spacing:.04em;margin-bottom:2px}
 .kv b.na{color:var(--tx-4);font-weight:500}
 /* ===== K 线全屏（2026-10-02 用户要求：可单独打开全屏看图）=====
-   整块 .chart-panel 移动进遮罩（保留实例/手势/按钮，不 clone），退出移回原位。*/
+   整块 .chart-panel 移动进遮罩（保留实例/手势/按钮，不 clone），退出移回原位。
+   2026-10-04 用户反馈：退出按钮原为遮罩首个子元素、独占顶部整行且右对齐，
+   致左上大片留白；现改为并入标题行右端（.cp-head > .hd-r）的紧凑小胶囊，
+   左侧由「日K · N日」铺满，顶部 padding 同步收紧，把高度让给画布。*/
 #cpFs{position:fixed;inset:0;z-index:100;background:#0c1322;display:none;flex-direction:column;
-  padding:calc(8px + env(safe-area-inset-top,0px)) 8px calc(10px + var(--safe-b,0px))}
+  padding:calc(4px + env(safe-area-inset-top,0px)) 8px calc(8px + var(--safe-b,0px))}
 #cpFs.on{display:flex}
 #cpFs .chart-panel{flex:1;display:flex;flex-direction:column;margin:0;border-radius:12px;min-height:0;
-  background:#0c1322;box-shadow:none;overflow:hidden}
+  background:#0c1322;box-shadow:none;overflow:hidden;padding-top:8px}
 #cpFs .cp-canvas-wrap{flex:1;min-height:0;display:flex}
 #cpFs .cp-canvas-wrap canvas{margin:0 auto}
 /* 全屏 chips：横屏宽裕一行排开；竖屏兜底横向滚动，避免换行挤压画布 */
 #cpFs #cpChips{flex:none;display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;
   -webkit-overflow-scrolling:touch;padding:0 2px 10px}
 #cpFs #cpChips .chip{flex:none}
-/* 退出按钮（SVG 图标替代字符 ✕，满足无字符图标规范） */
-#cpFsClose{flex:none;align-self:flex-end;display:inline-flex;align-items:center;gap:6px;margin:0 4px 6px;z-index:102;
-  min-height:40px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.3);
-  background:rgba(255,255,255,.12);color:#fff;font-size:12px;font-weight:700}
-#cpFsClose svg{width:16px;height:16px}
+/* 退出全屏：仅全屏时出现在标题行右端的小胶囊（SVG 图标替代字符 ✕）；未全屏时
+   display:none 不占位（此时它在 .cp-head 内跟随面板留在页面里）。 */
+#cpFsClose{display:none;flex:none;align-items:center;justify-content:center;gap:5px;
+  height:26px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.26);
+  background:rgba(255,255,255,.10);color:#fff;font-size:11.5px;font-weight:600;line-height:1;white-space:nowrap}
+#cpFs.on #cpFsClose{display:inline-flex}
+#cpFsClose:active{background:rgba(255,255,255,.22)}
+#cpFsClose svg{width:14px;height:14px}
 /* 横屏引导条：竖屏全屏时浮于底部，点按再尝试锁定横屏 */
 #cpFsHint{display:none;position:absolute;left:50%;bottom:calc(18px + var(--safe-b,0px));
   transform:translateX(-50%);z-index:103;align-items:center;gap:8px;max-width:90%;
@@ -898,7 +907,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="intraday.html?v=20261004132337">‹</a>
+    <a class="nav-back" href="intraday.html?v=20261004151258">‹</a>
     <div class="nav-tt">
       <b id="navName">—</b>
       <span id="navCode">—</span>
@@ -926,7 +935,12 @@ a.nm-lk:active { color: var(--brand); }
   <section class="chart-panel">
     <div class="cp-head">
       <span class="tt" id="cpTitle">日 K</span>
-      <span class="px num" id="cpPx">—</span>
+      <span class="hd-r">
+        <span class="px num" id="cpPx">—</span>
+        <!-- 退出全屏按钮：常驻标题行右端，仅全屏时显示（CSS 控制），随面板一起
+             被移入/移出全屏遮罩，无需 JS 搬运 DOM。 -->
+        <button id="cpFsClose" type="button" title="退出全屏" aria-label="退出全屏"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>退出全屏</span></button>
+      </span>
     </div>
     <div class="chips" id="cpChips"></div>
     <div class="cp-canvas-wrap" id="cpWrap"></div>
@@ -978,7 +992,6 @@ a.nm-lk:active { color: var(--brand); }
 
 <div id="tab"></div>
 <div id="cpFs">
-  <button id="cpFsClose" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>退出全屏</span></button>
   <div id="cpFsHint" role="button" tabindex="0" aria-label="横屏观看提示">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
     <span>横屏观看，K线时间轴更舒展</span>
@@ -2565,12 +2578,12 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       + '，但该股未进入今日榜单。<br>'
       + '按铁律 9，观察池标的不展示买区 / 目标 / 止损价位与挂单指令；'
       + '研判依据见下方信号拆解。<br>'
-      + '<a href="intraday.html?v=20261004132337" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004151258" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = 'J层研判 · 未入今日榜单';
   } else {
     planEl.innerHTML = '<div class="empty"><div class="e-ic">' + window.icon('empty') + '</div>'
       + '该股未进入今日榜单，暂无买区 / 止损 / 目标计划<br>'
-      + '<a href="intraday.html?v=20261004132337" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004151258" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = '';
   }
 
@@ -2768,7 +2781,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       /* R-01：code 来自 URL 参数时已过 6 位数字校验；数据回退来源同样是 6 位代码，
          双保险——非 6 位纯数字时不拼 href（避免属性注入与 d/.html 空链）。 */
       + ((code && /^\d{6}$/.test(code))
-        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004132337">查看旧版详情页 ›</a></div>'
+        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004151258">查看旧版详情页 ›</a></div>'
         : '')
       + '</div>';
   }

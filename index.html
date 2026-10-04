@@ -417,6 +417,9 @@ button { font-family: inherit; }
            gap: var(--s2); padding: 0 14px var(--s2); }
 .cp-head .tt { font-size: 13px; font-weight: 700; color: var(--cp-tx-2); }
 .cp-head .px { font-size: 14px; font-weight: 700; }
+/* 2026-10-04 用户反馈：全屏退出按钮原独占顶部整行 → 并入标题行右端。
+   右端分组（现价 + 退出按钮）整体靠右，标题行左侧由 日K·N日 铺满。 */
+.cp-head .hd-r { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
 
 /* 2026-10-03 修：K 线面板的 chips/chip 原为全局选择器，被下方知识层同名定义
    （`.chips`/`.chip` 各定义两次，同级特异度后者胜）整体覆盖 —— 实测 detail 页
@@ -883,7 +886,7 @@ a.nm-lk:active { color: var(--brand); }
   </section>
 
   <section class="sec">
-    <div class="sec-t"><h2>短期榜 TOP3</h2><a class="hint" href="intraday.html?v=20261004132337">查看全部 <svg style="width:13px;height:13px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
+    <div class="sec-t"><h2>短期榜 TOP3</h2><a class="hint" href="intraday.html?v=20261004151258">查看全部 <svg style="width:13px;height:13px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
     <div class="card-list" id="top3"></div>
     <div id="caliberIdx"></div>
   </section>

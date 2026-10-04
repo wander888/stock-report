@@ -417,6 +417,9 @@ button { font-family: inherit; }
            gap: var(--s2); padding: 0 14px var(--s2); }
 .cp-head .tt { font-size: 13px; font-weight: 700; color: var(--cp-tx-2); }
 .cp-head .px { font-size: 14px; font-weight: 700; }
+/* 2026-10-04 用户反馈：全屏退出按钮原独占顶部整行 → 并入标题行右端。
+   右端分组（现价 + 退出按钮）整体靠右，标题行左侧由 日K·N日 铺满。 */
+.cp-head .hd-r { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
 
 /* 2026-10-03 修：K 线面板的 chips/chip 原为全局选择器，被下方知识层同名定义
    （`.chips`/`.chip` 各定义两次，同级特异度后者胜）整体覆盖 —— 实测 detail 页
@@ -841,7 +844,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261004132337">‹</a>
+    <a class="nav-back" href="index.html?v=20261004151258">‹</a>
     <div class="nav-tt">
       <b>新闻报告</b>
       <span id="navSub">—</span>
