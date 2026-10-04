@@ -512,8 +512,9 @@ button { font-family: inherit; }
   box-shadow: var(--sh-2); margin-top: -1px;
 }
 .fold > summary .tag { margin-left: auto; margin-right: var(--s2); }
-/* 2026-10-04：折叠面板内的口径说明行。用于「板块预判基准日 / 大盘情绪 T-1 基准日」
-   这类**时间口径**标注 —— 缺了会被读成当日实时，是三张图反馈里最集中的问题。 */
+/* 2026-10-04：折叠面板内的口径说明行。用于「板块预判基准日 / 大盘情绪统计基准日」
+   这类**时间口径**标注 —— 缺了会被读成当日实时，是三张图反馈里最集中的问题。
+   注：大盘情绪基准日已于同日修正为 data_date 当日（不再取 T-1），此处只述用途。 */
 .fold-body .fold-hint {
   font-size: var(--fs-xs); color: var(--tx-3); line-height: 1.6;
   padding: 0 2px 8px;
@@ -675,8 +676,9 @@ button { font-family: inherit; }
 .jm .verdict-b.up { background: var(--up-bg); color: var(--up); border-color: transparent; }
 .jm .verdict-b.dn { background: var(--dn-bg); color: var(--dn); border-color: transparent; }
 .jm .cap-b { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--brand); }
-/* 2026-10-04：大盘情绪全部指标取 T-1 收盘（judgeMarket 用 prev 日），
-   与报告基准日 data_date 不同 → 基准日提到卡片顶部常驻，不再只藏在「判定依据」里。 */
+/* 2026-10-04：大盘情绪指标取**基准日当日**收盘（judgeMarket 基准日 = data_date，
+   已于同日修正为含当日；此前取 T-1 导致情绪滞后一天）→ 基准日提到卡片顶部常驻，
+   不再只藏在「判定依据」里。 */
 .jm .jm-base {
   margin-top: 8px; font-size: 11px; color: var(--tx-3); line-height: 1.6;
 }
@@ -870,7 +872,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261004223122">‹</a>
+    <a class="nav-back" href="index.html?v=20261004224447">‹</a>
     <div class="nav-tt">
       <b>盘中作战报告</b>
       <span id="navSub">—</span>

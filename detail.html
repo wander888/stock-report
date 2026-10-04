@@ -512,8 +512,9 @@ button { font-family: inherit; }
   box-shadow: var(--sh-2); margin-top: -1px;
 }
 .fold > summary .tag { margin-left: auto; margin-right: var(--s2); }
-/* 2026-10-04：折叠面板内的口径说明行。用于「板块预判基准日 / 大盘情绪 T-1 基准日」
-   这类**时间口径**标注 —— 缺了会被读成当日实时，是三张图反馈里最集中的问题。 */
+/* 2026-10-04：折叠面板内的口径说明行。用于「板块预判基准日 / 大盘情绪统计基准日」
+   这类**时间口径**标注 —— 缺了会被读成当日实时，是三张图反馈里最集中的问题。
+   注：大盘情绪基准日已于同日修正为 data_date 当日（不再取 T-1），此处只述用途。 */
 .fold-body .fold-hint {
   font-size: var(--fs-xs); color: var(--tx-3); line-height: 1.6;
   padding: 0 2px 8px;
@@ -675,8 +676,9 @@ button { font-family: inherit; }
 .jm .verdict-b.up { background: var(--up-bg); color: var(--up); border-color: transparent; }
 .jm .verdict-b.dn { background: var(--dn-bg); color: var(--dn); border-color: transparent; }
 .jm .cap-b { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--brand); }
-/* 2026-10-04：大盘情绪全部指标取 T-1 收盘（judgeMarket 用 prev 日），
-   与报告基准日 data_date 不同 → 基准日提到卡片顶部常驻，不再只藏在「判定依据」里。 */
+/* 2026-10-04：大盘情绪指标取**基准日当日**收盘（judgeMarket 基准日 = data_date，
+   已于同日修正为含当日；此前取 T-1 导致情绪滞后一天）→ 基准日提到卡片顶部常驻，
+   不再只藏在「判定依据」里。 */
 .jm .jm-base {
   margin-top: 8px; font-size: 11px; color: var(--tx-3); line-height: 1.6;
 }
@@ -933,7 +935,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="intraday.html?v=20261004223122">‹</a>
+    <a class="nav-back" href="intraday.html?v=20261004224447">‹</a>
     <div class="nav-tt">
       <b id="navName">—</b>
       <span id="navCode">—</span>
@@ -2744,12 +2746,12 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       + '，但该股未进入今日榜单。<br>'
       + '按铁律 9，观察池标的不展示买区 / 目标 / 止损价位与挂单指令；'
       + '研判依据见下方信号拆解。<br>'
-      + '<a href="intraday.html?v=20261004223122" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004224447" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = 'J层研判 · 未入今日榜单';
   } else {
     planEl.innerHTML = '<div class="empty"><div class="e-ic">' + window.icon('empty') + '</div>'
       + '该股未进入今日榜单，暂无买区 / 止损 / 目标计划<br>'
-      + '<a href="intraday.html?v=20261004223122" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
+      + '<a href="intraday.html?v=20261004224447" style="color:var(--brand);font-weight:600">去看已评级标的 <svg class="i-inl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>';
     document.getElementById('planHint').textContent = '';
   }
 
@@ -2947,7 +2949,7 @@ window.__DATA__={"data_date":"2026-09-30","prev_date":"2026-09-29","minute_date"
       /* R-01：code 来自 URL 参数时已过 6 位数字校验；数据回退来源同样是 6 位代码，
          双保险——非 6 位纯数字时不拼 href（避免属性注入与 d/.html 空链）。 */
       + ((code && /^\d{6}$/.test(code))
-        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004223122">查看旧版详情页 ›</a></div>'
+        ? '<div style="margin-top:8px"><a class="lnk" href="d/' + F.code6(code) + '.html?v=20261004224447">查看旧版详情页 ›</a></div>'
         : '')
       + '</div>';
   }
