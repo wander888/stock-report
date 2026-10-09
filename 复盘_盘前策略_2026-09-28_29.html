@@ -89,7 +89,7 @@ summary::-webkit-details-marker{display:none}
 <div class="card ok"><h3>✅ B. 大盘状态耦合进 S1 — <span class="code">app/s/shortTermBoard.py</span> + <span class="code">params.json</span></h3>
 <ul>
 <li><b>容量收敛</b>：回读 <code>judgment_market</code> 情绪阶段，按 <code>s1.max_board_by_stage</code> 收敛上榜数——<b>冰点0 / 退潮2 / 中性5 / 升温5 / 高潮3</b>。退潮日不再推满 5 只。</li>
-<li><b>弱势板块过滤</b>：确定性主榜剔除「C3 偏空板块」个股（<code>exclude_weak_sector=true</code>）；弹性博弈榜 s1x <b>豁免</b>（其定位本就是弱板块博反弹，符合你「当日大跌≠次日继续跌」的口径）。新增统计 <code>gate_sector_excluded / eff_max_board / market_stage</code> 便于回归核对。</li>
+<li><b>弱势板块过滤</b>：确定性主榜剔除「C3 偏空板块」个股（<code>exclude_weak_sector=true</code>）；弹性博弈榜<b>豁免</b>（其定位本就是弱板块博反弹，符合你「当日大跌≠次日继续跌」的口径）。新增统计 <code>gate_sector_excluded / eff_max_board / market_stage</code> 便于回归核对。</li>
 </ul>
 <p>效果：退潮日 S1 最多 2 只且不含光模块/光纤；中性日恢复 5 只。宏观与微观首次对齐。</p></div>
 
