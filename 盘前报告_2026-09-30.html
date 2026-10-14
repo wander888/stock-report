@@ -1,0 +1,261 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<title>A股智能研究·盘前作战报告 2026-09-30</title><style>
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+html,body{overflow-x:hidden;max-width:100%}
+body{background:#eef1f6;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#1e293b;font-size:13.5px;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:640px;margin:0 auto;padding:10px 8px 28px}
+h2{font-size:17px;margin:2px 0}
+h3{font-size:14.5px;margin:0 0 6px}
+.sub,.meta{font-size:11px;color:#94a3b8}
+.idxbar{background:#fff;border-radius:12px;padding:9px 12px;margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;box-shadow:0 1px 3px rgba(0,0,0,.05);justify-content:space-between}
+.sec{background:#fff;border-radius:14px;padding:10px 10px 8px;margin-top:8px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.up{color:#dc2626} .dn{color:#16a34a} .flat{color:#94a3b8} .red{color:#dc2626} .green{color:#16a34a}
+ul{padding-left:17px;font-size:13px;line-height:1.85}
+.odet{font-size:11.5px;color:#64748b;background:#f8fafc;border-radius:8px;padding:4px 9px;margin:1px 0 4px;line-height:1.7}
+.rvbox{display:flex;flex-direction:column;gap:7px;margin:6px 0}
+.rv{background:#fff;border:1px solid #e8edf3;border-left:3px solid #cbd5e1;border-radius:10px;
+    padding:8px 10px;font-size:11.5px;line-height:1.65}
+.rv1{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rv1 .rvs{font-size:13.5px;font-weight:800;color:#1d4ed8}
+.rv1 .rvs a{text-decoration:none;color:#1d4ed8}
+.rv1 .rvr{font-size:14px;font-weight:800;white-space:nowrap}
+.rv2{font-size:10.5px;color:#94a3b8;margin-top:1px}
+.rv3{margin-top:3px;color:#334155;word-break:break-word;overflow-wrap:anywhere}
+.rv3 .rvk{color:#94a3b8;font-size:10.5px;margin-right:2px}
+.rv4{margin-top:4px}
+.rv5{font-size:10.5px;color:#64748b;margin-top:2px;word-break:break-word;overflow-wrap:anywhere}
+@media(max-width:360px){.rv1 .rvs{font-size:12.5px} .rv3{font-size:11px}}
+.ssr{display:grid;grid-template-columns:minmax(108px,auto) 1fr;gap:2px 10px;
+     align-items:center;padding:6px 8px;border-bottom:1px dashed #f1f5f9}
+.ssr:last-child{border-bottom:none}
+.ssr .ssn{font-weight:800;color:#334155;font-size:12.5px;line-height:1.35;
+          word-break:break-word;overflow-wrap:anywhere}
+.ssr .ssn small{font-weight:600;color:#94a3b8;font-size:10.5px}
+.ssr .ssm{font-size:11.5px;line-height:1.75;min-width:0}
+.ssr .ssm .meta{white-space:normal}
+.ssr .ssm b{font-size:12.5px;font-weight:700;white-space:nowrap;min-width:52px;text-align:right}
+.ssr .ssbar{flex:1;height:13px;background:#f1f5f9;border-radius:4px;overflow:hidden;min-width:40px}
+.ssr .ssbar i{display:block;height:100%;border-radius:4px}
+.sec2{margin-top:8px}
+.sec2>summary{background:#fff;border-radius:14px;padding:10px 12px;font-size:13.5px;font-weight:800;color:#334155;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);list-style:none}
+.sec2>summary::before{content:'▸ ';color:#94a3b8}
+.sec2[open]>summary::before{content:'▾ '}
+.tag-red{background:#fef2f2;color:#b91c1c;border-radius:6px;padding:1px 6px;font-size:10.5px;font-weight:700}
+.tag-green{background:#f0fdf4;color:#15803d;border-radius:6px;padding:1px 6px;font-size:10.5px;font-weight:700}
+.tag-amber{background:#fef3e2;color:#b45309;border-radius:6px;padding:1px 6px;font-size:10.5px;font-weight:700}
+.tag-gray{background:#f1f5f9;color:#64748b;border-radius:6px;padding:1px 6px;font-size:10.5px;font-weight:700}
+.disc{font-size:10.5px;color:#94a3b8;margin-top:10px;line-height:1.7}
+.mode{display:inline-block;background:#7c3aed;color:#fff;border-radius:10px;padding:1px 9px;font-size:11.5px;font-weight:700}
+.mode.pre{background:#b45309}
+.rt{font-style:normal;background:#dc2626;color:#fff;border-radius:5px;padding:0 4px;font-size:9.5px;margin-left:2px}
+.gateok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;border-radius:10px;padding:6px 10px;margin-top:8px;font-size:11.5px;font-weight:700}
+.gatewarn{background:#fffbeb;border:1px solid #fcd34d;color:#92400e;border-radius:10px;padding:6px 10px;margin-top:8px;font-size:11.5px;font-weight:700;line-height:1.7}
+.newsline{font-size:11.5px;line-height:1.75;padding:3px 0;border-bottom:1px dashed #f1f5f9;word-break:break-word;overflow-wrap:anywhere}
+.newsline a{color:#1d4ed8;text-decoration:none}
+.badge{font-size:11px;border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;display:inline-block}
+.badge-wl{display:inline-block;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;
+  border-radius:6px;padding:0 6px;font-size:11px;font-weight:600;vertical-align:middle;margin-left:2px}
+.dstat{background:#fff;border-radius:12px;padding:8px 12px;margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.dstat b{font-weight:800;font-size:13px}
+.dstat i{font-style:normal;color:#94a3b8;font-size:11px;margin-left:2px}
+.homebtn{text-decoration:none;background:#fff;border:1px solid #e2e8f0;border-radius:10px;
+  padding:4px 11px;font-size:12px;font-weight:700;color:#1d4ed8;white-space:nowrap;
+  box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.badge2{display:inline-block;background:#fef3e2;color:#b45309;border-radius:6px;
+  padding:1px 7px;font-size:10.5px;font-weight:700;margin-left:4px}
+.badge2.x{background:#fdf2f8;color:#be185d}
+.subh{font-size:12px;font-weight:800;color:#475569;background:#f1f5f9;border-radius:8px;padding:3px 9px;margin:6px 0 4px}
+.v-up{color:#dc2626;font-weight:800}
+.v-dn{color:#16a34a;font-weight:800}
+.v-watch{color:#b45309;font-weight:800}
+.disclaimer{font-size:10.5px;color:#94a3b8;margin-top:12px;line-height:1.7}
+
+/* === 内联详情页样式（自包含发布用） === */
+:root{--bg:#eef1f6;--card:#fff;--ink:#1e293b;--sub:#667085;--line:#e6eaf0;
+--blue:#1d4ed8;--teal:#0f766e;--green:#059669;--red:#e11d48;--amber:#d97706;--purple:#6366f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:14px 12px 44px}
+.hero{background:linear-gradient(135deg,#1d4ed8,#0f766e);color:#fff;border-radius:18px;
+padding:16px 16px 15px;box-shadow:0 4px 14px rgba(15,23,42,.16)}
+.hero h1{font-size:20px;font-weight:800;letter-spacing:.3px}
+.hero .sub{font-size:12px;opacity:.92;margin-top:3px}
+/* 生成时间戳：显眼可辨，用于区分「新版已发布」与「缓存/旧版」 */
+.hero .genstamp{margin-top:7px;display:inline-block;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.34);border-radius:9px;padding:3px 10px;font-size:12px}
+.hero .genstamp b{font-weight:800;letter-spacing:.2px}
+.hero .stat{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.hero .stat span{background:rgba(255,255,255,.17);border-radius:9px;padding:4px 9px;font-size:11.5px}
+.hero .stat b{font-weight:800}
+.up{color:#e11d48}.dn{color:#059669}   /* 涨红跌绿（A 股惯例） */
+.hero .up{color:#fecaca}.hero .dn{color:#bbf7d0}
+h2{font-size:14.5px;margin:16px 2px 8px;font-weight:800;color:#0f172a}
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:5px solid #cbd5e1;margin-bottom:9px}
+.card.buy{border-left-color:#059669}.card.watch{border-left-color:#d97706}
+.card.avoid{border-left-color:#e11d48}.card.main{border-left-color:#f59e0b}
+.card.s2{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .ico{font-size:17px;margin-right:5px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:11px;border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;
+display:inline-block}
+.b-buy{background:#dcfce7;color:#15803d}.b-watch{background:#fef3c7;color:#b45309}
+.b-avoid{background:#fee2e2;color:#b91c1c}.b-time{background:#eff6ff;color:#1d4ed8}
+.b-gray{background:#f1f5f9;color:#64748b}.b-pur{background:#eef2ff;color:#4f46e5}
+.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi .b{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:10px 13px;min-width:96px}
+.kpi .b .v{font-size:18px;font-weight:800}
+.kpi .b .l{font-size:11.5px;color:var(--sub);margin-top:2px}
+.sec{background:#fff;border-radius:15px;padding:11px 13px;margin-top:9px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--sub);font-weight:600;background:#fafbfd}
+td:first-child,th:first-child{text-align:left}
+tbody tr:hover{background:#f7f9fd}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.v-buy{color:#067a4a;background:#e3f9f1;border:1px solid #b6ecd9;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-watch{color:#1f5fd0;background:#e8f0fe;border:1px solid #c2d8fb;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-avoid{color:#c0392b;background:#fdecec;border:1px solid #f5c2c2;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.flex{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.foot{font-size:11px;color:#94a3b8;margin-top:16px;line-height:1.8}
+.warn{font-size:11.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;
+border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
+.bul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#334155}
+.bul li{margin:3px 0}
+.secl{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:4px 0}
+.segl{width:118px;flex:none;color:var(--ink)}
+.segtrack{flex:1;position:relative;height:12px;min-width:60px}
+.segzero{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#dbe2ea}
+.segb{position:absolute;height:12px;border-radius:3px}
+.segb.right{left:50%}
+.segb.left{right:50%}
+.segv{width:64px;text-align:right;color:var(--sub);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:11px;background:#f1f5f9;color:#475569;border-radius:999px;padding:2px 9px}
+.disclaimer{color:#9aa5b1;font-size:11.5px;margin-top:12px;line-height:1.8}
+.tblwrap{overflow-x:auto}
+/* —— 报告入口导航卡（旧版首页四态入口，1:1 对齐 .card）—— */
+.navgrid{display:flex;flex-direction:column;gap:9px;margin-top:8px}
+.navcard{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;border-left:5px solid #cbd5e1;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .12s ease,box-shadow .12s ease}
+.navcard:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.navcard.off{opacity:.62;border-left-color:#94a3b8}
+.navcard .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.navcard .ttl{font-size:15.5px;font-weight:800}
+.navcard .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* 旧版态色：pre 琥珀 / intra 绿 / post 靛 / research 天蓝 */
+.navcard.pre{border-left-color:#f59e0b}
+.navcard.intra{border-left-color:#10b981}
+.navcard.eod{border-left-color:#6366f1}
+.navcard.post{border-left-color:#6366f1}
+.navcard.research{border-left-color:#0ea5e9}
+/* —— 通用卡片（导航卡 / 详情页区块复用）—— */
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border-left:5px solid #cbd5e1;transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.card.maincard{border-left-color:#f59e0b}
+.card.s2card{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .code{color:#94a3b8;font-weight:500;font-size:11px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;
+  flex-wrap:wrap;gap:8px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* —— 研究详情（新闻/技术拆解）—— */
+.subh{font-size:13px;font-weight:700;color:var(--ink);margin:2px 0 6px}
+.newsline{font-size:12.5px;line-height:1.9;padding:3px 0;border-bottom:1px dashed #eef1f6}
+.newsline a{color:#1d4ed8;text-decoration:none}
+.newsline a:hover{text-decoration:underline}
+.tag-red,.tag-green,.tag-amber,.tag-gray{font-size:10.5px;border-radius:5px;
+  padding:1px 6px;margin-right:6px;font-weight:700}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-gray{background:#f1f5f9;color:#475569}
+/* —— 就绪徽章（旧版 b-ready/b-off）—— */
+.b-ready{background:#dcfce7;color:#15803d;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+.b-off{background:#f1f5f9;color:#94a3b8;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+/* —— 旧版三态卡色（盘前/盘中/盘后）—— */
+.card.pre{border-left-color:#f59e0b}
+.card.intra{border-left-color:#10b981}
+.card.post{border-left-color:#6366f1}
+/* —— 旧版卡片容器 / 明细行 / 键值 —— */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.odet{font-size:12px;color:var(--sub);line-height:1.8}
+.arow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;
+  padding:3px 0;border-bottom:1px dashed #eef1f6}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.wrap{padding:10px 8px 36px}
+  .navgrid{grid-template-columns:1fr}}
+
+.inline-detail{margin-top:10px;border-top:1px dashed #e2e8f0;padding-top:8px}
+.inline-detail .h1{font-size:15px}
+summary::-webkit-details-marker{display:none}
+</style></head>
+<body id="top"><div class="wrap">
+<div class="hero"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><h2>🌤️ A股智能研究·盘前作战报告</h2><a href="#top" class="homebtn">🧭 首页</a></div><div class="meta"><span class="mode pre">pre</span> 报告生成 2026-10-08 12:29:01 · 信号基准 <b>2026-09-29 收盘</b>（适用于 2026-09-30 盘中） · 行情快照 2026-09-29 15:00:00 收盘 · 数据源 qt.gtimg.cn</div><div class="idxbar"><span>上证指数 <b class="up">3842.19</b> <b class="up">+0.31%</b></span><span>深证成指 <b class="dn">12887.62</b> <b class="dn">-0.11%</b></span><span>创业板指 <b class="dn">3135.28</b> <b class="dn">-0.23%</b></span><span>科创50 <b class="dn">1530.01</b> <b class="dn">-2.51%</b></span><span>000300 <b class="up">4357.62</b> <b class="up">+0.29%</b></span><span>399905 <b class="dn">7435.16</b> <b class="dn">-0.06%</b></span></div><div class="gateok">🛡️ 推荐闭环门禁：15% 前瞻收益门槛 · 价格 3~200 元 · 乖离 ≤35% · 五角色评审 · 全行业无偏好（S1 弹性优先 / S1X 高弹性博弈）</div></div>
+<div class="mbar"><span><a href="盘前报告_2026-09-30.html?v=20261014083826">🌤️ 盘前报告</a></span><span><a href="盘中报告_2026-09-30.html?v=20261014083826">⏱️ 盘中报告</a></span><span><a href="收盘报告_2026-09-30.html?v=20261014083826">🔔 收盘报告</a></span><span><a href="新闻报告_2026-09-30.html?v=20261014083826">📰 新闻报告</a></span><span><a href="技术拆解_2026-09-30.html?v=20261014083826">🔧 技术拆解</a></span><span><a href="archive.html?v=20261014083826">📚 历史归档</a></span></div>
+
+<div class="sec" style="border:1.5px solid #fbbf24;background:#fffbeb">
+<h3>📌 盘前速览（五件事）</h3>
+<div class="odet">📉 <b>大盘</b>（2026-09-29 收盘）：上证指数 <b class="up">3842.19</b> <b class="up">+0.31%</b> · 深证成指 <b class="dn">12887.62</b> <b class="dn">-0.11%</b> · 创业板指 <b class="dn">3135.28</b> <b class="dn">-0.23%</b></div>
+<div class="odet">🎯 <b>短期高弹性策略</b>：S1 主榜 5 只（上限 8，002882 金龙羽 领衔）｜
+<b>⚡ 附加弹性榜 3 只</b>：高弹性博弈 + 具体操作策略，博弈仓 ≤5%</div>
+<div class="odet">🔥 <b>今日预期板块</b>：强势 医药/科研试剂(0.70) · 医药/CXO(0.70) ｜
+弱势 通信/运营服务(0.15) · 电子/PCB制造(0.15)（C3 附出处理由）</div>
+<div class="odet">⚠️ <b>执行纪律</b>：本页价位为<b>挂单预案</b>（基于 2026-09-29 收盘价推算），
+盘前不代表可成交；开盘若跳空高开超买区上沿，<b>放弃挂单</b>。</div>
+</div>
+
+<details class="sec2" open><summary>C0 🧭 大盘情绪与仓位纪律 · 板块细分轮动<span class="badge b-time">j.judge_market · 历史命中率标注</span></summary><div class="sec"><div class="odet">🌡️ <b>情绪阶段</b>：<span class="tag-amber">中性</span>｜次日研判 <span class="tag-amber">中性</span>｜<b>仓位上限 50%</b>（机械绑定，纪律代替预言）</div><div class="odet">📋 市场统计=基准日 2026-09-30 收盘：涨停 56 家·炸板率 20%·上涨占比 45%·量能 0.87x(5日均)·市场连跌 1 日·全市场中位 -0.15%</div><div class="odet">📈 <b>历史同状态</b>：近 241 次同状态：次日全市场中位 -0.05%、上涨概率 46%（<b>小样本条件统计，非预测</b>）</div><div class="subh" style="margin-top:8px">🔁 板块细分轮动（140 节点 · 每条附证伪条件）</div><div class="odet"><span class="tag-red">偏多</span> 调味品与食用油：市场统计基准 领涨（板块均涨 +4.56%，5 只成分）·历史同状态次日超额均值 +0.41%（n=803，正占比 53%）·3日超额 +0.20%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-red">偏多</span> 创新药/CRO：市场统计基准 领涨（板块均涨 +4.60%，62 只成分）·历史同状态次日超额均值 +0.41%（n=803，正占比 53%）·3日超额 +0.20%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-red">偏多</span> 种业：市场统计基准 领涨（板块均涨 +4.68%，7 只成分）·历史同状态次日超额均值 +0.41%（n=803，正占比 53%）·3日超额 +0.20%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-red">偏多</span> 疫苗：市场统计基准 领涨（板块均涨 +4.81%，12 只成分）·历史同状态次日超额均值 +0.41%（n=803，正占比 53%）·3日超额 +0.20%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-red">偏多</span> 医药/科研试剂：市场统计基准 领涨（板块均涨 +5.63%，9 只成分）·历史同状态次日超额均值 +0.41%（n=803，正占比 53%）·3日超额 +0.20%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-green">偏空</span> 通信工程及服务：市场统计基准 领跌（板块均涨 -6.27%，16 只成分）·历史同状态次日超额均值 +0.00%（n=804，正占比 48%）·3日超额 +0.05%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-green">偏空</span> 通信/运营服务：市场统计基准 领跌（板块均涨 -5.78%，18 只成分）·历史同状态次日超额均值 +0.00%（n=804，正占比 48%）·3日超额 +0.05%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet"><span class="tag-green">偏空</span> PCB/载板：市场统计基准 领跌（板块均涨 -4.99%，38 只成分）·历史同状态次日超额均值 +0.00%（n=804，正占比 48%）·3日超额 +0.05%·证伪条件：次日高开低走或放量（≥2x 均量）收阴即作废</div><div class="odet" style="margin-top:6px;color:#64748b">诚实边界：市场宽度/连板高度对次日无预测力（323 日本地实测），只作状态描述；涨停/炸板由 OHLC 推导（ST/新股未剔除）；板块映射为当前态。全部为研究参考，不构成投资建议。</div></div></details>
+
+<details class="sec2" open><summary>C1 📉 大盘上下文（指数 / 消息 / 评审分布）</summary>
+<div class="dstat"><span>📰 消息 <b class="up">998</b><i>利好</i> <b class="dn">293</b><i>利空</i> <b>6080</b><i>中性</i></span><span>🎯 短期评审 <b>0</b><i>只过闸</i> → 通过 <b>0</b></span><span>⛔ 一票否决 <b class="dn">0</b><i>五角色评审</i></span></div></details>
+
+<details class="sec2" open><summary>C2 🎯 短期高弹性策略 S1 · 5 只（上限 8）<span class="badge b-time">行情 + 消息 · 弹性优先</span></summary>
+<div class="sec">
+<div class="odet">说明：「强势 / 偏强 / 关注」是对<b>盘面状态</b>的客观刻度，<b>不是操作指令</b>；
+执行价位以买区 / 目标 / 止损为准，<b>挂单触发条件已并入每张卡</b>。破位即撤。</div>
+<div class="rv"><div class="rv1"><span class="rvs">1. <a href="d/002882.html?v=20261014083826">金龙羽</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">002882 · 价格 24.98 <small class="up">+1.92%</small><small class="meta">（昨收 24.51）</small></div><div class="rv3"><span class="rvk">买区</span><b class="up">22.71 ~ 23.24</b> <span class="rvk">目标</span><b class="up">28.35</b> <span class="rvk">止损</span><b class="dn">21.8</b></div><div class="rv3"><span class="rvk">挂单</span>回落至 <b class="up">22.71</b> 下方分批（上限 <b>23.24</b>）｜失效：收盘破 <b class="dn">21.8</b> 即离场</div><div class="rv5">建议仓位 4%（情绪风格，主推+弹性 合计≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">2. <a href="d/603400.html?v=20261014083826">华之杰</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">603400 · 价格 53.00 <small class="dn">-3.05%</small><small class="meta">（昨收 54.67）</small></div><div class="rv3"><span class="rvk">买区</span><b class="up">51.35 ~ 52.92</b> <span class="rvk">目标</span><b class="up">62.26</b> <span class="rvk">止损</span><b class="dn">49.3</b></div><div class="rv3"><span class="rvk">挂单</span>回落至 <b class="up">51.35</b> 下方分批（上限 <b>52.92</b>）｜失效：收盘破 <b class="dn">49.3</b> 即离场</div><div class="rv5">建议仓位 4%（情绪风格，主推+弹性 合计≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">3. <a href="d/603737.html?v=20261014083826">三棵树</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">603737 · 价格 22.65 <small class="up">+3.80%</small><small class="meta">（昨收 21.82）</small></div><div class="rv3"><span class="rvk">买区</span><b class="up">21.36 ~ 21.75</b> <span class="rvk">目标</span><b class="up">27.21</b> <span class="rvk">止损</span><b class="dn">20.51</b></div><div class="rv3"><span class="rvk">挂单</span>回落至 <b class="up">21.36</b> 下方分批（上限 <b>21.75</b>）｜失效：收盘破 <b class="dn">20.51</b> 即离场</div><div class="rv5">建议仓位 4%（情绪风格，主推+弹性 合计≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">4. <a href="d/002773.html?v=20261014083826">康弘药业</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">002773 · 价格 21.80 <small class="dn">-2.46%</small><small class="meta">（昨收 22.35）</small></div><div class="rv3"><span class="rvk">买区</span><b class="up">21.03 ~ 21.29</b> <span class="rvk">目标</span><b class="up">24.19</b> <span class="rvk">止损</span><b class="dn">20.19</b></div><div class="rv3"><span class="rvk">挂单</span>回落至 <b class="up">21.03</b> 下方分批（上限 <b>21.29</b>）｜失效：收盘破 <b class="dn">20.19</b> 即离场</div><div class="rv5">建议仓位 4%（情绪风格，主推+弹性 合计≤30%）</div></div><div class="rv"><div class="rv1"><span class="rvs">5. <a href="d/603538.html?v=20261014083826">美诺华</a></span><span class="rvr"><span class="v-buy">强势</span></span></div><div class="rv2">603538 · 价格 28.59 <small class="up">+10.00%</small><small class="meta">（昨收 25.99）</small></div><div class="rv3"><span class="rvk">买区</span><b class="up">26.77 ~ 27.33</b> <span class="rvk">目标</span><b class="up">32.85</b> <span class="rvk">止损</span><b class="dn">25.7</b></div><div class="rv3"><span class="rvk">挂单</span>回落至 <b class="up">26.77</b> 下方分批（上限 <b>27.33</b>）｜失效：收盘破 <b class="dn">25.7</b> 即离场</div><div class="rv5">建议仓位 4%（情绪风格，主推+弹性 合计≤30%）</div></div></div></details>
+
+<details class="sec2" open><summary>⚡ S1 附加弹性榜 · 3 只（每日额外 · 高弹性博弈）<span class="badge2 x">含具体操作策略</span></summary>
+<div class="sec">
+<div class="odet">口径（2026-09-24 用户确认）：<b>当日大跌≠次日继续跌</b>——情绪股波动极端正是弹性来源。
+按形态分席位（深水反弹 / 涨停博弈 / 全局弹性），每只标注<b>具体操作策略</b>；
+前瞻收益仍 ≥15% 闭环，但定位是<b>博弈仓 ≤5%、快进快出</b>，非确定性推荐。</div>
+<div class="rv" style="border-left-color:#db2777"><div class="rv1"><span class="rvs">1. <a href="d/601155.html?v=20261014083826">新城控股</a></span><span class="rvr"><span class="badge2 x">弹性·回调低吸</span></span></div><div class="rv2"><span class="badge2">地产/开发</span> · 601155 · 价格 12.87 <small class="dn">-1.08%</small><small class="meta">（昨收 13.01）</small></div><div class="rv3" style="color:#9d174d"><span class="rvk">策略</span>回调低吸：盘中回踩分时均线不破、量能萎缩企稳时，于买区 12.57~12.72 低吸；目标 14.83，收盘跌破止损 11.82 即撤</div><div class="rv3"><span class="rvk">买区</span><b class="up">12.57 ~ 12.72</b> <span class="rvk">目标</span><b class="up">14.83</b> <span class="rvk">止损</span><b class="dn">11.82</b></div><div class="rv5">板块=地产/开发；弹性分 1.00（振幅4.7%/量能2.4x/市值290亿）；当日 -1.1%；前瞻收益=18.0%（闭环）；归母净利+8.49亿(2026-06-30)；市值弹性带内</div><div class="rv5">博弈仓 3%（情绪风格，主推+弹性 合计≤30%） · 快进快出 · 非确定性推荐</div></div><div class="rv" style="border-left-color:#db2777"><div class="rv1"><span class="rvs">2. <span style="color:#94a3b8">深华发Ａ（无详情）</span></span><span class="rvr"><span class="badge2 x">弹性·回调低吸</span></span></div><div class="rv2"><span class="badge2">电子/消费电子制造</span> · 000020 · 价格 14.28 <small class="dn">-2.53%</small><small class="meta">（昨收 14.65）</small></div><div class="rv3" style="color:#9d174d"><span class="rvk">策略</span>回调低吸：盘中回踩分时均线不破、量能萎缩企稳时，于买区 13.85~14.06 低吸；目标 16.34，收盘跌破止损 13.02 即撤</div><div class="rv3"><span class="rvk">买区</span><b class="up">13.85 ~ 14.06</b> <span class="rvk">目标</span><b class="up">16.34</b> <span class="rvk">止损</span><b class="dn">13.02</b></div><div class="rv5">板块=电子/消费电子制造；弹性分 1.00（振幅6.0%/量能2.2x/市值40亿）；当日 -2.5%；前瞻收益=18.0%（闭环）；归母净利+0.08亿(2026-06-30)；市值弹性带内</div><div class="rv5">博弈仓 3%（情绪风格，主推+弹性 合计≤30%） · 快进快出 · 非确定性推荐</div></div><div class="rv" style="border-left-color:#db2777"><div class="rv1"><span class="rvs">3. <span style="color:#94a3b8">和泰机电（无详情）</span></span><span class="rvr"><span class="badge2 x">弹性·温和蓄势</span></span></div><div class="rv2"><span class="badge2">机械/物流装备</span> · 001225 · 价格 33.90 <small class="up">+1.65%</small><small class="meta">（昨收 33.35）</small></div><div class="rv3" style="color:#9d174d"><span class="rvk">策略</span>温和蓄势：现价下方买区 32.96~33.43 分批建仓，盘中放量突破当日高点可确认加仓；目标 38.89，收盘跌破止损 30.98 离场</div><div class="rv3"><span class="rvk">买区</span><b class="up">32.96 ~ 33.43</b> <span class="rvk">目标</span><b class="up">38.89</b> <span class="rvk">止损</span><b class="dn">30.98</b></div><div class="rv5">板块=机械/物流装备；弹性分 0.98（振幅5.5%/量能2.1x/市值31亿）；当日 +1.6%；前瞻收益=18.0%（闭环）；归母净利+0.13亿(2026-06-30)；市值弹性带内</div><div class="rv5">博弈仓 3%（情绪风格，主推+弹性 合计≤30%） · 快进快出 · 非确定性推荐</div></div></div></details>
+
+<details class="sec2" open><summary>C3 🔥 今日预期板块 · 强势 / 弱势 TOP5（基于 2026-09-29 收盘 + 隔夜外围 + 板块新闻）</summary>
+<div class="sec">
+<div class="subh">🔺 预期强势 TOP5</div>
+<div class="ssr"><div class="ssr"><span class="ssn">医药/科研试剂 <small>(9)</small></span><span class="ssm"><span class="tag-red">预期分 0.70</span><b style="color:#dc2626">+5.63%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 +5.63%（158 板块第 1）；板块新闻净 +0（利好 0/利空 0）；轮动研判[偏多]，证伪：次日高开低走或放量收阴即作废</div><div class="ssr"><span class="ssn">医药/CXO <small>(27)</small></span><span class="ssm"><span class="tag-red">预期分 0.70</span><b style="color:#dc2626">+4.51%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 +4.51%（158 板块第 2）；板块新闻净 +0（利好 0/利空 0）</div><div class="ssr"><span class="ssn">医药/生物制品 <small>(43)</small></span><span class="ssm"><span class="tag-red">预期分 0.69</span><b style="color:#dc2626">+4.01%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 +4.01%（158 板块第 3）；板块新闻净 +0（利好 0/利空 0）</div><div class="ssr"><span class="ssn">医药/原料药 <small>(1)</small></span><span class="ssm"><span class="tag-red">预期分 0.69</span><b style="color:#dc2626">+3.69%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 +3.69%（158 板块第 4）；板块新闻净 +0（利好 0/利空 0）</div><div class="ssr"><span class="ssn">医药/创新药 <small>(27)</small></span><span class="ssm"><span class="tag-red">预期分 0.69</span><b style="color:#dc2626">+3.22%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 +3.22%（158 板块第 5）；板块新闻净 +0（利好 0/利空 0）</div></div>
+<div class="subh" style="margin-top:10px">🔻 预期弱势 TOP5</div>
+<div class="ssr"><div class="ssr"><span class="ssn">通信/运营服务 <small>(18)</small></span><span class="ssm"><span class="tag-green">预期分 0.15</span><b style="color:#16a34a">-5.78%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 -5.78%（158 板块第 158）；板块新闻净 +0（利好 0/利空 0）；轮动研判[偏空]，证伪：次日高开低走或放量收阴即作废</div><div class="ssr"><span class="ssn">电子/PCB制造 <small>(38)</small></span><span class="ssm"><span class="tag-green">预期分 0.15</span><b style="color:#16a34a">-4.77%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 -4.77%（158 板块第 157）；板块新闻净 +0（利好 0/利空 0）</div><div class="ssr"><span class="ssn">存储 <small>(3)</small></span><span class="ssm"><span class="tag-green">预期分 0.16</span><b style="color:#16a34a">-4.16%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 -4.16%（158 板块第 156）；板块新闻净 +5（利好 16/利空 2）；首尔综合 -2.0%→承压</div><div class="ssr"><span class="ssn">电子/PCB材料 <small>(15)</small></span><span class="ssm"><span class="tag-green">预期分 0.16</span><b style="color:#16a34a">-3.29%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 -3.29%（158 板块第 154）；板块新闻净 +0（利好 0/利空 0）</div><div class="ssr"><span class="ssn">电子/半导体材料 <small>(44)</small></span><span class="ssm"><span class="tag-green">预期分 0.17</span><b style="color:#16a34a">-3.21%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">昨日 -3.21%（158 板块第 153）；板块新闻净 +0（利好 0/利空 0）</div></div>
+<div class="odet" style="margin-top:8px">预期分 = 昨日动量分位 55% + 板块新闻净情绪 30%（当日全量新闻）+ 外围映射 15%
+（纳指/英伟达/日经/KOSPI 对算力/光模块/存储等强相关板块 ±0.15）。理由中的每个数字均有出处。</div>
+</div></details>
+
+
+
+
+<details class="sec2"><summary>C5 🌐 外围市场追踪（美股三大指数 + 英伟达 + 日经/KOSPI，点击展开）</summary>
+<div class="idxbar"><span>道琼斯 <b class="dn">51179.87</b> <b class="dn">-0.66%</b> <small style="color:#94a3b8">10-07</small></span><span>纳斯达克 <b class="dn">27538.69</b> <b class="dn">-0.22%</b> <small style="color:#94a3b8">10-07</small></span><span>US.INX <b class="dn">7801.77</b> <b class="dn">-0.22%</b> <small style="color:#94a3b8">10-07</small></span><span>英伟达 <b class="dn">237.47</b> <b class="dn">-0.74%</b> <small style="color:#94a3b8">10-07</small></span><span>日经225 <b class="dn">70035.71</b> <b class="dn">-0.92%</b> <small style="color:#94a3b8">10-07</small></span><span>首尔综合 <b class="dn">6803.90</b> <b class="dn">-1.98%</b> <small style="color:#94a3b8">10-07</small></span></div>
+<div class="odet" style="margin-top:6px">口径：美股为新浪 T+1 同步（小字号为该数据自身交易日），
+盘前以「最近可得收盘」为准；对 A 股开盘影响 = 隔夜美股方向 + 英伟达（AI 算力链情绪锚）。</div></details>
+
+<p class="disclaimer">免责声明：本报告由确定性研究程序生成，仅供学习与研究参考，不构成投资建议。
+股市有风险，投资需谨慎。所有结论基于历史数据与技术模型，不保证未来表现。</p>
+</div></body></html>
