@@ -1,0 +1,422 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<title>A股智能研究·盘前作战报告 2026-10-28</title><style>
+/* ===== 盘前报告换皮 · protoReport / Ledger Mobile v2（对齐 code/protoReport/tokens.css）===== */
+:root{
+  --bg:#f6f7fa;--surface:#ffffff;--surface-sunk:#f4f6f9;
+  --tx-1:#101828;--tx-2:#475467;--tx-3:#8a94a6;--tx-4:#c6cdd8;
+  --up:#e0393e;--up-bg:#fdf1f1;--dn:#12a05c;--dn-bg:#eefaf3;--flat:#8a94a6;--flat-bg:#f2f4f7;
+  --brand:#2563eb;--brand-deep:#1d4ed8;--brand-bg:#edf3fe;
+  --warn:#b45309;--warn-bg:#fdf6ec;--risk:#b91c1c;--info:#0e7490;
+  --bd:#eceff4;--bd-strong:#dde2ea;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;
+  --sh-1:0 1px 2px rgba(16,24,40,.04);--sh-2:0 1px 2px rgba(16,24,40,.05);--sh-3:0 8px 24px rgba(16,24,40,.10);
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--pad-page:12px;--pad-card:14px;--gap-sec:10px;
+  --fs-xs:11px;--fs-sm:12px;--fs-md:13px;--fs-base:14px;--fs-lg:15px;--fs-xl:17px;--fs-2xl:20px;--lh:1.5;
+  --ff:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  --tap:44px;--safe-b:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;min-width:0}
+html{-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden;max-width:100%}
+body{background:var(--bg);color:var(--tx-1);font-family:var(--ff);font-size:var(--fs-base);line-height:var(--lh);-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + var(--safe-b))}
+.wrap{max-width:560px;margin:0 auto;padding:0 var(--pad-page)}
+a{color:inherit;text-decoration:none}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";letter-spacing:-.01em}
+.up{color:var(--up)}.dn{color:var(--dn)}.flat{color:var(--flat)}
+small,sub,.meta{font-size:11px;color:var(--tx-3)}
+h2,h3{margin:0}
+
+/* ===== 顶部导航（sticky + 毛玻璃，protoReport .nav）===== */
+.nav{position:sticky;top:0;z-index:30;background:rgba(246,247,250,.9);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--bd);padding:calc(var(--s2) + env(safe-area-inset-top,0px)) var(--pad-page) var(--s2)}
+.nav-in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:var(--s2)}
+.nav-tt{flex:1;min-width:0}
+.nav-tt b{display:block;font-size:15px;font-weight:700}
+.nav-tt span{display:block;font-size:var(--fs-xs);color:var(--tx-3)}
+/* 报告间跳转 mbar（protoReport .tabbar 思路：横向滑动胶囊） */
+.mbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:var(--gap-sec);-webkit-overflow-scrolling:touch}
+.mbar::-webkit-scrollbar{display:none}
+.mbar>span{flex:none;font-size:11.5px;font-weight:600;background:var(--surface);border:1px solid var(--bd);border-radius:999px;padding:5px 12px;color:var(--tx-2);box-shadow:var(--sh-1);white-space:nowrap}
+.mbar>span a{color:var(--tx-2)}
+.mbar>span>b{color:var(--tx-1)}
+
+/* ===== Hero（深藏青 · 沉稳，protoReport .hero）===== */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 85% -10%,rgba(56,130,246,.35) 0%,rgba(56,130,246,0) 55%),linear-gradient(160deg,#0d1526 0%,#12203c 60%,#0f2d3f 100%);border-radius:var(--r-xl);padding:var(--s4);margin-top:var(--gap-sec);color:#fff;box-shadow:var(--sh-3)}
+.hero .h-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2);flex-wrap:wrap;row-gap:6px}
+.hero .h-meta{display:flex;align-items:center;gap:8px;margin-left:auto}
+.hero h1{font-size:var(--fs-xl);font-weight:700;letter-spacing:-.01em;color:#fff}
+.hero .h-date{font-size:var(--fs-xs);color:rgba(255,255,255,.72)}
+.hero .h-lead{margin-top:var(--s2);font-size:13.5px;line-height:1.75;font-weight:500;color:rgba(255,255,255,.94);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.hero .h-kpi{display:flex;margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.18)}
+.hero .h-kpi>div{flex:1;min-width:0}
+.hero .h-kpi i{display:block;font-style:normal;font-size:10.5px;color:rgba(255,255,255,.72);margin-bottom:3px;white-space:nowrap}
+.hero .h-kpi b{font-size:19px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.hero .h-kpi small{font-size:11px;font-weight:600;margin-left:2px;color:rgba(255,255,255,.75)}
+.hero .h-snap{margin-top:var(--s2);font-size:11px;line-height:1.6;color:rgba(255,255,255,.72)}
+
+/* ===== 区块卡片（protoReport .sec / .sec-t）===== */
+.sec{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-lg);padding:var(--pad-card);margin-top:var(--gap-sec);box-shadow:var(--sh-2);transition:box-shadow .15s,border-color .15s}
+.sec:hover{box-shadow:var(--sh-3);border-color:var(--bd-strong)}
+.sec-t{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2);margin-bottom:var(--s3)}
+.sec-t h2,.sec-t h3{font-size:15px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:6px}
+.sec-t h2::before,.sec-t h3::before{content:'';width:3px;height:12px;border-radius:2px;background:var(--brand);flex:none}
+.sec-t .hint{font-size:var(--fs-xs);color:var(--tx-3);font-weight:500}
+.subh{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--tx-2);background:var(--surface-sunk);border-radius:var(--r-sm);padding:5px 10px;margin:8px 0 6px}
+.subh::before{content:'';width:3px;height:11px;border-radius:2px;background:var(--brand);flex:none}
+.odet{font-size:11.5px;color:var(--tx-2);background:var(--surface-sunk);border-radius:var(--r-sm);padding:6px 10px;margin:4px 0 6px;line-height:1.7;word-break:break-word;overflow-wrap:anywhere}
+
+/* ===== 折叠区块（protoReport .fold）===== */
+.sec2{margin-top:var(--gap-sec)}
+.sec2>summary{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-lg);padding:13px var(--pad-card);font-size:14px;font-weight:700;color:var(--tx-1);box-shadow:var(--sh-2);list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:var(--tap);transition:box-shadow .15s,border-color .15s}
+.sec2>summary:hover{box-shadow:var(--sh-3);border-color:var(--bd-strong)}
+.sec2>summary::-webkit-details-marker{display:none}
+.sec2>summary::after{content:'';width:7px;height:7px;flex:none;border-right:2px solid var(--tx-3);border-bottom:2px solid var(--tx-3);transform:rotate(-45deg);transition:transform .18s;margin-left:var(--s2)}
+.sec2[open]>summary::after{transform:rotate(45deg)}
+.sec2[open]>summary{border-radius:var(--r-lg) var(--r-lg) 0 0}
+.sec2>.sec{margin-top:0;border:1px solid var(--bd);border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg);box-shadow:var(--sh-2)}
+
+/* ===== 指数条（protoReport .idxbar / .idx，顶部涨跌色条）===== */
+.idxbar{display:flex;margin-top:var(--gap-sec);background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-2);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.idxbar::-webkit-scrollbar{display:none}
+.idx{flex:1 0 25%;min-width:88px;padding:12px 13px 11px;position:relative;display:flex;flex-direction:column;gap:2px}
+.idx+.idx::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:1px;background:var(--bd)}
+.idx::after{content:'';position:absolute;left:10px;right:10px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--tx-4);opacity:.85}
+.idx.up::after{background:var(--up)} .idx.dn::after{background:var(--dn)} .idx.flat::after{background:var(--tx-4)}
+.idx i{display:block;font-style:normal;font-size:var(--fs-xs);color:var(--tx-3);white-space:nowrap}
+.idx b{display:block;font-size:16px;font-weight:700;margin-top:1px;white-space:nowrap}
+.idx em{font-style:normal;font-size:var(--fs-sm);font-weight:600}
+.idx small{display:block;font-size:9.5px;color:var(--tx-4);margin-top:1px;white-space:nowrap}
+
+/* ===== 外围市场竖排列表（2026-10-28 用户要求「外围市场追踪用竖排」）=====
+   一行一个市场：名称（自适应）/ 点位 / 涨跌 / 日期，纵向堆叠，无需横向滑动。
+   左侧 3px 色条 = 涨跌方向（红涨绿跌），与 .idx 顶部色条同一语义、更省宽度。 */
+.ovlist{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-2);padding:10px;margin-top:var(--gap-sec)}
+.ovrow{display:flex;align-items:center;gap:var(--s2);position:relative;padding:8px 10px 8px 12px;border-radius:var(--r-md);background:var(--surface-sunk)}
+.ovrow::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 2px 2px 0;background:var(--tx-4)}
+.ovrow.up::before{background:var(--up)}
+.ovrow.dn::before{background:var(--dn)}
+.ovrow i{flex:1;min-width:0;font-style:normal;font-size:12.5px;font-weight:600;color:var(--tx-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ovrow b{font-size:13.5px;font-weight:700;color:var(--tx-1);font-variant-numeric:tabular-nums}
+.ovrow em{font-style:normal;font-size:12.5px;font-weight:700;min-width:58px;text-align:right;font-variant-numeric:tabular-nums}
+.ovrow em.up{color:var(--up)}
+.ovrow em.dn{color:var(--dn)}
+.ovrow em.flat{color:var(--flat)}
+.ovrow small{font-size:10px;color:var(--tx-4);min-width:30px;text-align:right}
+
+/* ===== 门禁条（protoReport .tag 思路，绿色合规条）===== */
+.gateok{background:var(--dn-bg);border:1px solid #bbf7d0;color:#15803d;border-radius:var(--r-md);padding:7px 11px;margin-top:8px;font-size:11.5px;font-weight:700;line-height:1.6}
+.gatewarn{background:var(--warn-bg);border:1px solid #fcd34d;color:#92400e;border-radius:var(--r-md);padding:7px 11px;margin-top:8px;font-size:11.5px;font-weight:700;line-height:1.6}
+.gatehint{font-size:11px;color:var(--tx-3);margin-top:6px;line-height:1.6}
+
+/* ===== 单票卡（protoReport .sc + .rail 价位轴，核心组件）===== */
+.card-list{display:flex;flex-direction:column;gap:var(--s2);margin-top:6px}
+.sc{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-md);padding:11px 14px 11px;transition:box-shadow .15s}
+.sc:active{box-shadow:var(--sh-3)}
+.sc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tx-4)}
+.sc.buy::before{background:var(--up)} .sc.watch::before{background:var(--warn)} .sc.avoid::before{background:var(--tx-4)}
+.sc-h{display:flex;align-items:center;gap:7px}
+.sc-h .nm{font-size:15px;font-weight:700;color:var(--tx-1);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sc-h .code{font-size:10.5px;color:var(--tx-3);font-weight:500;white-space:nowrap}
+.sc-h .sp{flex:1}
+.sc-h .badge{flex:none}
+.sc-px{display:flex;align-items:baseline;justify-content:flex-end;gap:6px;margin-top:1px}
+.sc-px b{font-size:17px;font-weight:700}
+.sc-px em{font-style:normal;font-size:var(--fs-sm);font-weight:600}
+.sc-meta{font-size:10.5px;color:var(--tx-3);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap}
+/* 价位轴 */
+.rail{margin-top:12px;padding-top:22px;position:relative}
+.rail .track{position:relative;height:6px;border-radius:3px;background:#e6eaf0}
+.rail .zone{position:absolute;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,rgba(37,99,235,.28),rgba(37,99,235,.75));border:1px solid rgba(37,99,235,.4)}
+.rail .cursor{position:absolute;top:-4px;width:2px;height:14px;border-radius:1px;background:var(--up);box-shadow:0 0 0 2.5px rgba(224,57,62,.18);transform:translateX(-1px)}
+.rail .cursor::after{content:'';position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);border:4px solid transparent;border-top-color:var(--up);border-bottom:none}
+.rail .px-tag{position:absolute;top:-22px;transform:translateX(-50%);background:var(--up);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.rail .px-tag.dn{background:var(--dn)}
+.rail .lbls{display:flex;justify-content:space-between;gap:4px;margin-top:7px;font-size:10px;color:var(--tx-3);line-height:1.4}
+.rail .lbls>span{white-space:nowrap}
+.rail .lbls b{display:block;font-size:11px;font-weight:700}
+.rail .lbls .c-dn b{color:var(--dn)} .rail .lbls .c-bz b{color:var(--brand)} .rail .lbls .c-tg b{color:var(--warn)}
+.rail .lbls .c-bz{text-align:center} .rail .lbls .c-tg{text-align:right}
+/* 状态条 */
+.sc-state{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:4px 9px;border-radius:6px;font-size:var(--fs-sm);font-weight:600}
+.sc-state::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.sc-state.ok{background:var(--up-bg);color:var(--up)} .sc-state.hit{background:var(--warn-bg);color:var(--warn)}
+.sc-state.bad{background:var(--dn-bg);color:var(--dn)} .sc-state.wait{background:var(--flat-bg);color:var(--tx-2)}
+.sc-foot{display:flex;align-items:center;gap:var(--s2) var(--s3);flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px dashed var(--bd);font-size:var(--fs-xs);color:var(--tx-3)}
+.sc-foot .sp{flex:1}
+.sc-foot .lnk{color:var(--brand);font-weight:600;white-space:nowrap;margin-left:auto}
+.sc-reason{margin-top:var(--s2);font-size:var(--fs-sm);color:var(--tx-2);line-height:1.65;word-break:break-word;overflow-wrap:anywhere}
+
+/* ===== 标签 / 徽章（protoReport .tag / .badge，圆角胶囊）===== */
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;border-radius:999px;padding:2px 8px;background:var(--surface-sunk);color:var(--tx-3);border:1px solid var(--bd);line-height:1.4}
+.tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--tx-4);flex:none}
+.tag.up::before{background:var(--up)} .tag.dn::before{background:var(--dn)} .tag.warn::before{background:var(--warn)}
+.tag-red{background:var(--up-bg);color:var(--up);border-radius:5px;padding:1.5px 6px;font-size:10.5px;font-weight:700}
+.tag-green{background:var(--dn-bg);color:var(--dn);border-radius:5px;padding:1.5px 6px;font-size:10.5px;font-weight:700}
+.tag-amber{background:var(--warn-bg);color:var(--warn);border-radius:5px;padding:1.5px 6px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.tag-gray{background:var(--flat-bg);color:var(--tx-2);border-radius:5px;padding:1.5px 6px;font-size:10.5px;font-weight:700}
+.badge{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:600;border-radius:5px;padding:1.5px 6px;white-space:nowrap;line-height:1.5}
+.badge.up{background:var(--up-bg);color:var(--up)} .badge.dn{background:var(--dn-bg);color:var(--dn)}
+.badge.flat{background:var(--flat-bg);color:var(--tx-2)} .badge.brand{background:var(--brand-bg);color:var(--brand)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)} .badge.ghost{background:transparent;color:var(--tx-3);border:1px solid var(--bd-strong)}
+.badge-wl{display:inline-block;background:var(--warn-bg);color:#c2410c;border:1px solid #fed7aa;border-radius:5px;padding:0 6px;font-size:11px;font-weight:600;vertical-align:middle;margin-left:2px}
+.badge2{display:inline-block;background:var(--warn-bg);color:var(--warn);border-radius:5px;padding:1px 7px;font-size:10.5px;font-weight:700;margin-left:4px}
+.badge2.x{background:#fdf2f8;color:#be185d}
+
+/* ===== 板块强度（protoReport .ss）===== */
+.ssr{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:4px 10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--bd)}
+.ssr:last-child{border-bottom:none}
+.ssr .ssn{font-weight:800;color:var(--tx-1);font-size:12.5px;line-height:1.35;word-break:break-word;overflow-wrap:anywhere}
+.ssr .ssn small{font-weight:600;color:var(--tx-3);font-size:10.5px}
+.ssr .ssm{display:flex;align-items:center;gap:8px;min-width:0;font-size:11.5px;line-height:1.6}
+.ssr .ssm .meta{white-space:normal}
+.ssr .ssm b{font-size:12.5px;font-weight:700;white-space:nowrap;min-width:52px;text-align:right}
+.ssr .ssbar{flex:1;height:7px;background:var(--surface-sunk);border-radius:4px;overflow:hidden;min-width:40px}
+.ssr .ssbar i{display:block;height:100%;border-radius:4px}
+
+/* ===== 数据 / 状态条 ===== */
+.dstat{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-lg);padding:9px 13px;margin-top:8px;display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12px;box-shadow:var(--sh-2)}
+.dstat b{font-weight:800;font-size:13px}
+.dstat i{font-style:normal;color:var(--tx-3);font-size:11px;margin-left:2px}
+.disclaimer,.disc{font-size:10.5px;color:var(--tx-3);margin-top:12px;line-height:1.7}
+.homebtn{text-decoration:none;background:var(--surface);border:1px solid var(--bd);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;color:var(--brand-deep);white-space:nowrap;box-shadow:var(--sh-1)}
+.mode{display:inline-block;background:var(--brand);color:#fff;border-radius:999px;padding:1px 9px;font-size:11px;font-weight:700}
+.mode.pre{background:var(--warn)}
+.rt{font-style:normal;background:var(--up);color:#fff;border-radius:5px;padding:0 4px;font-size:9.5px;margin-left:2px}
+
+/* ===== 速览五件事（protoReport .br-item）===== */
+.br-item{display:flex;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px dashed var(--bd)}
+.br-item:last-child{border-bottom:none}
+.br-item b{font-size:12px;color:var(--tx-2);flex:none;font-weight:600;min-width:64px}
+.br-item .v{flex:1;min-width:0;font-size:13px;color:var(--tx-1);font-weight:600}
+
+/* ===== 空状态（protoReport .empty，禁止字符图标）===== */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px 12px;color:var(--tx-3);font-size:12px}
+.empty .e-ic{width:22px;height:22px;border:2px solid var(--bd-strong);border-radius:50%;position:relative}
+.empty .e-ic::after{content:'';position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%);border-left:2px solid var(--tx-4);border-bottom:2px solid var(--tx-4)}
+
+/* ===== 纪律清单（protoReport .rules）===== */
+.rules{list-style:none;padding:0;margin:4px 0}
+.rules li{position:relative;padding:4px 0 4px 16px;font-size:12px;color:var(--tx-2);line-height:1.7}
+.rules li::before{content:'';position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+
+/* ===== 新闻 ===== */
+.newsline{font-size:11.5px;line-height:1.75;padding:5px 0;border-bottom:1px dashed var(--bd);word-break:break-word;overflow-wrap:anywhere}
+.newsline a{color:var(--brand-deep);text-decoration:none}
+
+/* ===== C0 段 / 情绪条形兜底 ===== */
+.segtrack{height:8px;background:var(--surface-sunk);border-radius:4px;overflow:hidden;margin:4px 0}
+.segtrack i{display:block;height:100%}
+.segv{font-size:11px;color:var(--tx-2)}
+
+/* ===== 通用兜底（未知类不裸奔）===== */
+.kpi,.kv,.bul,.grid2,.flex,.card,.cards,.s2card,.navcard,.research,.maincard,.tblwrap,.intra,.eod,.post,.off,.inline-detail,.foot,.secl,.arow,.left,.right,.main{font-size:12.5px;color:var(--tx-2);line-height:1.7}
+.chip{display:inline-block;background:var(--surface-sunk);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:600;color:var(--tx-2);margin:2px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0}
+.warn{color:var(--warn);font-weight:700}
+/* ===== 收盘复盘单票卡（沿用模板 .rv，与盘前 .sc 并存；收盘页共享本 CSS）===== */
+.rv{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-md);padding:11px 14px;margin-top:8px;box-shadow:var(--sh-2)}
+.rv1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rvs{font-size:14px;font-weight:700;color:var(--tx-1)}
+.rvs a{color:var(--tx-1)}
+.rvr{font-size:11px;font-weight:700}
+.v-buy{color:var(--up)} .v-watch{color:var(--warn)} .v-avoid{color:var(--tx-3)}
+.rv2{font-size:12px;color:var(--tx-2);margin-top:3px}
+.rv3{font-size:12px;color:var(--tx-2);margin-top:5px;line-height:1.65;word-break:break-word;overflow-wrap:anywhere}
+.rvk{color:var(--tx-3);font-weight:600;margin-right:2px}
+
+@media(max-width:360px){.hero .h-kpi b{font-size:17px}.sc-px b{font-size:15px}}
+
+/* === 内联详情页样式（自包含发布用） === */
+:root{--bg:#eef1f6;--card:#fff;--ink:#1e293b;--sub:#667085;--line:#e6eaf0;
+--blue:#1d4ed8;--teal:#0f766e;--green:#059669;--red:#e11d48;--amber:#d97706;--purple:#6366f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:14px 12px 44px}
+.hero{background:linear-gradient(135deg,#1d4ed8,#0f766e);color:#fff;border-radius:18px;
+padding:16px 16px 15px;box-shadow:0 4px 14px rgba(15,23,42,.16)}
+.hero h1{font-size:20px;font-weight:800;letter-spacing:.3px}
+.hero .sub{font-size:12px;opacity:.92;margin-top:3px}
+/* 生成时间戳：显眼可辨，用于区分「新版已发布」与「缓存/旧版」 */
+.hero .genstamp{margin-top:7px;display:inline-block;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.34);border-radius:9px;padding:3px 10px;font-size:12px}
+.hero .genstamp b{font-weight:800;letter-spacing:.2px}
+.hero .stat{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.hero .stat span{background:rgba(255,255,255,.17);border-radius:9px;padding:4px 9px;font-size:11.5px}
+.hero .stat b{font-weight:800}
+.up{color:#e11d48}.dn{color:#059669}   /* 涨红跌绿（A 股惯例） */
+.hero .up{color:#fecaca}.hero .dn{color:#bbf7d0}
+h2{font-size:14.5px;margin:16px 2px 8px;font-weight:800;color:#0f172a}
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:5px solid #cbd5e1;margin-bottom:9px}
+.card.buy{border-left-color:#059669}.card.watch{border-left-color:#d97706}
+.card.avoid{border-left-color:#e11d48}.card.main{border-left-color:#f59e0b}
+.card.s2{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .ico{font-size:17px;margin-right:5px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:11px;border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;
+display:inline-block}
+.b-buy{background:#dcfce7;color:#15803d}.b-watch{background:#fef3c7;color:#b45309}
+.b-avoid{background:#fee2e2;color:#b91c1c}.b-time{background:#eff6ff;color:#1d4ed8}
+.b-gray{background:#f1f5f9;color:#64748b}.b-pur{background:#eef2ff;color:#4f46e5}
+.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi .b{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:10px 13px;min-width:96px}
+.kpi .b .v{font-size:18px;font-weight:800}
+.kpi .b .l{font-size:11.5px;color:var(--sub);margin-top:2px}
+.sec{background:#fff;border-radius:15px;padding:11px 13px;margin-top:9px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--sub);font-weight:600;background:#fafbfd}
+td:first-child,th:first-child{text-align:left}
+tbody tr:hover{background:#f7f9fd}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.v-buy{color:#067a4a;background:#e3f9f1;border:1px solid #b6ecd9;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-watch{color:#1f5fd0;background:#e8f0fe;border:1px solid #c2d8fb;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-avoid{color:#c0392b;background:#fdecec;border:1px solid #f5c2c2;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.flex{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.foot{font-size:11px;color:#94a3b8;margin-top:16px;line-height:1.8}
+.warn{font-size:11.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;
+border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
+.bul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#334155}
+.bul li{margin:3px 0}
+.secl{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:4px 0}
+.segl{width:118px;flex:none;color:var(--ink)}
+.segtrack{flex:1;position:relative;height:12px;min-width:60px}
+.segzero{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#dbe2ea}
+.segb{position:absolute;height:12px;border-radius:3px}
+.segb.right{left:50%}
+.segb.left{right:50%}
+.segv{width:64px;text-align:right;color:var(--sub);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:11px;background:#f1f5f9;color:#475569;border-radius:999px;padding:2px 9px}
+.disclaimer{color:#9aa5b1;font-size:11.5px;margin-top:12px;line-height:1.8}
+.tblwrap{overflow-x:auto}
+/* —— 报告入口导航卡（旧版首页四态入口，1:1 对齐 .card）—— */
+.navgrid{display:flex;flex-direction:column;gap:9px;margin-top:8px}
+.navcard{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;border-left:5px solid #cbd5e1;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .12s ease,box-shadow .12s ease}
+.navcard:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.navcard.off{opacity:.62;border-left-color:#94a3b8}
+.navcard .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.navcard .ttl{font-size:15.5px;font-weight:800}
+.navcard .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* 旧版态色：pre 琥珀 / intra 绿 / post 靛 / research 天蓝 */
+.navcard.pre{border-left-color:#f59e0b}
+.navcard.intra{border-left-color:#10b981}
+.navcard.eod{border-left-color:#6366f1}
+.navcard.post{border-left-color:#6366f1}
+.navcard.research{border-left-color:#0ea5e9}
+/* —— 通用卡片（导航卡 / 详情页区块复用）—— */
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border-left:5px solid #cbd5e1;transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.card.maincard{border-left-color:#f59e0b}
+.card.s2card{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .code{color:#94a3b8;font-weight:500;font-size:11px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;
+  flex-wrap:wrap;gap:8px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* —— 研究详情（新闻/技术拆解）—— */
+.subh{font-size:13px;font-weight:700;color:var(--ink);margin:2px 0 6px}
+.newsline{font-size:12.5px;line-height:1.9;padding:3px 0;border-bottom:1px dashed #eef1f6}
+.newsline a{color:#1d4ed8;text-decoration:none}
+.newsline a:hover{text-decoration:underline}
+.tag-red,.tag-green,.tag-amber,.tag-gray{font-size:10.5px;border-radius:5px;
+  padding:1px 6px;margin-right:6px;font-weight:700}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-gray{background:#f1f5f9;color:#475569}
+/* —— 就绪徽章（旧版 b-ready/b-off）—— */
+.b-ready{background:#dcfce7;color:#15803d;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+.b-off{background:#f1f5f9;color:#94a3b8;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+/* —— 旧版三态卡色（盘前/盘中/盘后）—— */
+.card.pre{border-left-color:#f59e0b}
+.card.intra{border-left-color:#10b981}
+.card.post{border-left-color:#6366f1}
+/* —— 旧版卡片容器 / 明细行 / 键值 —— */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.odet{font-size:12px;color:var(--sub);line-height:1.8}
+.arow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;
+  padding:3px 0;border-bottom:1px dashed #eef1f6}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.wrap{padding:10px 8px 36px}
+  .navgrid{grid-template-columns:1fr}}
+
+.inline-detail{margin-top:10px;border-top:1px dashed #e2e8f0;padding-top:8px}
+.inline-detail .h1{font-size:15px}
+summary::-webkit-details-marker{display:none}
+</style></head>
+<body id="top"><div class="wrap">
+<div class="hero"><div class="h-top"><h1>今日盘前作战预案</h1><span class="h-meta"><span class="h-date">报告生成 2026-10-28 23:46:11</span><a href="#top" class="homebtn">首页</a></span></div><p class="h-lead">信号基准 <b>2026-10-28 收盘</b> · 适用 2026-10-29 盘中</p><div class="h-kpi"><div><i>妖股版</i><b class="num">4</b></div><div><i>轮动版</i><b class="num">0</b></div><div><i>中线榜</i><b class="num">5</b></div><div><i>主推档</i><b class="num">0</b></div><div><i>观察级</i><b class="num">0</b></div></div><div class="h-snap">行情快照 2026-10-28 15:00:00 收盘</div></div>
+<div class="mbar"><span><b>盘前报告（当前）</b></span><span><a href="intraday.html?v=20261028234623">盘中报告</a></span><span><a href="eod.html?v=20261028234623">收盘报告</a></span><span><a href="news.html?v=20261028234623">新闻报告</a></span><span><a href="teardown.html?v=20261028234623">技术拆解</a></span><span><a href="archive.html?v=20261028234623">历史归档</a></span></div>
+
+<div class="idxbar"><div class="idx up"><i>上证指数</i><b class="num">3681.47</b><em class="num up">+0.91%</em></div><div class="idx up"><i>深证成指</i><b class="num">11473.18</b><em class="num up">+2.02%</em></div><div class="idx up"><i>创业板指</i><b class="num">2634.76</b><em class="num up">+3.40%</em></div><div class="idx up"><i>科创50</i><b class="num">1282.93</b><em class="num up">+2.45%</em></div><div class="idx up"><i>沪深300</i><b class="num">4083.87</b><em class="num up">+0.85%</em></div><div class="idx up"><i>中证500</i><b class="num">6640.89</b><em class="num up">+1.99%</em></div></div>
+<section class="sec">
+<div class="sec-t"><h3>盘前速览</h3></div>
+<div class="odet"><b>大盘</b>（2026-10-28 收盘）：上证指数 <b class="up">3681.47</b> <b class="up">+0.91%</b> · 深证成指 <b class="up">11473.18</b> <b class="up">+2.02%</b> · 创业板指 <b class="up">2634.76</b> <b class="up">+3.40%</b></div>
+<div class="odet"><b>短期高弹性策略</b>：主推档 <b>0</b> 只 · 观察级 <b>0</b> 只（上限 5，今日无在榜）｜
+全榜经五角色 LLM 评审准入（通过 4 / 送审 29，仅通过者可占推荐位）</div>
+<div class="odet"><b>今日预期板块</b>：强势 电子/半导体存储 · 电子/半导体材料 ｜
+弱势 食饮/白酒 · 食饮/调味品</div>
+<div class="odet"><b>执行纪律</b>：本页价位为<b>挂单预案</b>（基于 2026-10-28 收盘价推算），
+盘前不代表可成交；开盘若跳空高开超买区上沿，<b>放弃挂单</b>。</div>
+</section>
+
+<details class="sec2" open><summary><span>块A · 妖股版 · 4 只（上限 5，<span class="tag-amber">待触发</span>）</span></summary>
+<div class="sec">
+<div class="odet"><b>条件候选</b>：触发条件含<b>当日盘中量</b>（未封板 / 振幅 / 断板），盘前物理上不可判定
+→ 本块只给「池资格 + 预置价位」，盘中 14:45 转正后才是可执行候选（单列，不混入本块）。
+<b>本块价位是「触发价」不是「买价」</b>：涨到触发价才算触发、才轮得到买；<b>没涨到就一股不买</b>。
+<b>Y1</b> 首板/二板涨停后回调（近10日≥20%、市值≤100亿）· <b>Y2</b> 连板≥5 温柔断板（|涨幅|≤3%、持2日）·
+<b>Y3</b> 安静期放量（振幅&lt;5%→≥8%、涨幅20~30%、持1日），三池合并取近10日涨幅前 5。</div>
+
+<div class="odet"><span class="tag-gray">评审缺席</span>——本块 4 只仅有规则评分，<b>未经五角色评审</b>（当日评审结论全部来自确定性兜底）。准入闸因此只走了<b>否决闸</b>，未做角色交叉质证。</div>
+
+<div class="card-list"><div class="sc watch"><div class="sc-h"><span class="nm"><a href="d/000678.html?v=20261028234623">1. 襄阳轴承</a></span><span class="sp"></span><span class="tag-amber">条件候选·待触发</span><span class="tag-gray">未经评审</span></div><div class="sc-px"><b class="up">17.61</b><em class="up">+9.99%</em></div><div class="sc-meta">昨收 16.01<small class="meta"> · [Y/Y2]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:58.3%"></div><div class="zone" style="left:8.1%;width:18.0%"></div><div class="px-tag" style="left:58.3%">17.61</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>15.89</b></span><span class="c-bz"><small>触发区</small><b>16.13~16.66</b></span><span class="c-tg"><small>目标</small><b>18.84</b></span></div></div><div class="sc-foot"><span>确定性 <b>58</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span>RR <b>2.83</b></span><span>持有 <b>2日</b></span><span class="sp"></span><a class="lnk" href="d/000678.html?v=20261028234623">详情</a></div><div class="sc-reason">触发价 <b class="up">16.66</b> <small class="meta">（触发区 16.13~16.66）</small> · T1 <b>17.87</b> · T2 <b class="up">18.84</b> · 刻度 <b class="dn">15.89</b></div><div class="sc-reason">watch(n=46/净胜率=54.4%[40.2%,67.8%]/PLR=1.1124/净期望=1.69%)</div><div class="sc-reason"><small class="meta">失效：锚放量破位、次日一字跌停、锚暴力断板(|ret|&gt;3%)、段拥挤度升档 → 任一成立即作废</small></div></div><div class="sc watch"><div class="sc-h"><span class="nm"><a href="d/603028.html?v=20261028234623">2. 赛福天</a></span><span class="sp"></span><span class="tag-amber">条件候选·待触发</span><span class="tag-gray">未经评审</span></div><div class="sc-px"><b class="up">10.40</b><em class="up">+0.68%</em></div><div class="sc-meta">昨收 10.33<small class="meta"> · [Y/Y1]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:68.3%"></div><div class="zone" style="left:19.4%;width:17.2%"></div><div class="px-tag" style="left:68.3%">10.40</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>9.17</b></span><span class="c-bz"><small>触发区</small><b>9.52~9.83</b></span><span class="c-tg"><small>目标</small><b>10.97</b></span></div></div><div class="sc-foot"><span>确定性 <b>41</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span>RR <b>1.73</b></span><span>持有 <b>1日</b></span><span class="sp"></span><a class="lnk" href="d/603028.html?v=20261028234623">详情</a></div><div class="sc-reason">触发价 <b class="up">9.83</b> <small class="meta">（触发区 9.52~9.83）</small> · T1 <b>10.46</b> · T2 <b class="up">10.97</b> · 刻度 <b class="dn">9.17</b></div><div class="sc-reason">首板/二板涨停后回调低吸</div><div class="sc-reason"><small class="meta">失效：锚放量破位、次日一字跌停、锚暴力断板(|ret|&gt;3%)、段拥挤度升档 → 任一成立即作废</small></div></div><div class="sc watch"><div class="sc-h"><span class="nm"><a href="d/603286.html?v=20261028234623">3. 日盈电子</a></span><span class="sp"></span><span class="tag-amber">条件候选·待触发</span><span class="tag-gray">未经评审</span></div><div class="sc-px"><b class="up">54.45</b><em class="up">+2.72%</em></div><div class="sc-meta">昨收 53.01<small class="meta"> · [Y/Y1]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:49.3%"></div><div class="zone" style="left:8.4%;width:16.7%"></div><div class="px-tag" style="left:49.3%">54.45</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>49.64</b></span><span class="c-bz"><small>触发区</small><b>50.46~52.09</b></span><span class="c-tg"><small>目标</small><b>59.39</b></span></div></div><div class="sc-foot"><span>确定性 <b>27</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span>RR <b>2.98</b></span><span>持有 <b>1日</b></span><span class="sp"></span><a class="lnk" href="d/603286.html?v=20261028234623">详情</a></div><div class="sc-reason">触发价 <b class="up">52.09</b> <small class="meta">（触发区 50.46~52.09）</small> · T1 <b>56.15</b> · T2 <b class="up">59.39</b> · 刻度 <b class="dn">49.64</b></div><div class="sc-reason">首板/二板涨停后回调低吸</div><div class="sc-reason"><small class="meta">失效：锚放量破位、次日一字跌停、锚暴力断板(|ret|&gt;3%)、段拥挤度升档 → 任一成立即作废</small></div></div><div class="sc watch"><div class="sc-h"><span class="nm"><a href="d/605333.html?v=20261028234623">4. 沪光股份</a></span><span class="sp"></span><span class="tag-amber">条件候选·待触发</span><span class="tag-gray">未经评审</span></div><div class="sc-px"><b class="up">20.81</b><em class="up">+4.52%</em></div><div class="sc-meta">昨收 19.91<small class="meta"> · [Y/Y1]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:71.3%"></div><div class="zone" style="left:25.2%;width:17.5%"></div><div class="px-tag" style="left:71.3%">20.81</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>18.77</b></span><span class="c-bz"><small>触发区</small><b>19.49~19.99</b></span><span class="c-tg"><small>目标</small><b>21.63</b></span></div></div><div class="sc-foot"><span>确定性 <b>27</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span>RR <b>1.34</b></span><span>持有 <b>1日</b></span><span class="sp"></span><a class="lnk" href="d/605333.html?v=20261028234623">详情</a></div><div class="sc-reason">触发价 <b class="up">19.99</b> <small class="meta">（触发区 19.49~19.99）</small> · T1 <b>20.90</b> · T2 <b class="up">21.63</b> · 刻度 <b class="dn">18.77</b></div><div class="sc-reason">首板/二板涨停后回调低吸</div><div class="sc-reason"><small class="meta">失效：锚放量破位、次日一字跌停、锚暴力断板(|ret|&gt;3%)、段拥挤度升档 → 任一成立即作废</small></div></div></div>
+
+<div class="subh">Y4 分时限价止盈（卖点，非买点）</div><div class="odet"><small class="meta">次日按 +3% / +5% / +7% 挂限价，未触及则收盘卖。</small></div>
+<div class="odet"><small class="meta">Y5 可成交性：已检查 4 只候选的基准日行情，<b>未发现一字跌停/停牌</b>。</small></div>
+
+
+</div></details>
+
+<details class="sec2" open><summary>块B · 轮动版 · 0 只（上限 5）</summary>
+<div class="sec">
+
+
+
+<p class="meta">（本日无排名标的）</p>
+<div class="odet"><span class="tag-amber">结构买区闸否决 2 只</span>——它们当日<b>收在最低 / 长上影反转 / 破位</b>，按 ATR 结构口径<b>不出买区</b>（不是没算出价位）。这类票旧口径会给一个高于收盘的买区，实测成交后更差，故主动放弃。</div><div class="odet"><span class="tag-gray">本版今日无候选（三层皆空）</span>——可买档、观察档、对照档<b>三层全空</b>——按 62 个交易日的实测，这通常意味着<b>数据链不完整</b>（如重建首日无 D−1 角色），而不是市场没机会。先查 `anchor_state` 当日行数。<br>　<small>按执行顺序自查第一处不满足：① 段池禁区（拥挤高且抱团低 → 整段剔除）② 锚无高度（连板&lt;4）或锚当日收益缺失 → 窗口内与观察档同时落空 ③ 中军∩低位为空 / 环节收窄过窄 ④ X12（锚封板炸板日禁买中军）· X2（强势票低开修复）否决 ⑤ R5（非横盘档才启用：个股占段额分位≥90% 拉黑）⑥ 评审否决或缺席（rule_only 不占推荐位）⑦ 证据门槛 RR&lt;1.5⑧ 结构买区闸（收在当日最低 / 长上影反转 / 破位 → 不出买区）</small><br>　<small class="meta"><b>不放宽阈值硬凑</b>：硬凑等于把 X5 类错误默认化（推荐位直接买入 +0.10%/t=0.21，买区逆向 −1.86%）。</small></div></div></details>
+
+<details class="sec2" open><summary>块C · S2 中线榜 · TOP5（窗口 20 日）</summary>
+<div class="sec">
+<div class="odet">中线口径：长期信号 + 板块 + 财务质量/估值，持有窗口 20 日 —— 与块A/块B 的 1~2 日短线<b>不同源</b>，两边结论可以相反。</div>
+<div class="card-list"><div class="sc buy"><div class="sc-h"><span class="nm"><span style="color:#94a3b8">1. 中原内配（无详情）</span></span><span class="sp"></span></div><div class="sc-px"><b class="up">10.84</b><em class="up">+5.14%</em></div><div class="sc-meta">昨收 10.31<small class="meta"> · [S2/L20]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:18.5%"></div><div class="zone" style="left:12.7%;width:1.7%"></div><div class="px-tag" style="left:18.5%">10.84</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>9.77</b></span><span class="c-bz"><small>买区</small><b>10.50~10.60</b></span><span class="c-tg"><small>目标</small><b>15.54</b></span></div></div><div class="sc-foot"><span>确定性 <b>81</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span class="sp"></span><span style="color:#94a3b8">详情（无详情）</span></div><div class="sc-reason">板块 · 底盘与发动机系统</div></div><div class="sc watch"><div class="sc-h"><span class="nm"><span style="color:#94a3b8">2. 动力新科（无详情）</span></span><span class="sp"></span></div><div class="sc-px"><b class="up">5.30</b><em class="up">+1.92%</em></div><div class="sc-meta">昨收 5.20<small class="meta"> · [S2/L20]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:16.2%"></div><div class="zone" style="left:13.6%;width:1.8%"></div><div class="px-tag" style="left:16.2%">5.30</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>4.86</b></span><span class="c-bz"><small>买区</small><b>5.23~5.28</b></span><span class="c-tg"><small>目标</small><b>7.58</b></span></div></div><div class="sc-foot"><span>确定性 <b>75</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span class="sp"></span><span style="color:#94a3b8">详情（无详情）</span></div><div class="sc-reason">板块 · 底盘与发动机系统</div></div><div class="sc watch"><div class="sc-h"><span class="nm"><span style="color:#94a3b8">3. 亚太股份（无详情）</span></span><span class="sp"></span></div><div class="sc-px"><b class="up">9.97</b><em class="up">+3.10%</em></div><div class="sc-meta">昨收 9.67<small class="meta"> · [S2/L20]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:34.5%"></div><div class="zone" style="left:13.5%;width:1.9%"></div><div class="px-tag" style="left:34.5%">9.97</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>8.36</b></span><span class="c-bz"><small>买区</small><b>8.99~9.08</b></span><span class="c-tg"><small>目标</small><b>13.02</b></span></div></div><div class="sc-foot"><span>确定性 <b>74</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span class="sp"></span><span style="color:#94a3b8">详情（无详情）</span></div><div class="sc-reason">板块 · 底盘与发动机系统</div></div><div class="sc watch"><div class="sc-h"><span class="nm"><a href="d/600378.html?v=20261028234623">4. 昊华科技</a></span><span class="sp"></span></div><div class="sc-px"><b class="up">34.65</b><em class="up">+3.62%</em></div><div class="sc-meta">昨收 33.44 <span class="badge-wl">自选</span><small class="meta"> · [S2/L20]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:31.0%"></div><div class="zone" style="left:18.0%;width:7.7%"></div><div class="px-tag" style="left:31.0%">34.65</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>30.67</b></span><span class="c-bz"><small>买区</small><b>32.98~33.97</b></span><span class="c-tg"><small>目标</small><b>43.49</b></span></div></div><div class="sc-foot"><span>确定性 <b>64</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span class="sp"></span><a class="lnk" href="d/600378.html?v=20261028234623">详情</a></div><div class="sc-reason">板块 · 化工/新材料</div></div><div class="sc watch"><div class="sc-h"><span class="nm"><span style="color:#94a3b8">5. 晋亿实业（无详情）</span></span><span class="sp"></span></div><div class="sc-px"><b class="up">4.80</b><em class="up">+2.56%</em></div><div class="sc-meta">昨收 4.68<small class="meta"> · [S2/L20]</small></div><div class="rail"><div class="track"><div class="cursor" style="left:30.6%"></div><div class="zone" style="left:18.8%;width:8.2%"></div><div class="px-tag" style="left:30.6%">4.80</div></div><div class="lbls"><span class="c-dn"><small>止损</small><b>4.28</b></span><span class="c-bz"><small>买区</small><b>4.60~4.74</b></span><span class="c-tg"><small>目标</small><b>5.98</b></span></div></div><div class="sc-foot"><span>确定性 <b>63</b>/100<small class="meta">（≠仓位建议·仓位你定）</small></span><span class="sp"></span><span style="color:#94a3b8">详情（无详情）</span></div><div class="sc-reason">板块 · 金属制品</div></div></div>
+</div></details>
+
+<details class="sec2" open><summary>块D · 今日预期板块 · 强弱各 TOP5</summary>
+<div class="sec">
+<div class="subh">预期强势 TOP5</div>
+<div class="ssr"><span class="ssn">电子/半导体存储</span><span class="ssm"><b style="color:var(--up)">+6.43%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">电子/半导体材料</span><span class="ssm"><b style="color:var(--up)">+4.01%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">通信/光模块</span><span class="ssm"><b style="color:var(--up)">+4.96%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">机械/基础件</span><span class="ssm"><b style="color:var(--up)">+4.95%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 1</div><div class="ssr"><span class="ssn">电子/半导体芯片</span><span class="ssm"><b style="color:var(--up)">+4.77%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div>
+<div class="subh" style="margin-top:10px">预期弱势 TOP5</div>
+<div class="ssr"><span class="ssn">食饮/白酒</span><span class="ssm"><b style="color:var(--dn)">-2.35%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">食饮/调味品</span><span class="ssm"><b style="color:var(--dn)">-1.28%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">军工/船舶</span><span class="ssm"><b style="color:var(--dn)">-0.83%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">非银/券商</span><span class="ssm"><b style="color:var(--dn)">-0.66%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div><div class="ssr"><span class="ssn">轻工/日用消费</span><span class="ssm"><b style="color:var(--dn)">-0.52%</b></span></div><div class="meta" style="grid-column:1/-1;padding:0 8px 6px;margin-top:-4px">S1 在榜 0</div>
+</div></details>
+
+<details class="sec2"><summary>块E · 外围市场追踪</summary>
+<div class="ovlist"><div class="ovrow up"><i>道琼斯</i><b>52377.57</b><em class="up">+0.03%</em><small>10-27</small></div><div class="ovrow up"><i>纳斯达克</i><b>26477.81</b><em class="up">+1.18%</em><small>10-27</small></div><div class="ovrow up"><i>标普500</i><b>7722.60</b><em class="up">+0.60%</em><small>10-27</small></div><div class="ovrow up"><i>英伟达</i><b>217.94</b><em class="up">+0.90%</em><small>10-27</small></div><div class="ovrow up"><i>日经225</i><b>63954.19</b><em class="up">+1.08%</em><small>10-28</small></div><div class="ovrow up"><i>首尔综合</i><b>5638.34</b><em class="up">+3.09%</em><small>10-27</small></div></div></details>
+
+<p class="disclaimer">免责声明：本报告由确定性研究程序生成，仅供学习与研究参考，不构成投资建议。
+股市有风险，投资需谨慎。所有结论基于历史数据与技术模型，不保证未来表现。</p>
+</div></body></html>
