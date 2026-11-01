@@ -1049,7 +1049,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261101091914">‹</a>
+    <a class="nav-back" href="index.html?v=20261101112515">‹</a>
     <div class="nav-tt">
       <b>榜单跟踪</b>
       <span id="navSub">—</span>
@@ -1378,7 +1378,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
     var h = '<div class="sc ' + tone + '">';
     h += '<div class="sc-top">';
     h += '<div class="l">';
-    h += '<div class="sc-h"><a class="nm nm-lk" href="detail.html?code=' + F.code6(code) + '&v=20261101091914" title="进入个股详情">' + F.esc(nm) + '</a><span class="code num">' + F.esc(code) + '</span>'
+    h += '<div class="sc-h"><a class="nm nm-lk" href="detail.html?code=' + F.code6(code) + '&v=20261101112515" title="进入个股详情">' + F.esc(nm) + '</a><span class="code num">' + F.esc(code) + '</span>'
       + '<span class="badge ' + vClass(item.verdict) + '" title="评审结论：' + F.esc(item.verdict || '') + '">' + F.esc(window.verdictLabel(item.verdict)) + '</span>'
       /* 2026-10-07 深夜（用户裁定）：**不再叠任何决策徽章**。用户原话「你那个什么
          裁决买入，它只是一个后台的行为，为什么要写在前端上呢？你既然是推荐买入，
@@ -1437,7 +1437,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       } else {
         h += '<span class="sp"></span>';
       }
-      h += '<a class="lnk" href="detail.html?code=' + F.code6(code) + '&v=20261101091914">K线 ›</a>';
+      h += '<a class="lnk" href="detail.html?code=' + F.code6(code) + '&v=20261101112515">K线 ›</a>';
       h += '</div>';
     }
 
@@ -1575,7 +1575,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       if (opts.reco && recoBySeg[x.seg] && recoBySeg[x.seg].length) {
         var chips = recoBySeg[x.seg].slice(0, 5).map(function (c) {
           return '<a style="color:var(--brand);margin:0 4px" href="detail.html?code='
-            + F.code6(c) + '&v=20261101091914">' + F.esc(D.names[c] || c) + '</a>';
+            + F.code6(c) + '&v=20261101112515">' + F.esc(D.names[c] || c) + '</a>';
         }).join('');
         recoHtml = '<div style="margin-top:4px;font-size:12px;color:var(--tx-3)">推荐：' + chips + '</div>';
       }
@@ -1590,7 +1590,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
           var st = it.on_board ? '★' : '';
           var cl = it.on_board ? ' on' : '';
           return '<a class="sslk' + cl + '" href="detail.html?code='
-            + F.code6(it.code) + '&v=20261101091914">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
+            + F.code6(it.code) + '&v=20261101112515">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
         }).join('');
         leadHtml = '<div class="ss-lead"><span class="lx">领涨：</span>' + lchips + '</div>';
       }
@@ -1695,7 +1695,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
             var st = it.on_board ? '★' : '';
             var cl = it.on_board ? ' on' : '';
             return '<a class="sslk' + cl + '" href="detail.html?code='
-              + F.code6(it.code) + '&v=20261101091914">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
+              + F.code6(it.code) + '&v=20261101112515">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
           }).join('');
           leadHtml = '<div class="ss-lead"><span class="lx">领涨：</span>' + chips + '</div>';
         }
@@ -1891,7 +1891,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       if (leaders.length) {
         h += '<div class="spx-lead">当日龙头 '
           + leaders.slice(0, 3).map(function (l) {
-            return '<a class="spx-lk" href="detail.html?code=' + F.code6(l.code) + '&v=20261101091914">'
+            return '<a class="spx-lk" href="detail.html?code=' + F.code6(l.code) + '&v=20261101112515">'
               + F.esc(l.name || l.code) + (l.streak ? '<em>' + l.streak + '板</em>' : '')
               + '</a>';
           }).join('') + '</div>';
@@ -2266,13 +2266,24 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
   var S = w.s || {};
 
   // 行 = [ver, code, name, setup, rank, ref_close, buy_lo, buy_hi, stop,
-  //       fill_date, f_ret, touched, entry_ret, seg, seg_rank, seg_level]
+  //       fill_date, f_ret, touched, entry_ret, seg, seg_rank, seg_level,
+  //       f_open, exec_ret]
+  // ⚠️ 末两列是追加的（执行口径）。前端按索引取值，**只能往后追加**。
   var I = { ver: 0, code: 1, name: 2, setup: 3, rank: 4, ref: 5, lo: 6, hi: 7,
-            stop: 8, fd: 9, fr: 10, touch: 11, er: 12, seg: 13, sr: 14, sl: 15 };
+            stop: 8, fd: 9, fr: 10, touch: 11, er: 12, seg: 13, sr: 14, sl: 15,
+            fo: 16, xr: 17 };
 
   var pct = function (v) { return v == null ? '—' : F.pct(v * 100); };
   var clsv = function (v) { return v == null ? 'flat' : F.cls(v); };
   var px = function (v) { return v == null ? '—' : F.px(v, 2); };
+  // 跳空提示：观察口径（从推荐日收盘算）与实际执行（次日开盘买）差 >3pp 时
+  // 补一行小字。高开低走的日子两个口径会差出一个数量级（实测 600592：
+  // −9.94% vs −16.6%），只印前者等于把亏损记小了 40%。
+  var execTag = function (r) {
+    var fr = r[I.fr], xr = r[I.xr];
+    if (fr == null || xr == null || Math.abs(xr - fr) <= 0.03) return '';
+    return '<em>开→收 ' + pct(xr) + '</em>';
+  };
 
   var n = S.n || 0;
   var priced = S.n_priced || 0;
@@ -2292,8 +2303,11 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
     var cards = [
       ['到买区', (S.n_hit || 0) + ' / ' + priced, '有买区的推荐里',
        (S.hit_rate == null ? '—' : '命中 ' + (S.hit_rate * 100).toFixed(0) + '%')],
-      ['买到后', pct(S.avg_entry_ret), '按买区上限成交', ''],
-      ['次日涨跌', pct(S.avg_next_ret), '全部推荐（含未给价）', ''],
+      // ★执行口径（2026-11-01 B5）：次日开盘买 → 次日收盘卖。
+      // 与「次日涨跌」的差就是跳空——高开低走时前者显著更差，那才是真金白银。
+      ['开盘买→收盘', pct(S.avg_exec_ret), '次日开盘买·收盘卖',
+       (S.n_exec_win == null ? '' : '红 ' + S.n_exec_win + '/' + n)],
+      ['次日涨跌', pct(S.avg_next_ret), '含跳空，观察口径', ''],
       ['次日收红', (S.n_win || 0) + ' / ' + n, '', '']
     ];
     document.getElementById('sumBody').innerHTML =
@@ -2325,11 +2339,11 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       return '<tr>'
         + '<td><b>' + F.esc(r[I.ver] || '') + '</b><em>' + F.esc(r[I.setup] || '')
         + '</em></td>'
-        + '<td><a href="detail.html?code=' + encodeURIComponent(r[I.code]) + '&v=20261101091914">'
+        + '<td><a href="detail.html?code=' + encodeURIComponent(r[I.code]) + '&v=20261101112515">'
         + F.esc(r[I.name] || r[I.code]) + '</a><em>' + F.esc(r[I.code]) + '</em></td>'
         + '<td class="num">' + zone + '</td>'
         + '<td class="num">' + px(r[I.ref]) + '</td>'
-        + '<td class="num ' + clsv(r[I.fr]) + '">' + pct(r[I.fr]) + '</td>'
+        + '<td class="num ' + clsv(r[I.fr]) + '">' + pct(r[I.fr]) + execTag(r) + '</td>'
         + '<td>' + tTag + '</td>'
         + '<td class="num ' + clsv(r[I.er]) + '">' + pct(r[I.er]) + '</td>'
         + '<td>' + seg + '</td>'
@@ -2350,7 +2364,9 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
   document.getElementById('disc').innerHTML =
     (window.disclaimer ? window.disclaimer() : '')
     + '<div class="note">口径：'
-    + '<b>次日涨跌</b> = 次日收盘 / 推荐日收盘 − 1，未给买区也计算（观察期本就不给价）；'
+    + '<b>次日涨跌</b> = 次日收盘 / 推荐日收盘 − 1（含跳空，观察口径），未给买区也计算；'
+    + '<b>开盘买→收盘</b> = 次日收盘 / 次日开盘 − 1（<b>执行口径</b>：按你的「次日开盘买」，'
+    + '跳空不计入收益——高开低走的日子这个数才是真亏）；'
     + '<b>买到后</b> = 次日最低价进入买区、且最高价未跳空越过整段区间时，'
     + '按买区<b>上限</b>成交的收盘收益，是最保守的成交假设；'
     + '未到买区不记亏——那是没买到，不是亏了。</div>';
