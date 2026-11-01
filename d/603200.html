@@ -175,19 +175,19 @@ border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
 
 <div class="card"><h2>公司基本面</h2>
 <div class="tblwrap"><table><tbody>
-<tr><td>主营业务</td><td colspan="3"><span class="meta">知识层待 LLM 精编 —— 本条不展示程序由新浪概念标签合成的「主营XX相关业务」（QFII重仓/融资融券是属性标签，不是产业归属）</span></td></tr>
-<tr><td>细分行业</td><td>水务及水治理</td>
+<tr><td>主营业务</td><td colspan="3">主营化学品销售与服务占主营37.0%、设备销售与安装占主营30.9%、水处理系统运行管理占主营21.1%；消毒剂生产(不含危险化学品)等业务；归属于上市公司股东的净利润-658.57万元,同比下降106.13%（2026中报口径）</td></tr>
+<tr><td>细分行业</td><td>环保/水务治理</td>
 <td>技术层级</td><td>—</td></tr>
 <tr><td>一级/二级/三级行业</td><td colspan="3">环保 / 环境治理 / 水务及水治理（申银万国行业分类标准）</td></tr>
 <tr><td>国标行业</td><td>环保</td>
-<td>知识审核</td><td>k.review（置信 0.90；<span class="meta">简化版待精修 is_trusted=0，禁用于推荐，业务字段已拒显</span>）</td></tr>
+<td>知识审核</td><td>llm:workbuddy-agent（置信 0.86）</td></tr>
 <tr><td>产业链位置</td><td colspan="3">—（该节点上下游暂无 LLM 研判边，待知识层补齐）</td></tr>
 <tr><td>核心客户</td><td>—</td>
 <td>主要催化剂</td><td>—</td></tr>
 <tr><td>核验出处</td><td colspan="3"><span class="meta">—（该行未附核验链接）</span></td></tr>
 </tbody></table></div>
-<div class="chips" style="margin-top:8px"><span class="chip">水务及水治理</span><span class="chip">环保/水务治理</span></div>
-<div class="meta">依据：行业归属：sector_member + sw_industry_map；画像快照 2026-10-30。行业归属为事实（申万 / 国标正式分类）；主营业务与产业链为 LLM 精编结论，未精编者显式留空而不以概念标签充数。</div></div>
+<div class="chips" style="margin-top:8px"><span class="chip">环保/水务治理</span></div>
+<div class="meta">依据：stock_profile（llm:workbuddy-agent 精编）；行业归属：sector_member + sw_industry_map；画像快照 2026-10-30。行业归属为事实（申万 / 国标正式分类）；主营业务与产业链为 LLM 精编结论，未精编者显式留空而不以概念标签充数。</div></div>
 
 <div class="grid2">
 <div class="card"><h2>估值区间</h2>
@@ -205,7 +205,7 @@ border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
 <div class="card"><h2>研判理由</h2>
 <ul class="bul"><li>短期：⚠️高位派面：近20日涨幅 40% 偏大，警惕兑现，降为偏强短期信号=0.86（趋势0.94/健康1.00/量能0.32，权重60/25/15；新闻0.50·技术0.40展示不入复合）；板块=水务及水治理；新闻净=+0；MA5/10/20=49.53/49.12/48.88；多头排列=2/2；放量比=+5.0%；日均振幅=9.2%；前瞻收益=32.9%</li><li>中期：长期信号=0.35；板块=水务及水治理（技术层级不含信息）；技术0.40/盈利0.00/质量0.72/估值0.15（亏损）/负债0.87；报告期=2026-06-30；窗口=60日；前瞻收益=回避（不出价）</li></ul></div>
 
-<div class="card"><h2>行业与主题标签</h2><div class="chips"><span class="chip">水务及水治理</span><span class="chip">环保/水务治理</span></div>
+<div class="card"><h2>行业与主题标签</h2><div class="chips"><span class="chip">环保/水务治理</span></div>
 <div class="meta">细分行业来自知识层 LLM 精编或申万正式分类桥接；主题来自板块归属边（sector_member）。
 旧版此卡为「概念标签（细分子行业）」，取新浪概念板块——实测对 600519 显示
 QFII重仓/保险重仓/融资融券，属属性标签而非行业分类，已按 §3.3 污染结论停用。</div></div>
