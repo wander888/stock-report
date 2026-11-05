@@ -1139,7 +1139,7 @@ a.nm-lk:active { color: var(--brand); }
        渲染，见 tests/testReportPageRuntime.py）。恢复＝移除这两处 display:none。
        守卫 tests/testHomeTrim20261014.py。 -->
   <section class="sec" style="display:none">
-    <div class="sec-t"><h2>短期榜 TOP3</h2><a class="hint" href="intraday.html?v=20261105165511">查看全部 <svg style="width:13px;height:13px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
+    <div class="sec-t"><h2>短期榜 TOP3</h2><a class="hint" href="intraday.html?v=20261105171456">查看全部 <svg style="width:13px;height:13px;vertical-align:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
     <div class="card-list" id="top3"></div>
     <div id="caliberIdx"></div>
   </section>
@@ -1460,7 +1460,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
     var h = '<div class="sc ' + tone + '">';
     h += '<div class="sc-top">';
     h += '<div class="l">';
-    h += '<div class="sc-h"><a class="nm nm-lk" href="detail.html?code=' + F.code6(code) + '&v=20261105165511" title="进入个股详情">' + F.esc(nm) + '</a><span class="code num">' + F.esc(code) + '</span>'
+    h += '<div class="sc-h"><a class="nm nm-lk" href="detail.html?code=' + F.code6(code) + '&v=20261105171456" title="进入个股详情">' + F.esc(nm) + '</a><span class="code num">' + F.esc(code) + '</span>'
       + '<span class="badge ' + vClass(item.verdict) + '" title="评审结论：' + F.esc(item.verdict || '') + '">' + F.esc(window.verdictLabel(item.verdict)) + '</span>'
       /* 2026-10-07 深夜（用户裁定）：**不再叠任何决策徽章**。用户原话「你那个什么
          裁决买入，它只是一个后台的行为，为什么要写在前端上呢？你既然是推荐买入，
@@ -1533,7 +1533,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
       } else {
         h += '<span class="sp"></span>';
       }
-      h += '<a class="lnk" href="detail.html?code=' + F.code6(code) + '&v=20261105165511">K线 ›</a>';
+      h += '<a class="lnk" href="detail.html?code=' + F.code6(code) + '&v=20261105171456">K线 ›</a>';
       h += '</div>';
     }
 
@@ -1671,7 +1671,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
       if (opts.reco && recoBySeg[x.seg] && recoBySeg[x.seg].length) {
         var chips = recoBySeg[x.seg].slice(0, 5).map(function (c) {
           return '<a style="color:var(--brand);margin:0 4px" href="detail.html?code='
-            + F.code6(c) + '&v=20261105165511">' + F.esc(D.names[c] || c) + '</a>';
+            + F.code6(c) + '&v=20261105171456">' + F.esc(D.names[c] || c) + '</a>';
         }).join('');
         recoHtml = '<div style="margin-top:4px;font-size:12px;color:var(--tx-3)">推荐：' + chips + '</div>';
       }
@@ -1686,7 +1686,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
           var st = it.on_board ? '★' : '';
           var cl = it.on_board ? ' on' : '';
           return '<a class="sslk' + cl + '" href="detail.html?code='
-            + F.code6(it.code) + '&v=20261105165511">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
+            + F.code6(it.code) + '&v=20261105171456">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
         }).join('');
         leadHtml = '<div class="ss-lead"><span class="lx">领涨：</span>' + lchips + '</div>';
       }
@@ -1791,7 +1791,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
             var st = it.on_board ? '★' : '';
             var cl = it.on_board ? ' on' : '';
             return '<a class="sslk' + cl + '" href="detail.html?code='
-              + F.code6(it.code) + '&v=20261105165511">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
+              + F.code6(it.code) + '&v=20261105171456">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
           }).join('');
           leadHtml = '<div class="ss-lead"><span class="lx">领涨：</span>' + chips + '</div>';
         }
@@ -1987,7 +1987,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
       if (leaders.length) {
         h += '<div class="spx-lead">当日龙头 '
           + leaders.slice(0, 3).map(function (l) {
-            return '<a class="spx-lk" href="detail.html?code=' + F.code6(l.code) + '&v=20261105165511">'
+            return '<a class="spx-lk" href="detail.html?code=' + F.code6(l.code) + '&v=20261105171456">'
               + F.esc(l.name || l.code) + (l.streak ? '<em>' + l.streak + '板</em>' : '')
               + '</a>';
           }).join('') + '</div>';
@@ -2243,7 +2243,7 @@ window.__DATA__={"data_date":"2026-11-04","prev_date":"2026-11-03","minute_date"
         h += '<div class="cz-codes">本报告 ' + codes.length + ' 只：'
           + shown.map(function (code) {
               var nm = (D.names && D.names[code]) || code;
-              return '<a class="badge" href="detail.html?code=' + F.code6(code) + '&v=20261105165511">'
+              return '<a class="badge" href="detail.html?code=' + F.code6(code) + '&v=20261105171456">'
                 + F.esc(nm) + '</a>';
             }).join('')
           + (codes.length > shown.length
