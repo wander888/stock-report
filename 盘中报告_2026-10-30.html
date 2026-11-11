@@ -1020,7 +1020,7 @@ a.nm-lk:active { color: var(--brand); }
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-back" href="index.html?v=20261031225308&v=20261111185738">‹</a>
+    <a class="nav-back" href="index.html?v=20261031225308&v=20261111192646">‹</a>
     <div class="nav-tt">
       <b>盘中作战报告</b>
       <span id="navSub">—</span>
@@ -1380,7 +1380,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
     var h = '<div class="sc ' + tone + '">';
     h += '<div class="sc-top">';
     h += '<div class="l">';
-    h += '<div class="sc-h"><a class="nm nm-lk" href="detail.html?code=' + F.code6(code) + '&v=20261031225308&v=20261111185738" title="进入个股详情">' + F.esc(nm) + '</a><span class="code num">' + F.esc(code) + '</span>'
+    h += '<div class="sc-h"><a class="nm nm-lk" href="detail.html?code=' + F.code6(code) + '&v=20261031225308&v=20261111192646" title="进入个股详情">' + F.esc(nm) + '</a><span class="code num">' + F.esc(code) + '</span>'
       + '<span class="badge ' + vClass(item.verdict) + '" title="评审结论：' + F.esc(item.verdict || '') + '">' + F.esc(window.verdictLabel(item.verdict)) + '</span>'
       /* 2026-10-07 深夜（用户裁定）：**不再叠任何决策徽章**。用户原话「你那个什么
          裁决买入，它只是一个后台的行为，为什么要写在前端上呢？你既然是推荐买入，
@@ -1434,7 +1434,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       } else {
         h += '<span class="sp"></span>';
       }
-      h += '<a class="lnk" href="detail.html?code=' + F.code6(code) + '&v=20261031225308&v=20261111185738">K线 ›</a>';
+      h += '<a class="lnk" href="detail.html?code=' + F.code6(code) + '&v=20261031225308&v=20261111192646">K线 ›</a>';
       h += '</div>';
     }
 
@@ -1572,7 +1572,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       if (opts.reco && recoBySeg[x.seg] && recoBySeg[x.seg].length) {
         var chips = recoBySeg[x.seg].slice(0, 5).map(function (c) {
           return '<a style="color:var(--brand);margin:0 4px" href="detail.html?code='
-            + F.code6(c) + '&v=20261031225308&v=20261111185738">' + F.esc(D.names[c] || c) + '</a>';
+            + F.code6(c) + '&v=20261031225308&v=20261111192646">' + F.esc(D.names[c] || c) + '</a>';
         }).join('');
         recoHtml = '<div style="margin-top:4px;font-size:12px;color:var(--tx-3)">推荐：' + chips + '</div>';
       }
@@ -1587,7 +1587,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
           var st = it.on_board ? '★' : '';
           var cl = it.on_board ? ' on' : '';
           return '<a class="sslk' + cl + '" href="detail.html?code='
-            + F.code6(it.code) + '&v=20261031225308&v=20261111185738">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
+            + F.code6(it.code) + '&v=20261031225308&v=20261111192646">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
         }).join('');
         leadHtml = '<div class="ss-lead"><span class="lx">领涨：</span>' + lchips + '</div>';
       }
@@ -1692,7 +1692,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
             var st = it.on_board ? '★' : '';
             var cl = it.on_board ? ' on' : '';
             return '<a class="sslk' + cl + '" href="detail.html?code='
-              + F.code6(it.code) + '&v=20261031225308&v=20261111185738">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
+              + F.code6(it.code) + '&v=20261031225308&v=20261111192646">' + F.esc(D.names[it.code] || it.code) + st + '</a>';
           }).join('');
           leadHtml = '<div class="ss-lead"><span class="lx">领涨：</span>' + chips + '</div>';
         }
@@ -1854,7 +1854,7 @@ window.__DATA__={"data_date":"2026-10-30","prev_date":"2026-10-29","minute_date"
       if (leaders.length) {
         h += '<div class="spx-lead">当日龙头 '
           + leaders.slice(0, 3).map(function (l) {
-            return '<a class="spx-lk" href="detail.html?code=' + F.code6(l.code) + '&v=20261031225308&v=20261111185738">'
+            return '<a class="spx-lk" href="detail.html?code=' + F.code6(l.code) + '&v=20261031225308&v=20261111192646">'
               + F.esc(l.name || l.code) + (l.streak ? '<em>' + l.streak + '板</em>' : '')
               + '</a>';
           }).join('') + '</div>';
