@@ -1,0 +1,246 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<title>A股智能研究·盘中作战报告 2026-11-25</title><style>
+:root{--bg:#eef1f6;--card:#fff;--ink:#1e293b;--sub:#667085;--line:#e6eaf0;
+--blue:#1d4ed8;--teal:#0f766e;--green:#059669;--red:#e11d48;--amber:#d97706;--purple:#6366f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:14px 12px 44px}
+.hero{background:linear-gradient(135deg,#1d4ed8,#0f766e);color:#fff;border-radius:18px;
+padding:16px 16px 15px;box-shadow:0 4px 14px rgba(15,23,42,.16)}
+.hero h1{font-size:20px;font-weight:800;letter-spacing:.3px}
+.hero .sub{font-size:12px;opacity:.92;margin-top:3px}
+/* 生成时间戳：显眼可辨，用于区分「新版已发布」与「缓存/旧版」 */
+.hero .genstamp{margin-top:7px;display:inline-block;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.34);border-radius:9px;padding:3px 10px;font-size:12px}
+.hero .genstamp b{font-weight:800;letter-spacing:.2px}
+.hero .stat{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.hero .stat span{background:rgba(255,255,255,.17);border-radius:9px;padding:4px 9px;font-size:11.5px}
+.hero .stat b{font-weight:800}
+.up{color:#e11d48}.dn{color:#059669}   /* 涨红跌绿（A 股惯例） */
+.hero .up{color:#fecaca}.hero .dn{color:#bbf7d0}
+h2{font-size:14.5px;margin:16px 2px 8px;font-weight:800;color:#0f172a}
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:5px solid #cbd5e1;margin-bottom:9px}
+.card.buy{border-left-color:#059669}.card.watch{border-left-color:#d97706}
+.card.avoid{border-left-color:#e11d48}.card.main{border-left-color:#f59e0b}
+.card.s2{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .ico{font-size:17px;margin-right:5px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:11px;border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;
+display:inline-block}
+.b-buy{background:#dcfce7;color:#15803d}.b-watch{background:#fef3c7;color:#b45309}
+.b-avoid{background:#fee2e2;color:#b91c1c}.b-time{background:#eff6ff;color:#1d4ed8}
+.b-gray{background:#f1f5f9;color:#64748b}.b-pur{background:#eef2ff;color:#4f46e5}
+.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi .b{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:10px 13px;min-width:96px}
+.kpi .b .v{font-size:18px;font-weight:800}
+.kpi .b .l{font-size:11.5px;color:var(--sub);margin-top:2px}
+.sec{background:#fff;border-radius:15px;padding:11px 13px;margin-top:9px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--sub);font-weight:600;background:#fafbfd}
+td:first-child,th:first-child{text-align:left}
+tbody tr:hover{background:#f7f9fd}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.v-buy{color:#067a4a;background:#e3f9f1;border:1px solid #b6ecd9;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-watch{color:#1f5fd0;background:#e8f0fe;border:1px solid #c2d8fb;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.v-avoid{color:#c0392b;background:#fdecec;border:1px solid #f5c2c2;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px}
+.flex{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.foot{font-size:11px;color:#94a3b8;margin-top:16px;line-height:1.8}
+.warn{font-size:11.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;
+border-radius:10px;padding:7px 11px;margin-top:10px;line-height:1.7}
+.bul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#334155}
+.bul li{margin:3px 0}
+.secl{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:4px 0}
+.segl{width:118px;flex:none;color:var(--ink)}
+.segtrack{flex:1;position:relative;height:12px;min-width:60px}
+.segzero{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#dbe2ea}
+.segb{position:absolute;height:12px;border-radius:3px}
+.segb.right{left:50%}
+.segb.left{right:50%}
+.segv{width:64px;text-align:right;color:var(--sub);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:11px;background:#f1f5f9;color:#475569;border-radius:999px;padding:2px 9px}
+.disclaimer{color:#9aa5b1;font-size:11.5px;margin-top:12px;line-height:1.8}
+.tblwrap{overflow-x:auto}
+/* —— 报告入口导航卡（旧版首页四态入口，1:1 对齐 .card）—— */
+.navgrid{display:flex;flex-direction:column;gap:9px;margin-top:8px}
+.navcard{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;border-left:5px solid #cbd5e1;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .12s ease,box-shadow .12s ease}
+.navcard:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.navcard.off{opacity:.62;border-left-color:#94a3b8}
+.navcard .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.navcard .ttl{font-size:15.5px;font-weight:800}
+.navcard .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* 旧版态色：pre 琥珀 / intra 绿 / post 靛 / research 天蓝 */
+.navcard.pre{border-left-color:#f59e0b}
+.navcard.intra{border-left-color:#10b981}
+.navcard.eod{border-left-color:#6366f1}
+.navcard.post{border-left-color:#6366f1}
+.navcard.research{border-left-color:#0ea5e9}
+/* —— 通用卡片（导航卡 / 详情页区块复用）—— */
+.card{display:block;background:#fff;border-radius:15px;padding:12px 13px;
+  text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border-left:5px solid #cbd5e1;transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(15,23,42,.13)}
+.card.maincard{border-left-color:#f59e0b}
+.card.s2card{border-left-color:#3b82f6}
+.card .row1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .ttl{font-size:15.5px;font-weight:800}
+.card .code{color:#94a3b8;font-weight:500;font-size:11px}
+.card .meta{font-size:11px;color:#94a3b8;margin-top:6px;display:flex;
+  flex-wrap:wrap;gap:8px}
+.card .desc{font-size:12.5px;color:#475569;margin-top:5px}
+/* —— 研究详情（新闻/技术拆解）—— */
+.subh{font-size:13px;font-weight:700;color:var(--ink);margin:2px 0 6px}
+.newsline{font-size:12.5px;line-height:1.9;padding:3px 0;border-bottom:1px dashed #eef1f6}
+.newsline a{color:#1d4ed8;text-decoration:none}
+.newsline a:hover{text-decoration:underline}
+.tag-red,.tag-green,.tag-amber,.tag-gray{font-size:10.5px;border-radius:5px;
+  padding:1px 6px;margin-right:6px;font-weight:700}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-gray{background:#f1f5f9;color:#475569}
+/* —— 就绪徽章（旧版 b-ready/b-off）—— */
+.b-ready{background:#dcfce7;color:#15803d;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+.b-off{background:#f1f5f9;color:#94a3b8;font-size:10.5px;font-weight:700;
+  border-radius:6px;padding:1px 7px}
+/* —— 旧版三态卡色（盘前/盘中/盘后）—— */
+.card.pre{border-left-color:#f59e0b}
+.card.intra{border-left-color:#10b981}
+.card.post{border-left-color:#6366f1}
+/* —— 旧版卡片容器 / 明细行 / 键值 —— */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.odet{font-size:12px;color:var(--sub);line-height:1.8}
+.arow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;
+  padding:3px 0;border-bottom:1px dashed #eef1f6}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.wrap{padding:10px 8px 36px}
+  .navgrid{grid-template-columns:1fr}}
+
+.card.intra{border-left-color:#10b981}
+.badge.intra{background:#d1fae5;color:#047857}
+/* —— 盘前报告（模板主线，琥珀左色条）—— */
+.badge.pre{background:#fef3c7;color:#b45309}
+/* —— 指数条（模板 .idxbar 复刻：白卡一行平铺，非 KPI 格）—— */
+.idxbar{background:#fff;border-radius:12px;padding:9px 12px;margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);justify-content:space-between}
+.idxbar span{white-space:nowrap}
+/* —— C1 研发分布扁平条（消息 / 研判计数，紧凑可读）—— */
+.dstat{background:#fff;border-radius:12px;padding:8px 12px;margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.dstat b{font-weight:800;font-size:13px}
+.dstat i{font-style:normal;color:#94a3b8;font-size:11px;margin-left:2px}
+/* —— 盘中速览紧凑 chip（2026-11-23：替代 6 行「名字：解释 + 见 X 区」）—— */
+.qgrid{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.qgrid span{background:#fff;border:1px solid #fde68a;border-radius:8px;
+  padding:4px 8px;font-size:11.5px;color:#78350f;line-height:1.45}
+.qgrid b{font-weight:800;color:#92400e}
+/* —— 收盘报告（旧版 .card.post 紫蓝左色条，与盘中页明确区分）—— */
+.card.post{border-left-color:#6366f1}
+.badge.post{background:#e0e7ff;color:#4338ca}
+/* —— 自选股徽章（全市场推荐中命中观察名单打标）—— */
+.badge-wl{display:inline-block;background:#fff7ed;color:#c2410c;
+  border:1px solid #fed7aa;border-radius:6px;padding:0 6px;
+  font-size:11px;font-weight:600;vertical-align:middle;margin-left:2px}
+/* —— 实时分时图 —— */
+.spark{width:100%;height:70px;display:block}
+.spark .axis{stroke:#e2e8f0;stroke-width:1}
+.spark .line{fill:none;stroke-width:1.6;stroke-linejoin:round}
+.spark .pre{stroke:#cbd5e1;stroke-dasharray:3 3;stroke-width:1}
+.mbar{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.mbar span{background:#f1f5f9;border-radius:8px;padding:2px 8px;font-size:11px;color:#475569}
+/* —— 榜单单票卡（2026-09-24 改：替代 9 列宽表，窄屏不再挤压）—— */
+.rvbox{display:flex;flex-direction:column;gap:7px;margin:6px 0}
+.rv{background:#fff;border:1px solid #e8edf3;border-left:3px solid #cbd5e1;
+  border-radius:10px;padding:8px 10px;font-size:11.5px;line-height:1.65}
+.rv1{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rv1 .rvs{font-size:13.5px;font-weight:800;color:#1d4ed8}
+.rv1 .rvs a{text-decoration:none;color:#1d4ed8}
+.rv1 .rvr{font-size:13px;font-weight:800;white-space:nowrap}
+.rv2{font-size:10.5px;color:#94a3b8;margin-top:1px}
+.rv3{margin-top:3px;color:#334155;word-break:break-word;overflow-wrap:anywhere}
+.rv3 .rvk{color:#94a3b8;font-size:10.5px;margin-right:2px}
+.rv4{margin-top:4px}
+.rv5{font-size:10.5px;color:#64748b;margin-top:2px;word-break:break-word;overflow-wrap:anywhere}
+@media(max-width:360px){.rv1 .rvs{font-size:12.5px} .rv3{font-size:11px}}
+/* —— 板块强度矩阵（2026-09-24 改：用户参考图样式，TOP5）——
+   栅格：板块名（可换行） + 条形&涨幅（自适应）；条形统一左对齐、按 TOP1 归一。 */
+.ssr{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:2px 10px;
+  align-items:center;padding:6px 8px;border-bottom:1px dashed #f1f5f9}
+.ssr:last-child{border-bottom:none}
+.ssr .ssn{font-weight:800;color:#334155;font-size:12.5px;line-height:1.35;
+  word-break:break-word;overflow-wrap:anywhere}
+.ssr .ssn small{font-weight:600;color:#94a3b8;font-size:10.5px}
+.ssr .ssm{display:flex;align-items:center;gap:8px;min-width:0}
+.ssr .ssbar{flex:1;height:13px;background:#f1f5f9;border-radius:4px;overflow:hidden;min-width:40px}
+.ssr .ssbar i{display:block;height:100%;border-radius:4px}
+.ssr .ssm b{font-size:12.5px;font-weight:700;white-space:nowrap;min-width:52px;text-align:right}
+/* —— 报告顶部「首页」入口按钮 —— */
+.homebtn{text-decoration:none;background:#fff;border:1px solid #e2e8f0;border-radius:10px;
+  padding:4px 11px;font-size:12px;font-weight:700;color:#1d4ed8;white-space:nowrap;
+  box-shadow:0 1px 2px rgba(0,0,0,.04)}
+</style></head>
+<body id="top"><div class="wrap">
+<div class="hero"><h1>📡 A股智能研究·盘中作战报告</h1><div class="sub"><span class="badge intra">盘中 14:35</span> 生成 2026-11-25 14:40:40 · 榜单基准 2026-11-24</div><div class="stat"><span>短期榜 <b>1</b></span><span>板块 <b>145</b></span><span>扫描 <b>60</b></span></div></div>
+<div class="mbar"><span><a href="pre.html?v=20261125144102">盘前报告</a></span><span><b>盘中报告（当前）</b></span><span><a href="eod.html?v=20261125144102">收盘报告</a></span><span><a href="news.html?v=20261125144102">新闻报告</a></span><span><a href="teardown.html?v=20261125144102">技术拆解</a></span><span><a href="archive.html?v=20261125144102">历史归档</a></span></div>
+
+<div class="sec" style="border:1.5px solid #fbbf24;background:#fffbeb">
+<h3>📌 盘中速览</h3>
+<div class="odet">🛡 监管暴雷硬剔除 · 不参与任何推荐位（台账 as_of 2026-11-10）：600715 文投控股（立案未结/信披处罚/退市预警）</div>
+<!-- 2026-11-23：原 6 条 odet 每条都是「名字：解释 + 见 X 区」的复读，
+     速览只该给数字。区块编号保留在 chip 内，判据/自证全部下沉到对应区块。 -->
+<div class="qgrid">
+<span>🎯 主推 <b>1</b>/5</span>
+<span>🔥 军工/航天装备+3.12% · 机械/仪器仪表+2.76%</span>
+<span>⏱ 分时基准 <b>2026-11-25</b></span>
+<span>⚡ 执行 <b>C4</b></span>
+<span>🔭 扫描 <b>60</b></span>
+<span>🧪 影子 <b>观察级</b></span>
+</div></div>
+
+<details class="sec2" open><summary>C1 📉 大盘上下文（指数 / 量能 / 研判分布）</summary>
+<div class="sec"><div class="kpi"><div class="b"><div class="v"><span class="dn">3476.79</span> <small class="dn">-2.02%</small></div><div class="l">上证指数</div></div><div class="b"><div class="v"><span class="dn">10111.39</span> <small class="dn">-3.00%</small></div><div class="l">深证成指</div></div><div class="b"><div class="v"><span class="dn">2189.34</span> <small class="dn">-3.93%</small></div><div class="l">创业板指</div></div><div class="b"><div class="v"><span class="dn">1194.44</span> <small class="dn">-4.45%</small></div><div class="l">科创50</div></div><div class="b"><div class="v"><span class="dn">3896.93</span> <small class="dn">-1.69%</small></div><div class="l">沪深300</div></div><div class="b"><div class="v"><span class="dn">5916.02</span> <small class="dn">-3.21%</small></div><div class="l">中证 500</div></div></div><div class="dstat"><span>利好 <b class="up">0</b></span><span>利空 <b class="dn">0</b></span><span>中性 <b>0</b></span><span>分时 <b>0</b></span></div></div></details>
+
+<details class="sec2" open><summary>C2 🎯 盘前预案执行对账 · 1 只（上限 5）<span class="badge b-time">行情 + 消息</span></summary>
+<div class="sec" style="border-left:5px solid #f59e0b">
+<!-- 2026-11-23：删「刻度不是操作指令」与「榜单当晚才产出」两段自证，
+     卡片里的买区/止损已经说明执行口径；只留基准日与「非新建仓」护栏。 -->
+<div class="odet">📅 候选基准日 <b>2026-11-24</b>
+<b style="color:#b91c1c">· 上一交易日预案，非今日新建仓建议</b></div>
+<div class="rv"><div class="rv1"><span class="rvs">1. <a href="detail.html?code=000158&v=20261125144102">常山北明</a></span><span class="rvr"><span class="v-watch">rule_only</span></span></div><div class="rv2">000158 · 现价 13.86 <small class="up">+3.82%</small><small class="meta">（昨收 13.35 · 2026-11-24 15:00 收盘）</small> · 盘中 <b class="meta">—</b></div><div class="rv3"><span class="rvk">买区</span><b class="up">12.85 ~ 13.23</b> <span class="rvk">目标</span><b class="up">13.93 / 14.49</b> <span class="rvk">止损</span><b class="dn">12.71</b></div></div></div></details>
+
+<details class="sec2" open><summary>C3 🔥 板块强度 · TOP5（收盘 2026-11-24）</summary>
+<div class="sec"><div class="ssr"><span class="ssn">军工/航天装备 <small>(7)</small></span><span class="ssm"><span class="ssbar"><i style="width:100.0%;background:#e11d48"></i></span><b style="color:#e11d48">+3.12%</b></span></div><div class="ssr"><span class="ssn">机械/仪器仪表 <small>(72)</small></span><span class="ssm"><span class="ssbar"><i style="width:88.4%;background:#e11d48"></i></span><b style="color:#e11d48">+2.76%</b></span></div><div class="ssr"><span class="ssn">家电/零部件 <small>(35)</small></span><span class="ssm"><span class="ssbar"><i style="width:83.9%;background:#e11d48"></i></span><b style="color:#e11d48">+2.62%</b></span></div><div class="ssr"><span class="ssn">传媒/广告营销 <small>(37)</small></span><span class="ssm"><span class="ssbar"><i style="width:83.0%;background:#e11d48"></i></span><b style="color:#e11d48">+2.59%</b></span></div><div class="ssr"><span class="ssn">机械/机器人 <small>(11)</small></span><span class="ssm"><span class="ssbar"><i style="width:81.2%;background:#e11d48"></i></span><b style="color:#e11d48">+2.53%</b></span></div></div></details>
+
+<details class="sec2" open><summary>C12 🔭 当日市场扫描 · 具备预期的板块与低吸候选（60 只）</summary><div class="sec"><div class="odet">时点 <b>2026-11-25 14:35</b> · 新启动 <b>12</b> 段</div><div style="margin:8px 0"><span class="tag">钢铁/特钢 +0.78% · 当日#1 / 盘前#126 · ★当日新启动</span> <span class="tag">医药/中药 +0.46% · 当日#2 / 盘前#132 · ★当日新启动</span> <span class="tag">医药/商业 +0.41% · 当日#3 / 盘前#52</span> <span class="tag">医药/创新药 +0.23% · 当日#4 / 盘前#1</span> <span class="tag">商贸/零售 +0.08% · 当日#5 / 盘前#39</span> <span class="tag">食饮/啤酒黄酒 +0.04% · 当日#6 / 盘前#102 · ★当日新启动</span> <span class="tag">社服/旅游酒店 +0.00% · 当日#7 / 盘前#92 · ★当日新启动</span> <span class="tag">煤炭/焦煤焦炭 +0.00% · 当日#8 / 盘前#134 · ★当日新启动</span> </div><div class="subh" style="margin-top:10px">当日候选 30 只 · 按综合分排序</div><div class="rvbox"><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600928.html" target="_blank" rel="noopener">西安银行</a></span><span class="rvr">76.4 分</span></div><div class="rv2">600928 · 银行/银行业 · 中军/预期 · 现价 <b class="dn">3.68</b> <small class="dn">-0.27%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">3.6 ~ 3.66</b> <span class="rvk">目标 T1</span><b class="up">3.75</b> <span class="rvk">止损</span><b class="dn">3.59</b> <span class="rvk">RR</span><b>2.43</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601528.html" target="_blank" rel="noopener">瑞丰银行</a></span><span class="rvr">76.3 分</span></div><div class="rv2">601528 · 银行/银行业 · 中军/预期 · 现价 <b class="dn">5.29</b> <small class="dn">-0.38%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">5.18 ~ 5.26</b> <span class="rvk">目标 T1</span><b class="up">5.39</b> <span class="rvk">止损</span><b class="dn">5.15</b> <span class="rvk">RR</span><b>2.18</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz002223.html" target="_blank" rel="noopener">鱼跃医疗</a></span><span class="rvr">75.9 分</span></div><div class="rv2">002223 · 医药/器械 · 中军/预期 · 现价 <b class="meta">28.88</b> <small class="meta">+0.00%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">28.23 ~ 28.68</b> <span class="rvk">目标 T1</span><b class="up">29.51</b> <span class="rvk">止损</span><b class="dn">28.06</b> <span class="rvk">RR</span><b>2.40</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#20 / 当日强度#30 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601997.html" target="_blank" rel="noopener">贵阳银行</a></span><span class="rvr">74.9 分</span></div><div class="rv2">601997 · 银行/银行业 · 中军/预期 · 现价 <b class="meta">5.80</b> <small class="meta">+0.00%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">5.65 ~ 5.74</b> <span class="rvk">目标 T1</span><b class="up">5.84</b> <span class="rvk">止损</span><b class="dn">5.63</b> <span class="rvk">RR</span><b>1.73</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz002653.html" target="_blank" rel="noopener">海思科</a></span><span class="rvr">72.5 分</span></div><div class="rv2">002653 · 医药/创新药 · 低位/新启动 · 现价 <b class="up">53.50</b> <small class="up">+1.29%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">51.73 ~ 52.88</b> <span class="rvk">目标 T1</span><b class="up">54.97</b> <span class="rvk">止损</span><b class="dn">51.32</b> <span class="rvk">RR</span><b>2.40</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#1 / 当日强度#4 / 跑赢大盘中位 / 隔夜美股映射+</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600415.html" target="_blank" rel="noopener">小商品城</a></span><span class="rvr">71.4 分</span></div><div class="rv2">600415 · 商贸/零售 · 低位/新启动 · 现价 <b class="up">11.90</b> <small class="up">+0.08%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">11.53 ~ 11.72</b> <span class="rvk">目标 T1</span><b class="up">12.07</b> <span class="rvk">止损</span><b class="dn">11.46</b> <span class="rvk">RR</span><b>2.42</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#39 / 当日强度#5 / 跑赢大盘中位 / 隔夜美股映射+</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz002966.html" target="_blank" rel="noopener">苏州银行</a></span><span class="rvr">70.7 分</span></div><div class="rv2">002966 · 银行/银行业 · 中军/预期 · 现价 <b class="up">10.06</b> <small class="up">+1.11%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">9.67 ~ 9.82</b> <span class="rvk">目标 T1</span><b class="up">10.09</b> <span class="rvk">止损</span><b class="dn">9.62</b> <span class="rvk">RR</span><b>2.40</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600754.html" target="_blank" rel="noopener">锦江酒店</a></span><span class="rvr">70.6 分</span></div><div class="rv2">600754 · 社服/旅游酒店 · 低位/新启动 · 现价 <b class="up">21.22</b> <small class="up">+1.39%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">20.39 ~ 20.71</b> <span class="rvk">目标 T1</span><b class="up">21.28</b> <span class="rvk">止损</span><b class="dn">20.28</b> <span class="rvk">RR</span><b>2.37</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#7 / 跑赢大盘中位 / 隔夜美股映射+ / ★当日新启动（盘前未点名）</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600282.html" target="_blank" rel="noopener">南钢股份</a></span><span class="rvr">69.9 分</span></div><div class="rv2">600282 · 钢铁/特钢 · 低位/新启动 · 现价 <b class="up">4.50</b> <small class="up">+1.12%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">4.34 ~ 4.41</b> <span class="rvk">目标 T1</span><b class="up">4.53</b> <span class="rvk">止损</span><b class="dn">4.32</b> <span class="rvk">RR</span><b>2.33</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#1 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600380.html" target="_blank" rel="noopener">健康元</a></span><span class="rvr">69.9 分</span></div><div class="rv2">600380 · 医药/化药 · 中军/预期 · 现价 <b class="up">10.20</b> <small class="up">+0.99%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">9.98 ~ 10.13</b> <span class="rvk">目标 T1</span><b class="up">10.34</b> <span class="rvk">止损</span><b class="dn">9.94</b> <span class="rvk">RR</span><b>2.00</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#17 / 当日强度#14 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600566.html" target="_blank" rel="noopener">济川药业</a></span><span class="rvr">69.9 分</span></div><div class="rv2">600566 · 医药/中药 · 低位/新启动 · 现价 <b class="up">30.29</b> <small class="up">+0.03%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">29.17 ~ 29.69</b> <span class="rvk">目标 T1</span><b class="up">30.63</b> <span class="rvk">止损</span><b class="dn">28.98</b> <span class="rvk">RR</span><b>2.39</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#2 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600258.html" target="_blank" rel="noopener">首旅酒店</a></span><span class="rvr">69.8 分</span></div><div class="rv2">600258 · 社服/旅游酒店 · 低位/新启动 · 现价 <b class="up">13.49</b> <small class="up">+1.66%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">12.92 ~ 13.13</b> <span class="rvk">目标 T1</span><b class="up">13.53</b> <span class="rvk">止损</span><b class="dn">12.84</b> <span class="rvk">RR</span><b>2.48</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#7 / 跑赢大盘中位 / 隔夜美股映射+ / ★当日新启动（盘前未点名）</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601187.html" target="_blank" rel="noopener">厦门银行</a></span><span class="rvr">69.7 分</span></div><div class="rv2">601187 · 银行/银行业 · 中军/预期 · 现价 <b class="up">6.38</b> <small class="up">+0.16%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">6.21 ~ 6.31</b> <span class="rvk">目标 T1</span><b class="up">6.44</b> <span class="rvk">止损</span><b class="dn">6.19</b> <span class="rvk">RR</span><b>2.00</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz002948.html" target="_blank" rel="noopener">青岛银行</a></span><span class="rvr">69.6 分</span></div><div class="rv2">002948 · 银行/银行业 · 中军/预期 · 现价 <b class="dn">6.39</b> <small class="dn">-1.84%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">6.24 ~ 6.34</b> <span class="rvk">目标 T1</span><b class="up">6.5</b> <span class="rvk">止损</span><b class="dn">6.21</b> <span class="rvk">RR</span><b>2.15</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600348.html" target="_blank" rel="noopener">华阳股份</a></span><span class="rvr">69.5 分</span></div><div class="rv2">600348 · 煤炭/动力煤 · 低位/新启动 · 现价 <b class="dn">7.79</b> <small class="dn">-0.26%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">7.63 ~ 7.75</b> <span class="rvk">目标 T1</span><b class="up">7.95</b> <span class="rvk">止损</span><b class="dn">7.59</b> <span class="rvk">RR</span><b>2.31</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#18 / 跑赢大盘中位 / 隔夜美股映射+ / ★当日新启动（盘前未点名）</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600750.html" target="_blank" rel="noopener">华润江中</a></span><span class="rvr">69.4 分</span></div><div class="rv2">600750 · 医药/中药 · 低位/新启动 · 现价 <b class="up">24.61</b> <small class="up">+1.78%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">23.71 ~ 24.08</b> <span class="rvk">目标 T1</span><b class="up">24.67</b> <span class="rvk">止损</span><b class="dn">23.6</b> <span class="rvk">RR</span><b>2.21</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#2 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600827.html" target="_blank" rel="noopener">百联股份</a></span><span class="rvr">69.1 分</span></div><div class="rv2">600827 · 商贸/零售 · 中军/预期 · 现价 <b class="up">7.26</b> <small class="up">+1.11%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">7.01 ~ 7.12</b> <span class="rvk">目标 T1</span><b class="up">7.28</b> <span class="rvk">止损</span><b class="dn">6.98</b> <span class="rvk">RR</span><b>2.07</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#39 / 当日强度#5 / 跑赢大盘中位 / 隔夜美股映射+</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600908.html" target="_blank" rel="noopener">XD无锡银</a></span><span class="rvr">68.9 分</span></div><div class="rv2">600908 · 银行/银行业 · 中军/预期 · 现价 <b class="up">5.81</b> <small class="up">+0.52%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">5.66 ~ 5.75</b> <span class="rvk">目标 T1</span><b class="up">5.9</b> <span class="rvk">止损</span><b class="dn">5.63</b> <span class="rvk">RR</span><b>2.25</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601128.html" target="_blank" rel="noopener">常熟银行</a></span><span class="rvr">68.6 分</span></div><div class="rv2">601128 · 银行/银行业 · 中军/预期 · 现价 <b class="up">6.24</b> <small class="up">+0.48%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">6.08 ~ 6.17</b> <span class="rvk">目标 T1</span><b class="up">6.28</b> <span class="rvk">止损</span><b class="dn">6.05</b> <span class="rvk">RR</span><b>1.67</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh603658.html" target="_blank" rel="noopener">安图生物</a></span><span class="rvr">68.5 分</span></div><div class="rv2">603658 · 医药/器械 · 中军/预期 · 现价 <b class="up">37.94</b> <small class="up">+0.50%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">36.93 ~ 37.5</b> <span class="rvk">目标 T1</span><b class="up">38.47</b> <span class="rvk">止损</span><b class="dn">36.74</b> <span class="rvk">RR</span><b>2.30</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#20 / 当日强度#30 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601577.html" target="_blank" rel="noopener">长沙银行</a></span><span class="rvr">68.3 分</span></div><div class="rv2">601577 · 银行/银行业 · 中军/预期 · 现价 <b class="dn">9.95</b> <small class="dn">-0.60%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">9.68 ~ 9.83</b> <span class="rvk">目标 T1</span><b class="up">10.02</b> <span class="rvk">止损</span><b class="dn">9.64</b> <span class="rvk">RR</span><b>1.79</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz000623.html" target="_blank" rel="noopener">吉林敖东</a></span><span class="rvr">68.0 分</span></div><div class="rv2">000623 · 医药/中药 · 低位/新启动 · 现价 <b class="dn">16.39</b> <small class="dn">-0.24%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">16.03 ~ 16.28</b> <span class="rvk">目标 T1</span><b class="up">16.55</b> <span class="rvk">止损</span><b class="dn">15.98</b> <span class="rvk">RR</span><b>1.60</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#2 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600529.html" target="_blank" rel="noopener">山东药玻</a></span><span class="rvr">67.9 分</span></div><div class="rv2">600529 · 医药/器械 · 中军/预期 · 现价 <b class="up">17.60</b> <small class="up">+1.38%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">17.1 ~ 17.36</b> <span class="rvk">目标 T1</span><b class="up">17.65</b> <span class="rvk">止损</span><b class="dn">17.04</b> <span class="rvk">RR</span><b>1.62</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#20 / 当日强度#30 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh603317.html" target="_blank" rel="noopener">天味食品</a></span><span class="rvr">66.7 分</span></div><div class="rv2">603317 · 食饮/调味品 · 低位/新启动 · 现价 <b class="up">14.60</b> <small class="up">+0.69%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">14.19 ~ 14.44</b> <span class="rvk">目标 T1</span><b class="up">14.89</b> <span class="rvk">止损</span><b class="dn">14.1</b> <span class="rvk">RR</span><b>2.41</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#9 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz002262.html" target="_blank" rel="noopener">恩华药业</a></span><span class="rvr">66.6 分</span></div><div class="rv2">002262 · 医药/化药 · 中军/预期 · 现价 <b class="up">22.64</b> <small class="up">+0.94%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">21.9 ~ 22.24</b> <span class="rvk">目标 T1</span><b class="up">22.71</b> <span class="rvk">止损</span><b class="dn">21.81</b> <span class="rvk">RR</span><b>1.98</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#17 / 当日强度#14 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sz002507.html" target="_blank" rel="noopener">涪陵榨菜</a></span><span class="rvr">66.3 分</span></div><div class="rv2">002507 · 食饮/调味品 · 低位/新启动 · 现价 <b class="up">11.55</b> <small class="up">+0.52%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">11.24 ~ 11.41</b> <span class="rvk">目标 T1</span><b class="up">11.61</b> <span class="rvk">止损</span><b class="dn">11.2</b> <span class="rvk">RR</span><b>1.71</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#9 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600332.html" target="_blank" rel="noopener">白云山</a></span><span class="rvr">65.9 分</span></div><div class="rv2">600332 · 医药/中药 · 低位/新启动 · 现价 <b class="up">19.23</b> <small class="up">+1.75%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">18.68 ~ 18.97</b> <span class="rvk">目标 T1</span><b class="up">19.26</b> <span class="rvk">止损</span><b class="dn">18.62</b> <span class="rvk">RR</span><b>1.49</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#2 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601665.html" target="_blank" rel="noopener">齐鲁银行</a></span><span class="rvr">65.7 分</span></div><div class="rv2">601665 · 银行/银行业 · 中军/预期 · 现价 <b class="dn">6.76</b> <small class="dn">-0.15%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">6.52 ~ 6.62</b> <span class="rvk">目标 T1</span><b class="up">6.78</b> <span class="rvk">止损</span><b class="dn">6.49</b> <span class="rvk">RR</span><b>2.15</b></div><div class="rv5"><span class="rvk">依据</span>盘前预期#29 / 当日强度#10 / 跑赢大盘中位 / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh601000.html" target="_blank" rel="noopener">唐山港</a></span><span class="rvr">65.6 分</span></div><div class="rv2">601000 · 交运/航运港口 · 低位/新启动 · 现价 <b class="dn">5.12</b> <small class="dn">-1.54%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">5.0 ~ 5.08</b> <span class="rvk">目标 T1</span><b class="up">5.2</b> <span class="rvk">止损</span><b class="dn">4.98</b> <span class="rvk">RR</span><b>2.20</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#25 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div><div class="rv"><div class="rv1"><span class="rvs"><a href="https://quote.eastmoney.com/sh600572.html" target="_blank" rel="noopener">康恩贝</a></span><span class="rvr">65.5 分</span></div><div class="rv2">600572 · 医药/中药 · 低位/新启动 · 现价 <b class="up">4.05</b> <small class="up">+1.00%</small></div><div class="rv3"><span class="rvk">低吸区</span><b class="up">3.93 ~ 3.99</b> <span class="rvk">目标 T1</span><b class="up">4.07</b> <span class="rvk">止损</span><b class="dn">3.91</b> <span class="rvk">RR</span><b>1.88</b></div><div class="rv5"><span class="rvk">依据</span>当日强度#2 / 跑赢大盘中位 / ★当日新启动（盘前未点名） / 中军市值</div></div></div><div class="odet" style="margin-top:10px"><b>触发价 ≠ 买价</b> · <b>观察级非买入</b> · <b>不放宽阈值</b> · 限价挂单，不追高 <span style="color:#64748b">S1 买卖靠分时择时：买挂限价等回踩、卖冲高分批了结，不用收盘价无脑买卖</span></div></div></details>
+
+
+<details class="sec2" open><summary>C4 ⚡ 盘中执行提示（转正 / 卖点 / 限价档）</summary>
+<div class="sec" style="border-left:5px solid #10b981">
+<div class="odet">🛰️ 最近快照 <b>14:35</b>（29 只白名单）：Y1_candidate×1 ｜ Y4_limit×9</div>
+<div class="sec"><h4>① 盘中转正候选 0/0
+<small style="color:#94a3b8;font-weight:400">· 单列，不参与盘前排序</small></h4><div class="odet">今日无转正候选</div></div>
+<div class="sec"><h4>② R4 卖点提示</h4><div class="odet">今日无 R4 卖点</div></div>
+<div class="sec"><h4>③ Y4 限价档（+3/+5/+7%）</h4><div class="odet">📌 共同依据：历史成交率 52.9/34.7/23.5%（结构转换器，不改变期望）</div><div class="odet">⏳ <b>000021</b> 深科技｜参考价 24.93｜限价档 +3%=25.68/+5%=26.18/+7%=26.68</div><div class="odet">⏳ <b>000859</b> 国风新材｜参考价 7.56｜限价档 +3%=7.79/+5%=7.94/+7%=8.09</div><div class="odet">⏳ <b>000938</b> 紫光股份｜参考价 22.32｜限价档 +3%=22.99/+5%=23.44/+7%=23.88</div><div class="odet">⏳ <b>001277</b> 速达股份｜参考价 23.43｜限价档 +3%=24.13/+5%=24.6/+7%=25.07</div><div class="odet">⏳ <b>001369</b> 双欣材料｜参考价 9.76｜限价档 +3%=10.05/+5%=10.25/+7%=10.44</div><div class="odet">⏳ <b>002453</b> 华软科技｜参考价 4.46｜未触发@14:30</div><div class="odet">⏳ <b>002557</b> 洽洽食品｜参考价 20.67｜未触发@14:30</div><div class="odet">⏳ <b>600160</b> 巨化股份｜参考价 24.79｜限价档 +3%=25.53/+5%=26.03/+7%=26.53</div><div class="odet">⏳ <b>600483</b> 福能股份｜参考价 11.96｜未触发@14:30</div><div class="odet">⏳ <b>600549</b> 厦门钨业｜参考价 31.95｜限价档 +3%=32.91/+5%=33.55/+7%=34.19</div><div class="odet">⏳ <b>600667</b> 太极实业｜参考价 11.6｜限价档 +3%=11.95/+5%=12.18/+7%=12.41</div><div class="odet">⏳ <b>603200</b> 上海洗霸｜参考价 41.03｜限价档 +3%=42.26/+5%=43.08/+7%=43.9</div></div>
+</div></details>
+
+
+<details class="sec2" open><summary>C11 🧪 盘中反核·观察级 · 0 条（影子期未建仓）<span class="badge" style="background:#e0e7ff;color:#3730a3">观察级·非买入</span></summary><div class="sec" style="border-left:5px solid #6366f1"><div class="odet">今日无影子样本（空集是常态）</div><div class="odet">🧪 <b>观察级·未建仓·不构成买入建议</b>｜离场口径 <b>T+1 开盘无条件卖出</b></div></div></details>
+
+
+<p class="disclaimer">免责声明：本报告由确定性研究程序生成，仅供学习与研究参考，不构成投资建议。
+股市有风险，投资需谨慎。所有结论基于历史数据与技术模型，不保证未来表现。</p>
+</div></body></html>
